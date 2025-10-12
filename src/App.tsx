@@ -5,10 +5,11 @@ import ThemeToggle from './components/ThemeToggle/ThemeToggle'
 import LanguageToggle from './components/LanguageToggle/LanguageToggle'
 import Onboarding from './components/Onboarding/Onboarding'
 import { useOnboardingStore } from './stores/onboardingStore'
+import Form from './components/Form/Form'
 
 const App = () => {
   const { theme } = useThemeStore()
-  const {isOnboardingComplete, resetOnboarding} = useOnboardingStore()
+  const {isOnboardingComplete} = useOnboardingStore()
 //  const { t } = useTranslation()
 
   return (
@@ -29,10 +30,7 @@ const App = () => {
         
 
        {!isOnboardingComplete && <Onboarding/>}
-       {isOnboardingComplete && <div>
-        FORM
-        <button onClick={resetOnboarding}>RESET ONBOARDING</button>
-        </div>}
+       {isOnboardingComplete && <Form></Form>}
           
         
       </main>

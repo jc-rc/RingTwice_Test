@@ -6,7 +6,11 @@
         "title_step3" :  "The RingTwice network of trust",
         "paragraph_step1": "As a client, you can get help with countless tasks from skilled people near you",
         "paragraph_step2": "Please indicate details such as the need for tools, the amount of people required, etc. to get help faster",
-        "paragraph_step3": "When using our app, you're already tapping into a network of trusted and skilled partners -help us keep it that way! Refrain from exchanging contact information externally"
+        "paragraph_step3": "When using our app, you're already tapping into a network of trusted and skilled partners -help us keep it that way! Refrain from exchanging contact information externally",
+        "complete": "Got it!",
+        "skip": "SKIP",
+        "next": "Next",
+        "previous": "Previous"
     },
     "common": {
         "language": "English",

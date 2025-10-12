@@ -13,9 +13,11 @@ const Onboarding = () => {
 
             <div className='flex gap-2 justify-end z-1 fadeIn' style={{animationDelay: "0.6s"}}>
                
-                <button className='text-neutral-200 px-2 font-bold underline' onClick={completeOnboarding}>SKIP</button>
+                <button className='text-neutral-200 px-2 font-bold underline' onClick={completeOnboarding}>
+                    {t("onboarding.skip")}
+                </button>
             </div>
-            <div className='flex absolute inset-0 z-0 mask-b-from-0% mask-b-to-80% opacity-90 '>
+            <div className='flex absolute inset-0 z-0 mask-b-from-0% mask-b-to-80% opacity-80 '>
 
                 {currentStep === 1 && <img src="https://images.unsplash.com/photo-1611095785020-1ba3dd228ea7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1287" alt="" className='aspect-[16/9] object-cover object-top h-full fadeIn' />}
                 {currentStep === 2 && <img src="https://images.unsplash.com/photo-1747930838628-75fa744f6b15?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1287" alt="" className='aspect-[16/9] object-cover object-top h-full fadeIn' />}
@@ -34,9 +36,11 @@ const Onboarding = () => {
             <div className='flex  items-center justify-between z-1 gap-4 fadeIn' style={{animationDelay: "0.6s"}}>
                 { currentStep > 1 &&
 
-                <button className='border rounded-full px-4 py-2 w-full' onClick={prevStep}>prev step</button>
+                <button className='border rounded-full px-4 py-2 w-full' onClick={prevStep}>{t("onboarding.previous")}</button>
                 }
-                <button className='border rounded-full px-4 py-2 w-full' onClick={currentStep === 3 ? completeOnboarding : nextStep}>next-step</button>
+                <button className='border rounded-full px-4 py-2 w-full' onClick={currentStep === 3 ? completeOnboarding : nextStep}>{
+            currentStep===3 ? t("onboarding.complete"): t("onboarding.next")
+            }</button>
             </div>
 
 
