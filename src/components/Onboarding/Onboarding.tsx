@@ -15,11 +15,11 @@ const Onboarding = () => {
                
                 <button className='border px-2' onClick={completeOnboarding}>SKIP</button>
             </div>
-            <div className='flex absolute inset-0 z-0'>
+            <div className='flex absolute inset-0 z-0 mask-b-from-0% fadeIn'>
 
-                {currentStep === 1 && <img src="https://images.unsplash.com/photo-1611095785020-1ba3dd228ea7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1287" alt="" className='aspect-[16/9] mask-b-from-0%  object-cover object-top fadeIn' />}
-                {currentStep === 2 && <img src="https://images.unsplash.com/photo-1747930838628-75fa744f6b15?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1287" alt="" className='aspect-[16/9] mask-b-from-0%  object-cover object-top fadeIn' />}
-                {currentStep === 3 && <img src="https://images.unsplash.com/photo-1714575600356-6635434699f8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3094" alt="" className='aspect-[16/9] mask-b-from-0%  object-cover object-top fadeIn' />}
+                {currentStep === 1 && <img src="https://images.unsplash.com/photo-1611095785020-1ba3dd228ea7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1287" alt="" className='aspect-[16/9] object-cover' />}
+                {currentStep === 2 && <img src="https://images.unsplash.com/photo-1747930838628-75fa744f6b15?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1287" alt="" className='aspect-[16/9] object-cover' />}
+                {currentStep === 3 && <img src="https://images.unsplash.com/photo-1714575600356-6635434699f8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3094" alt="" className='aspect-[16/9] object-cover' />}
                 
             </div>
             <div className='flex-col flex gap-6 z-1 flex-1 justify-end fadeIn' style={{animationDelay: "0.2s"}}>
