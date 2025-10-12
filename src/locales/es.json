@@ -1,9 +1,19 @@
 {
     "onboarding": {
-        "welcome" : "¡Bienvenido a RingTwice!"
+        "welcome": "¡Bienvenido a RingTwice!",
+        "title_step1": "¡Publiquemos una solicitud!",
+        "title_step2": "¡No dejes ningún detalle fuera!",
+        "title_step3": "La red de confianza de RingTwice",
+        "paragraph_step1": "Como cliente, puedes recibir ayuda para innumerables tareas de personas calificadas cerca de ti",
+        "paragraph_step2": "Indica detalles como la necesidad de herramientas, la cantidad de personas requeridas, etc., para recibir ayuda más rápidamente",
+        "paragraph_step3": "Al usar nuestra aplicación, ya formas parte de una red de socios confiables y capacitados ¡Ayúdanos a mantenerlo así! Evita intercambiar información de contacto fuera de la plataforma.",
+        "complete": "¡Entendido!",
+        "skip": "OMITIR",
+        "next": "Siguiente",
+        "previous": "Anterior"
     },
     "common": {
         "language": "Español",
-        "working": "i18next funciona perfectamente!"
+        "working": "¡i18next funciona perfectamente!"
     }
 }
