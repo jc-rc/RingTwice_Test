@@ -7,7 +7,7 @@ import Onboarding from './components/Onboarding/Onboarding'
 
 const App = () => {
   const { theme } = useThemeStore()
-  const { t } = useTranslation()
+//  const { t } = useTranslation()
 
   return (
     <div className={`${theme} h-dvh overflow-hidden bg- d-200 dark:bg-neutral-900 transition-all duration-1000 flex flex-col dark:text-neutral-200 text-neutral-700`}>

@@ -1,4 +1,3 @@
-import React from 'react'
 import { useOnboardingStore } from '../../stores/onboardingStore'
 import { useTranslation } from 'react-i18next'
 
