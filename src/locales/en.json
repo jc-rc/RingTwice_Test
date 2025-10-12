@@ -1,6 +1,12 @@
 {
     "onboarding": {
-        "welcome" : "Welcome to RingTwice!"
+        "welcome" : "Welcome to RingTwice!",
+        "title_step1" :  "STEP1",
+        "title_step2" :  "STEP2",
+        "title_step3" :  "STEP3",
+        "paragraph_step1": "This is the first step",
+        "paragraph_step2": "This is the second step",
+        "paragraph_step3": "This is the third step"
     },
     "common": {
         "language": "English",
