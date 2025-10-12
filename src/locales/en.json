@@ -1,12 +1,12 @@
 {
     "onboarding": {
         "welcome" : "Welcome to RingTwice!",
-        "title_step1" :  "STEP1",
-        "title_step2" :  "STEP2",
-        "title_step3" :  "STEP3",
-        "paragraph_step1": "This is the first step",
-        "paragraph_step2": "This is the second step",
-        "paragraph_step3": "This is the third step"
+        "title_step1" :  "Let's publish an application!",
+        "title_step2" :  "Don't leave any details out!",
+        "title_step3" :  "The RingTwice network of trust",
+        "paragraph_step1": "As a client, you can get help with countless tasks from skilled people near you",
+        "paragraph_step2": "Please indicate details such as the need for tools, the amount of people required, etc. to get help faster",
+        "paragraph_step3": "When using our app, you're already tapping into a network of trusted and skilled partners -help us keep it that way! Refrain from exchanging contact information externally"
     },
     "common": {
         "language": "English",
