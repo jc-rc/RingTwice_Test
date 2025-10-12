@@ -1,5 +1,5 @@
 
-import { useTranslation } from 'react-i18next'
+//import { useTranslation } from 'react-i18next'
 import { useThemeStore } from './stores/themeStore'
 import ThemeToggle from './components/ThemeToggle/ThemeToggle'
 import LanguageToggle from './components/LanguageToggle/LanguageToggle'
