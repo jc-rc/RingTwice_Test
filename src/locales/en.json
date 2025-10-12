@@ -1,0 +1,9 @@
+{
+    "onboarding": {
+        "welcome" : "Welcome to RingTwice!"
+    },
+    "common": {
+        "language": "English",
+        "working": "i18next is working perfectly!"
+    }
+}
