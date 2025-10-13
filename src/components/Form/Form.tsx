@@ -10,11 +10,11 @@ const Form = () => {
 
 
   return (
-    <div className='flex flex-col gap-4 fadeIn border flex-1 overflow-hidden'>
+    <div className='flex flex-col gap-4 fadeIn  flex-1 h-full overflow-hidden px-3 pt-4 pb-8 '>
         <button onClick={resetOnboarding}>RESET ONBOARDING</button>
 
-        <div className='flex items-center gap-4'>
-            <div className='flex flex-col gap-8 overflow-auto flex-1'>
+        <div className='flex items-center gap-4 flex-1 overflow-auto border'>
+            <div className='flex flex-col gap-8 flex-1 h-full'>
                 <select name="" id="">
                     <option value="">Categories</option>
                 </select>
@@ -25,19 +25,19 @@ const Form = () => {
                     <option value="">Sub-Activity</option>
                 </select>
 
-                <input type="file" name="" id="" accept='img/jpg, img/jpeg, img/png, img/heic' />
+                <input type="file" name="" id="" accept='image/jpg, image/jpeg, image/png, image/heic' />
                 <textarea name="" id="" placeholder='Extra details'></textarea>
                 <hr />
                 <input type="text" name="" id="" placeholder='Address' />
                 <select name="" id="">
                     <option value="">Type of place</option>
                 </select>
-                <label htmlFor="">
-                    <input type="checkbox" name="" id="" />
+                <label htmlFor="materials" className='flex items-center gap-2'>
+                    <input type="checkbox" name="" id="materials" />
                     <p>Materials provided?</p>
                 </label>
-                <label htmlFor="">
-                    <input type="checkbox" name="" id="" />
+                <label htmlFor="tools" className='flex items-center gap-2'>
+                    <input type="checkbox" name="" id="tools" />
                     <p>Tools provided?</p>
                 </label>
                 <input type="number" name="" id="" placeholder='People required?' />
@@ -52,7 +52,7 @@ const Form = () => {
 
 
             </div>
-            <div>
+            <div className='hidden flex-1 md:flex'>
                 SUMMARY
             </div>
         </div>

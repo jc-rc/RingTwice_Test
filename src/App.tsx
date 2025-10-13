@@ -30,7 +30,7 @@ const App = () => {
         
 
        {!isOnboardingComplete && <Onboarding/>}
-       {isOnboardingComplete && <Form></Form>}
+       {isOnboardingComplete && <Form/>}
           
         
       </main>
