@@ -56,6 +56,10 @@ const Form = () => {
                 SUMMARY
             </div>
         </div>
+
+        <div>
+            BUTTON ZONE
+        </div>
     </div>
   )
 }
