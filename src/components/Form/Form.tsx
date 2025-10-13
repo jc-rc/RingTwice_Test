@@ -24,9 +24,9 @@ const Form = () => {
                 <select name="" id="">
                     <option value="">Sub-Activity</option>
                 </select>
-
+                <input type="text" name="" id="" placeholder='Publication title' />
+                <textarea className='min-h-fit' rows={5} name="" id="" placeholder='Description details'></textarea>
                 <input type="file" name="" id="" accept='image/jpg, image/jpeg, image/png, image/heic' />
-                <textarea className='m-h-fit' rows={5} name="" id="" placeholder='Extra details'></textarea>
                 <hr />
                 <input type="text" name="" id="" placeholder='Address' />
                 <select name="" id="">
@@ -41,13 +41,13 @@ const Form = () => {
                     <p>Tools provided?</p>
                 </label>
                 <input type="number" inputMode='numeric' name="" id="" placeholder='People required?' />
-                <textarea className='m-h-fit' rows={5} name="" id="" placeholder='Extra details (how to enter, parking, etc.)'></textarea>
+                <textarea className='min-h-fit' rows={5} name="" id="" placeholder='Extra details (how to enter, parking, etc.)'></textarea>
 
                 <hr />
 
                 <input type="text" name="" id="" placeholder='Full name' />
-                <input type="tel" name="" id="" placeholder='Phone number' />
-                <input type="email" name="" id="" placeholder='Email' />
+                <input type="tel" inputMode='tel' name="" id="" placeholder='Phone number' />
+                <input type="email" inputMode='email' name="" id="" placeholder='Email' />
 
 
 
