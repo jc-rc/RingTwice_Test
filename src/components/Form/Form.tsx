@@ -13,8 +13,8 @@ const Form = () => {
     <div className='flex flex-col gap-4 fadeIn  flex-1 h-full overflow-hidden px-3 pt-4 pb-8 '>
         <button onClick={resetOnboarding}>RESET ONBOARDING</button>
 
-        <div className='flex items-center gap-4 flex-1 overflow-y-auto border'>
-            <div className='flex flex-col gap-8 flex-1 h-full'>
+        <div className='flex items-center gap-4 flex-1 overflow-hidden border'>
+            <div className='flex flex-col gap-8 h-full flex-1 overflow-y-auto'>
                 <select name="" id="">
                     <option value="">Categories</option>
                 </select>
@@ -26,7 +26,7 @@ const Form = () => {
                 </select>
 
                 <input type="file" name="" id="" accept='image/jpg, image/jpeg, image/png, image/heic' />
-                <textarea name="" id="" placeholder='Extra details'></textarea>
+                <textarea rows={5} name="" id="" placeholder='Extra details'></textarea>
                 <hr />
                 <input type="text" name="" id="" placeholder='Address' />
                 <select name="" id="">
@@ -41,7 +41,7 @@ const Form = () => {
                     <p>Tools provided?</p>
                 </label>
                 <input type="number" inputMode='numeric' name="" id="" placeholder='People required?' />
-                <textarea name="" id="" placeholder='Extra details (how to enter, parking, etc.)'></textarea>
+                <textarea rows={5} name="" id="" placeholder='Extra details (how to enter, parking, etc.)'></textarea>
 
                 <hr />
 
