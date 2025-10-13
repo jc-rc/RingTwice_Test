@@ -26,7 +26,7 @@ const Form = () => {
                 </select>
 
                 <input type="file" name="" id="" accept='image/jpg, image/jpeg, image/png, image/heic' />
-                <textarea rows={5} name="" id="" placeholder='Extra details'></textarea>
+                <textarea className='m-h-fit' rows={5} name="" id="" placeholder='Extra details'></textarea>
                 <hr />
                 <input type="text" name="" id="" placeholder='Address' />
                 <select name="" id="">
@@ -41,7 +41,7 @@ const Form = () => {
                     <p>Tools provided?</p>
                 </label>
                 <input type="number" inputMode='numeric' name="" id="" placeholder='People required?' />
-                <textarea rows={5} name="" id="" placeholder='Extra details (how to enter, parking, etc.)'></textarea>
+                <textarea className='m-h-fit' rows={5} name="" id="" placeholder='Extra details (how to enter, parking, etc.)'></textarea>
 
                 <hr />
 
