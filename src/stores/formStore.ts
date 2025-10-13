@@ -116,7 +116,7 @@ export const useFormStore = create<FormState>((set, get) => ({
 	},
 
 	// Actions
-	setCategory: (category) => set((state) => {
+	setCategory: (category) => set(() => {
 		// When changing category, clear dependent selections
 		return {
 			category,
