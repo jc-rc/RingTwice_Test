@@ -13,7 +13,7 @@ const Form = () => {
     <div className='flex flex-col gap-4 fadeIn  flex-1 h-full overflow-hidden px-3 pt-4 pb-8 '>
         <button onClick={resetOnboarding}>RESET ONBOARDING</button>
 
-        <div className='flex items-center gap-4 flex-1 overflow-auto border'>
+        <div className='flex items-center gap-4 flex-1 overflow-y-auto border'>
             <div className='flex flex-col gap-8 flex-1 h-full'>
                 <select name="" id="">
                     <option value="">Categories</option>
@@ -40,7 +40,7 @@ const Form = () => {
                     <input type="checkbox" name="" id="tools" />
                     <p>Tools provided?</p>
                 </label>
-                <input type="number" name="" id="" placeholder='People required?' />
+                <input type="number" inputMode='numeric' name="" id="" placeholder='People required?' />
                 <textarea name="" id="" placeholder='Extra details (how to enter, parking, etc.)'></textarea>
 
                 <hr />
