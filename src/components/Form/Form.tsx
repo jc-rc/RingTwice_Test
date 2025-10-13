@@ -1,67 +1,298 @@
+import { useEffect, useMemo } from 'react'
+import { useFormStore, type CategoryNode } from '../../stores/formStore'
 import { useOnboardingStore } from '../../stores/onboardingStore'
 
 const Form = () => {
+	// Onboarding control remains intact
+	const { resetOnboarding } = useOnboardingStore()
 
-//const categories = [];
-//const subCategories=[];
-//const subActivities=[]
+	// Pull state and actions from the form store
+	const {
+		// catalog
+		categories,
+		isCategoriesLoading,
+		categoriesError,
+		fetchCategories,
+		// inputs
+		category,
+		subCategory,
+		subActivities,
+		description,
+		photos,
+		address,
+		placeType,
+		materialsProvided,
+		toolsProvided,
+		peopleNeeded,
+		extraDetails,
+		name,
+		phone,
+		email,
+		// actions
+		setCategory,
+		setSubCategory,
+		toggleSubActivity,
+		setDescription,
+		addPhotos,
+		removePhotoAt,
+		setAddress,
+		setPlaceType,
+		setMaterialsProvided,
+		setToolsProvided,
+		setPeopleNeeded,
+		setExtraDetails,
+		setName,
+		setPhone,
+		setEmail,
+		// selectors
+		isBasicInfoValid,
+		canSubmit,
+	} = useFormStore()
 
-    const {resetOnboarding} = useOnboardingStore()
+	// Fetch categories on first mount
+	useEffect(() => {
+		if (!categories.length && !isCategoriesLoading && !categoriesError) {
+			void fetchCategories()
+		}
+	}, [categories.length, isCategoriesLoading, categoriesError, fetchCategories])
 
+	// Narrow current category/subcategory for dependent rendering
+	const currentCategory: CategoryNode | undefined = useMemo(
+		() => categories.find((c) => c.title === category),
+		[categories, category]
+	)
+	const currentSubCategory = useMemo(
+		() => currentCategory?.subCategories?.find((s) => s.title === subCategory),
+		[currentCategory, subCategory]
+	)
 
-  return (
-    <div className='flex flex-col gap-4 fadeIn  flex-1 h-full overflow-hidden px-3 pt-4 pb-8 '>
-        <button onClick={resetOnboarding}>RESET ONBOARDING</button>
+	// Handlers
+	const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		setCategory(e.target.value || null)
+	}
+	const handleSubCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		setSubCategory(e.target.value || null)
+	}
+	const handleToggleSubActivity = (name: string) => () => {
+		toggleSubActivity(name)
+	}
+	const handlePhotos = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (e.target.files && e.target.files.length > 0) {
+			addPhotos(Array.from(e.target.files))
+		}
+	}
 
-        <div className='flex items-center gap-4 flex-1 overflow-hidden border'>
-            <div className='flex flex-col gap-8 h-full flex-1 overflow-y-auto'>
-                <select name="" id="">
-                    <option value="">Categories</option>
-                </select>
-                <select name="" id="">
-                    <option value="">Sub-category</option>
-                </select>
-                <select name="" id="">
-                    <option value="">Sub-Activity</option>
-                </select>
-                <input type="text" name="" id="" placeholder='Publication title' />
-                <textarea className='min-h-fit' rows={5} name="" id="" placeholder='Description details'></textarea>
-                <input type="file" name="" id="" accept='image/jpg, image/jpeg, image/png, image/heic' />
-                <hr />
-                <input type="text" name="" id="" placeholder='Address' />
-                <select name="" id="">
-                    <option value="">Type of place</option>
-                </select>
-                <label htmlFor="materials" className='flex items-center gap-2'>
-                    <input type="checkbox" name="" id="materials" />
-                    <p>Materials provided?</p>
-                </label>
-                <label htmlFor="tools" className='flex items-center gap-2'>
-                    <input type="checkbox" name="" id="tools" />
-                    <p>Tools provided?</p>
-                </label>
-                <input type="number" inputMode='numeric' name="" id="" placeholder='People required?' />
-                <textarea className='min-h-fit' rows={5} name="" id="" placeholder='Extra details (how to enter, parking, etc.)'></textarea>
+	return (
+		<div className='flex flex-col gap-4 fadeIn flex-1 h-full overflow-hidden px-3 pt-4 pb-8'>
+			<button onClick={resetOnboarding}>RESET ONBOARDING</button>
 
-                <hr />
+			<div>
+				<p className='font-bold text-2xl'>Title of current step</p>
+			</div>
 
-                <input type="text" name="" id="" placeholder='Full name' />
-                <input type="tel" inputMode='tel' name="" id="" placeholder='Phone number' />
-                <input type="email" inputMode='email' name="" id="" placeholder='Email' />
+			<div className='flex items-center gap-4 flex-1 overflow-hidden border rounded-lg p-3 bg-white/60 dark:bg-black/10'>
+				<div className='flex flex-col gap-8 h-full flex-1 overflow-y-auto'>
+					{/* Categories */}
+					{isCategoriesLoading && (
+						<p className='text-sm text-gray-500'>Loading categories…</p>
+					)}
+					{categoriesError && (
+						<p className='text-sm text-red-600'>Failed to load categories: {categoriesError}</p>
+					)}
+					{!isCategoriesLoading && !categoriesError && (
+						<>
+							<select id='form-category' value={category ?? ''} onChange={handleCategoryChange}>
+								<option value=''>Category</option>
+								{categories.map((c) => (
+									<option key={c.title} value={c.title}>
+										{c.title}
+									</option>
+								))}
+							</select>
 
+							{/* Sub-categories (only if available) */}
+							{currentCategory?.subCategories && (
+								<select id='form-subcategory' value={subCategory ?? ''} onChange={handleSubCategoryChange}>
+									<option value=''>Sub-category</option>
+									{currentCategory.subCategories.map((s) => (
+										<option key={s.title} value={s.title}>
+											{s.title}
+										</option>
+									))}
+								</select>
+							)}
 
+							{/* Sub-activities (multiple) */}
+							{currentSubCategory?.subActivities && (
+								<fieldset id='form-subactivity' className='flex flex-col gap-2'>
+									{currentSubCategory.subActivities.map((a) => (
+										<label key={a} className='flex items-center gap-2'>
+											<input
+												type='checkbox'
+												checked={subActivities.has(a)}
+												onChange={handleToggleSubActivity(a)}
+											/>
+											<p>{a}</p>
+										</label>
+									))}
+								</fieldset>
+							)}
+						</>
+					)}
 
-            </div>
-            <div className='hidden flex-1 md:flex'>
-                SUMMARY
-            </div>
-        </div>
+					{/* Description */}
+					<textarea
+						className='min-h-32'
+						rows={5}
+						id='form-task-description'
+						placeholder='Description details'
+						value={description}
+						onChange={(e) => setDescription(e.target.value)}
+					/>
 
-        <div>
-            BUTTON ZONE
-        </div>
-    </div>
-  )
+					{/* Photos */}
+					<input
+						type='file'
+						id='form-photos'
+						accept='image/jpg, image/jpeg, image/png, image/heic'
+						multiple
+						onChange={handlePhotos}
+					/>
+					{photos.length > 0 && (
+						<ul className='text-sm text-gray-600 flex flex-col gap-1'>
+							{photos.map((f, i) => (
+								<li key={i} className='flex items-center gap-2'>
+									<span className='truncate'>{f.name}</span>
+									<button className='text-red-600' onClick={() => removePhotoAt(i)}>
+										Remove
+									</button>
+								</li>
+							))}
+						</ul>
+					)}
+
+					<hr />
+
+					{/* Address */}
+					<input
+						type='text'
+						id='form-address'
+						placeholder='Address'
+						value={address}
+						onChange={(e) => setAddress(e.target.value)}
+					/>
+
+					{/* Place type */}
+					<select id='form-place-type' value={placeType ?? ''} onChange={(e) => setPlaceType(e.target.value || null)}>
+						<option value=''>Type of place</option>
+						<option value='house'>House</option>
+						<option value='apartment'>Apartment</option>
+						<option value='other'>Other</option>
+					</select>
+
+					{/* Materials / Tools */}
+					<label htmlFor='form-materials' className='flex items-center gap-2'>
+						<input
+							id='form-materials'
+							type='checkbox'
+							checked={materialsProvided}
+							onChange={(e) => setMaterialsProvided(e.target.checked)}
+						/>
+						<p>Materials provided?</p>
+					</label>
+					<label htmlFor='form-tools' className='flex items-center gap-2'>
+						<input
+							id='form-tools'
+							type='checkbox'
+							checked={toolsProvided}
+							onChange={(e) => setToolsProvided(e.target.checked)}
+						/>
+						<p>Tools provided?</p>
+					</label>
+
+					{/* People needed */}
+					<input
+						id='form-people-needed'
+						type='number'
+						inputMode='numeric'
+						placeholder='People required?'
+						value={peopleNeeded ?? ''}
+						onChange={(e) => {
+							const v = e.target.value
+							setPeopleNeeded(v === '' ? null : Number(v))
+						}}
+					/>
+
+					{/* Extra details */}
+					<textarea
+						className='min-h-32'
+						rows={5}
+						id='form-extra-details'
+						placeholder='Extra details (how to enter, parking, etc.)'
+						value={extraDetails}
+						onChange={(e) => setExtraDetails(e.target.value)}
+					/>
+
+					<hr />
+
+					{/* Contact */}
+					<input
+						id='form-name'
+						type='text'
+						placeholder='Full name'
+						value={name}
+						onChange={(e) => setName(e.target.value)}
+					/>
+					<input
+						id='form-phone'
+						type='tel'
+						inputMode='tel'
+						placeholder='Phone number'
+						value={phone}
+						onChange={(e) => setPhone(e.target.value)}
+					/>
+					<input
+						id='form-email'
+						type='email'
+						inputMode='email'
+						placeholder='Email'
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+					/>
+				</div>
+
+				{/* SUMMARY column (placeholder) */}
+				<div className='hidden flex-1 md:flex p-4'>
+					<div className='w-full rounded-lg border p-4 bg-white/50 dark:bg-black/20'>
+						<p className='font-semibold mb-2'>SUMMARY</p>
+						<ul className='text-sm space-y-1'>
+							<li>Category: {category ?? '-'}</li>
+							<li>Sub-category: {subCategory ?? '-'}</li>
+							<li>Sub-activities: {subActivities.size ? Array.from(subActivities).join(', ') : '-'}</li>
+							<li>Address: {address || '-'}</li>
+							<li>Place type: {placeType || '-'}</li>
+							<li>People needed: {peopleNeeded ?? '-'}</li>
+							<li>Materials: {materialsProvided ? 'Yes' : 'No'}</li>
+							<li>Tools: {toolsProvided ? 'Yes' : 'No'}</li>
+							<li>Name: {name || '-'}</li>
+							<li>Phone: {phone || '-'}</li>
+							<li>Email: {email || '-'}</li>
+						</ul>
+						<div className='mt-3 text-sm'>
+							<p>Basic info valid: {isBasicInfoValid() ? 'Yes' : 'No'}</p>
+							<p>Can submit: {canSubmit() ? 'Yes' : 'No'}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<div className='text-sm text-gray-600'>
+					This section can host action buttons later.
+				</div>
+			</div>
+		</div>
+	)
 }
 
 export default Form
