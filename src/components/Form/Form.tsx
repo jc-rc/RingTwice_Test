@@ -2,9 +2,9 @@ import { useOnboardingStore } from '../../stores/onboardingStore'
 
 const Form = () => {
 
-const categories = [];
-const subCategories=[];
-const subActivities=[]
+//const categories = [];
+//const subCategories=[];
+//const subActivities=[]
 
     const {resetOnboarding} = useOnboardingStore()
 
@@ -49,7 +49,7 @@ const subActivities=[]
                 <input type="tel" name="" id="" placeholder='Phone number' />
                 <input type="email" name="" id="" placeholder='Email' />
 
-                
+
 
             </div>
             <div>
