@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { useFormStore, type CategoryNode } from '../../stores/formStore'
 import { useOnboardingStore } from '../../stores/onboardingStore'
+import CategorySelector from './CategorySelector'
 
 const Form = () => {
 	// Onboarding control remains intact
@@ -83,11 +84,12 @@ const Form = () => {
 	}
 
 	return (
-		<div className='flex flex-col gap-4 fadeIn flex-1 h-full overflow-hidden px-3 pt-4 pb-8'>
+		<div className='flex flex-col gap-4 fadeInRight flex-1 h-full overflow-hidden p-8 glassy md:rounded-4xl'>
 			<button onClick={resetOnboarding}>RESET ONBOARDING</button>
 
-			<div>
-				<p className='font-bold text-2xl'>Title of current step</p>
+			<div className='flex flex-col gap-4'>
+                <i className='fa-solid fa-hammer text-4xl'></i>
+				<p className='font-bold text-xl'>What are we working on?</p>
 			</div>
 
 			<div className='flex items-center gap-4 flex-1 overflow-hidden border rounded-lg p-3 bg-white/60 dark:bg-black/10'>
@@ -101,8 +103,11 @@ const Form = () => {
 					)}
 					{!isCategoriesLoading && !categoriesError && (
 						<>
+
+                            <CategorySelector></CategorySelector>
+
 							<select id='form-category' value={category ?? ''} onChange={handleCategoryChange}>
-								<option value=''>Category</option>
+								<option selected hidden value=''>Category</option>
 								{categories.map((c) => (
 									<option key={c.title} value={c.title}>
 										{c.title}
@@ -113,7 +118,7 @@ const Form = () => {
 							{/* Sub-categories (only if available) */}
 							{currentCategory?.subCategories && (
 								<select id='form-subcategory' value={subCategory ?? ''} onChange={handleSubCategoryChange}>
-									<option value=''>Sub-category</option>
+									<option selected hidden value=''>Sub-category</option>
 									{currentCategory.subCategories.map((s) => (
 										<option key={s.title} value={s.title}>
 											{s.title}

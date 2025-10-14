@@ -7,3 +7,7 @@
 :root{
   font-family: 'Inter';
 }
+
+.glassy{
+  @apply transition-all duration-1000 bg-white/30 shadow-lg dark:bg-black/30; 
+}

@@ -9,13 +9,15 @@ const Onboarding = () => {
 
 
     return (
-        <div className=' relative flex-1 flex flex-col gap-6 px-3 pt-4 pb-8 overflow-hidden max-w-xl mx-auto'>
+        <div className=' relative flex-1 flex flex-col gap-8 p-8 overflow-hidden max-w-xl mx-auto glassy md:rounded-4xl fadeIn'>
 
             <div className='flex gap-2 justify-end z-1 fadeIn' style={{animationDelay: "0.6s"}}>
-               
-                <button className='text-neutral-200 px-2 font-bold underline' onClick={completeOnboarding}>
-                    {t("onboarding.skip")}
+               { currentStep === 1 &&
+
+                <button className='text-neutral-200 px-2 font-bold glassy rounded-full size-10 flex items-center justify-center' onClick={completeOnboarding}>
+                    <i className='fa-solid fa-angles-right text-xl'></i>
                 </button>
+               }
             </div>
             <div className='flex absolute inset-0 z-0 mask-b-from-0% mask-b-to-80% opacity-80 '>
 
@@ -24,21 +26,18 @@ const Onboarding = () => {
                 {currentStep === 3 && <img src="https://images.unsplash.com/photo-1714575600356-6635434699f8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3094" alt="" className='aspect-[16/9] object-cover object-top h-full fadeIn' />}
                 
             </div>
-            <div className='flex-col flex gap-6 z-1 flex-1 justify-end fadeIn' style={{animationDelay: "0.2s"}}>
-                <p className='text-4xl font-bold'>{t(`onboarding.title_step${currentStep}`)}</p>
-                <p className='text-xl'>{t(`onboarding.paragraph_step${currentStep}`)}</p>
+            <div className='flex-col flex gap-8 z-1 flex-1 justify-end fadeIn' style={{animationDelay: "0.2s"}}>
+                <p className='text-4xl font-bold '>{t(`onboarding.title_step${currentStep}`)}</p>
+                <p className='text-xl '>{t(`onboarding.paragraph_step${currentStep}`)}</p>
             </div>
             <div>
                 <div className='rounded-full h-2 w-1/4 mx-auto bg-neutral-200/30'>
-                    <div className={`rounded-full h-2 bg-pink-600 transition-all duration-500`} style={{width: `${currentStep * 33.3}%`}}></div>
+                    <div className={`rounded-full h-2 bg-orange-600/60 transition-all duration-500`} style={{width: `${currentStep * 33.3}%`}}></div>
                 </div>
             </div>
             <div className='flex  items-center justify-between z-1 gap-4 fadeIn' style={{animationDelay: "0.6s"}}>
-                { currentStep > 1 &&
-
-                <button className='border rounded-full px-4 py-2 w-full' onClick={prevStep}>{t("onboarding.previous")}</button>
-                }
-                <button className='border rounded-full px-4 py-2 w-full' onClick={currentStep === 3 ? completeOnboarding : nextStep}>{
+              
+                <button className='rounded-2xl px-4 py-2 w-full bg-emerald-600 text-neutral-200 font-bold shadow-lg' onClick={currentStep === 3 ? completeOnboarding : nextStep}>{
             currentStep===3 ? t("onboarding.complete"): t("onboarding.next")
             }</button>
             </div>
