@@ -33,7 +33,7 @@ const App = () => {
         </div>
 
       </nav>
-      <main id='content' className='flex-1 flex flex-col  overflow-hidden md:p-8'>
+      <main id='content' className='flex-1 flex flex-col  overflow-hidden h-full md:p-8'>
         
 
        {!isOnboardingComplete && <Onboarding/>}
