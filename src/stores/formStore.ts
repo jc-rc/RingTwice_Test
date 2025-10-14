@@ -215,6 +215,24 @@ export const useFormStore = create<FormState>((set, get) => ({
 						},
 					],
 				},
+				{
+					title: 'House chores',
+					subCategories: [
+						{
+							title: 'Cleaning',
+                            subActivities: ['Whole house', 'Deep cleaning', 'Window cleaning'],
+							
+						},
+                        {
+                            title: 'Cooking'
+                        },
+                        {
+							title: 'Organizing',
+                            subActivities: ['Move furniture', 'Marie Kondo', 'Downsize'],
+							
+						},
+					],
+				},
 			]
 			set({ categories: payload })
 		} catch (e: unknown) {
