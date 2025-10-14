@@ -233,6 +233,44 @@ export const useFormStore = create<FormState>((set, get) => ({
 						},
 					],
 				},
+				{
+					title: 'Technology',
+					subCategories: [
+						{
+							title: 'Fix & Repair',
+                            subActivities: ['Windows PC', 'Mac', 'Smartphone / Tablet', 'iPhone / iPad'],
+							
+						},
+                        {
+                            title: 'Designer',
+                            subActivities: [ 'Website', 'Photo/Video editing', 'Graphic design']
+                        },
+                        {
+							title: 'Training',
+                            subActivities: ['Programs/Apps', 'Using smart devices'],
+							
+						},
+					],
+				},
+				{
+					title: 'Transport',
+					subCategories: [
+						{
+							title: 'Moving',
+                            subActivities: ['Carrying', 'Car', 'Van', 'Trailer'],
+							
+						},
+                        {
+                            title: 'Dumping',
+                            subActivities: ['Debris', 'Garden waste', 'Dirt', 'Animal feed'],
+                        },
+                        {
+							title: 'Delivery',
+                            subActivities: ['Food', 'Medicine', 'Packages'],
+							
+						},
+					],
+				},
 			]
 			set({ categories: payload })
 		} catch (e: unknown) {

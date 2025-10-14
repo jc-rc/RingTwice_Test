@@ -79,12 +79,12 @@ const Step1 = () => {
           <div className="flex flex-col gap-4">
             <h3 className="text-lg font-semibold">Choose a category</h3>
             <form className="h-full  rounded-lg overflow-hidden">
-              <div className="grid grid-cols-2 gap-4 has-checked:flex has-checked:min-w-full has-checked:overflow-x-auto has-checked:pe-6 has-checked:py-2 ">
+              <div className="grid grid-cols-2 gap-4 has-checked:flex has-checked:min-w-full has-checked:overflow-x-auto has-checked:pe-6 py-2 ">
                 {categories.map((c) => (
                   <label
                     key={c.title}
                     htmlFor={`option-${c.title}`}
-                    className={`cursor-pointer transition-all flex px-4 py-2 items-center justify-center gap-1 glassy rounded-2xl ${currentCategory ? "flex-row" : "flex-col aspect-square w-32 mx-auto"}`}
+                    className={`cursor-pointer transition-all flex px-4 py-2 items-center justify-center gap-1 glassy rounded-2xl has-checked:border-2 has-checked:order-first ${currentCategory ? "flex-row" : "flex-col aspect-square w-32 mx-auto"}`}
                   >
                     <p className="text-4xl">🪴</p>
                     <div>

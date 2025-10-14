@@ -22,9 +22,9 @@ const App = () => {
 
             {
               theme === "dark" ? 
-              <img src="/src/assets/RingTwice-logo-negative-rgb.svg" alt="RingTwice Logo Negative" className='w-40 fadeIn'/>
+              <img src="/RingTwice-logo-negative-rgb.svg" alt="RingTwice Logo Negative" className='w-40 fadeIn'/>
               :
-              <img src="/src/assets/RingTwice-logo-main-rgb.svg" alt="RingTwice Logo" className='w-40 fadeIn' />
+              <img src="/RingTwice-logo-main-rgb.svg" alt="RingTwice Logo" className='w-40 fadeIn' />
             }
            
           </div>
