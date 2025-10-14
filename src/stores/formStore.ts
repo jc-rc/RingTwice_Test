@@ -44,6 +44,14 @@ export interface FormState {
 	phone: string
 	email: string
 
+    //Form steps
+    isFormComplete: boolean
+    currentStep: number
+    nextStep: () => void
+    prevStep: () => void
+    setStep: (step: number) => void
+    resetForm: () => void
+
 	/**
 	 * Derived validations (simple "not empty" style).
 	 * These are recalculated on access; in Zustand, selectors at usage sites are fine.
@@ -100,6 +108,16 @@ export const useFormStore = create<FormState>((set, get) => ({
 	name: '',
 	phone: '',
 	email: '',
+
+    //Form steps init
+    isFormComplete: false,
+    currentStep: 1,
+
+    nextStep: () => set((state) => ({ currentStep: state.currentStep + 1 })),
+  prevStep: () => set((state) => ({ currentStep: state.currentStep > 1 ? state.currentStep - 1 : 1 })),
+  setStep: (step: number) => set({ currentStep: step }),
+ 
+  resetForm: () => set({ isFormComplete: false, currentStep: 1 }),
 
 	/**
 	 * Very simple validations: adjust as your rules evolve.
@@ -161,6 +179,39 @@ export const useFormStore = create<FormState>((set, get) => ({
 						{
 							title: 'Watering',
 							subActivities: ['Water potted plants', 'Water whole yard'],
+						},
+					],
+				},
+				{
+					title: 'Entertainment',
+					subCategories: [
+						{
+							title: 'Photographer',
+							
+						},
+                        {
+                            title: 'DJ'
+                        },
+                        {
+                            title: 'Musician'
+                        },
+					],
+				},
+				{
+					title: 'Pets',
+					subCategories: [
+						{
+							title: 'Pet-sitter (at home)',
+                            subActivities: ['Dogs', 'Cats', 'Others'],
+							
+						},
+                        {
+                            title: 'Dog-walker'
+                        },
+                        {
+							title: 'Pet-sitter (away)',
+                            subActivities: ['Dogs', 'Cats', 'Others'],
+							
 						},
 					],
 				},

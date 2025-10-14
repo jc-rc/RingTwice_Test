@@ -15,5 +15,9 @@
     "common": {
         "language": "English",
         "working": "i18next is working perfectly!"
+    },
+    "form":{
+        "continue": "Continue",
+        "back": "Back"
     }
 }

@@ -1,16 +1,18 @@
 
 type ButtonProps = {
-    label:string,
-    iconSize: "small" | "medium" | "large",
-    iconLeft: string,
-    onClick: ()=> void
+    label?:string,
+    iconSize?: "small" | "medium" | "large",
+    iconLeft?: string,
+    onClick?: any,
+    className?: string
 }
 
 function Button(props:ButtonProps = {
     iconLeft: "flag",
     label: "Label",
     iconSize: "medium",
-    onClick: ()=>{}
+    onClick: undefined,
+    className: ""
 }) {
 
 switch (props.iconSize) {
@@ -30,7 +32,7 @@ switch (props.iconSize) {
 
 
   return (
-    <button className="rounded-4xl p-4" type="button" onClick={props.onClick}>
+    <button className={`flex items-center justify-center rounded-xl px-4 py-2 ${props.className}`} type="button" onClick={props.onClick}>
         <i className={`fa-solid fa-${props.iconLeft} ${props.iconSize}`}></i>
         <p>{props.label}</p>
     </button>

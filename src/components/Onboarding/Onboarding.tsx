@@ -1,5 +1,6 @@
 import { useOnboardingStore } from '../../stores/onboardingStore'
 import { useTranslation } from 'react-i18next'
+import Button from '../Form/Button'
 
 const Onboarding = () => {
 
@@ -37,9 +38,8 @@ const Onboarding = () => {
             </div>
             <div className='flex  items-center justify-between z-1 gap-4 fadeIn' style={{animationDelay: "0.6s"}}>
               
-                <button className='rounded-2xl px-4 py-2 w-full bg-emerald-600 text-neutral-200 font-bold shadow-lg' onClick={currentStep === 3 ? completeOnboarding : nextStep}>{
-            currentStep===3 ? t("onboarding.complete"): t("onboarding.next")
-            }</button>
+                <Button label={
+            currentStep===3 ? t("onboarding.complete"): t("onboarding.next")} className='w-full bg-emerald-600 text-neutral-200 shadow-lg' onClick={currentStep === 3 ? completeOnboarding : nextStep} />
             </div>
 
 
