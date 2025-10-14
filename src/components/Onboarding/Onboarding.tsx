@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 const Onboarding = () => {
 
-    const { currentStep, prevStep, nextStep, completeOnboarding } = useOnboardingStore()
+    const { currentStep,  nextStep, completeOnboarding } = useOnboardingStore()
     const { t } = useTranslation()
     
 
