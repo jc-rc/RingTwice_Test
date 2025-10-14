@@ -13,7 +13,7 @@ const App = () => {
 //  const { t } = useTranslation()
 
   return (
-    <div className={`${theme} h-screen overflow-hidden bg-gradient-to-b from-pink-300/60 to-orange-400/60 d-200 dark:bg-neutral-950 transition-all duration-1000 flex flex-col dark:text-neutral-200 text-neutral-700`}>
+    <div className={`${theme} h-dvh overflow-hidden bg-gradient-to-b from-pink-300/60 to-orange-400/60 d-200 dark:bg-neutral-950 transition-all duration-1000 flex flex-col dark:text-neutral-200 text-neutral-700`}>
 
       <nav id='navbar' className='flex gap-4 pe-3 items-center justify-center shadow-lg bg-neutral-200 dark:bg-neutral-900 transition-all duration-1000'>
         <div className='flex items-center gap-4 flex-1 max-w-xl'>

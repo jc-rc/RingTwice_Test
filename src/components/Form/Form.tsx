@@ -85,7 +85,7 @@ const Form = () => {
 
 	return (
 		<div className='flex flex-col gap-4 fadeInRight flex-1 h-full overflow-hidden p-8 glassy md:rounded-4xl'>
-			<button onClick={resetOnboarding}>RESET ONBOARDING</button>
+			
 
 			<div className='flex flex-col gap-4'>
                 <i className='fa-solid fa-hammer text-4xl'></i>
@@ -292,8 +292,8 @@ const Form = () => {
 			</div>
 
 			<div>
-				<div className='text-sm text-gray-600'>
-					This section can host action buttons later.
+				<div className='flex items-center gap-8'>
+                <button className='rounded-2xl px-4 py-2 w-full bg-emerald-600 text-neutral-200 font-bold shadow-lg' onClick={resetOnboarding}>RESET ONBOARDING</button>
 				</div>
 			</div>
 		</div>
