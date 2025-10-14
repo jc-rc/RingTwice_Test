@@ -271,6 +271,82 @@ export const useFormStore = create<FormState>((set, get) => ({
 						},
 					],
 				},
+				{
+					title: 'Babysitting',
+					subCategories: [
+						{
+							title: 'Moving',
+                            subActivities: ['Carrying', 'Car', 'Van', 'Trailer'],
+							
+						},
+                        {
+                            title: 'Dumping',
+                            subActivities: ['Debris', 'Garden waste', 'Dirt', 'Animal feed'],
+                        },
+                        {
+							title: 'Delivery',
+                            subActivities: ['Food', 'Medicine', 'Packages'],
+							
+						},
+					],
+				},
+				{
+					title: 'Lessons',
+					subCategories: [
+						{
+							title: 'Moving',
+                            subActivities: ['Carrying', 'Car', 'Van', 'Trailer'],
+							
+						},
+                        {
+                            title: 'Dumping',
+                            subActivities: ['Debris', 'Garden waste', 'Dirt', 'Animal feed'],
+                        },
+                        {
+							title: 'Delivery',
+                            subActivities: ['Food', 'Medicine', 'Packages'],
+							
+						},
+					],
+				},
+				{
+					title: 'Wellness',
+					subCategories: [
+						{
+							title: 'Moving',
+                            subActivities: ['Carrying', 'Car', 'Van', 'Trailer'],
+							
+						},
+                        {
+                            title: 'Dumping',
+                            subActivities: ['Debris', 'Garden waste', 'Dirt', 'Animal feed'],
+                        },
+                        {
+							title: 'Delivery',
+                            subActivities: ['Food', 'Medicine', 'Packages'],
+							
+						},
+					],
+				},
+				{
+					title: 'Handywork',
+					subCategories: [
+						{
+							title: 'Moving',
+                            subActivities: ['Carrying', 'Car', 'Van', 'Trailer'],
+							
+						},
+                        {
+                            title: 'Dumping',
+                            subActivities: ['Debris', 'Garden waste', 'Dirt', 'Animal feed'],
+                        },
+                        {
+							title: 'Delivery',
+                            subActivities: ['Food', 'Medicine', 'Packages'],
+							
+						},
+					],
+				},
 			]
 			set({ categories: payload })
 		} catch (e: unknown) {

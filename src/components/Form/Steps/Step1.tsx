@@ -3,6 +3,21 @@ import { useEffect, useMemo } from 'react'
 import { useFormStore, type CategoryNode } from '../../../stores/formStore'
 
 const Step1 = () => {
+
+  const categoryIcons = {
+    'Gardening' : "🪴",
+    'Entertainment' : "🎉",
+    'Pets' : "🐶",
+    'House chores' : "🧼",
+    'Technology' : "🖥️",
+    'Transport' : "🚛",
+    'Babysitting' : "🐣",
+    'Lessons' : "🎓",
+    'Wellness' : "🧘‍♀️",
+    'Handywork' : "🛠️",
+  }
+
+
   // Pull state and actions from the form store
   const {
     // catalog
@@ -79,14 +94,16 @@ const Step1 = () => {
           <div className="flex flex-col gap-4">
             <h3 className="text-lg font-semibold">Choose a category</h3>
             <form className="h-full  rounded-lg overflow-hidden">
-              <div className="grid grid-cols-2 gap-4 has-checked:flex has-checked:min-w-full has-checked:overflow-x-auto has-checked:pe-6 py-2 ">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 has-checked:flex has-checked:min-w-full has-checked:overflow-x-auto has-checked:px-2 px-8 py-2 ">
                 {categories.map((c) => (
                   <label
                     key={c.title}
                     htmlFor={`option-${c.title}`}
-                    className={`cursor-pointer transition-all flex px-4 py-2 items-center justify-center gap-1 glassy rounded-2xl has-checked:border-2 has-checked:order-first ${currentCategory ? "flex-row" : "flex-col aspect-square w-32 mx-auto"}`}
+                    className={`cursor-pointer transition-all flex px-4 py-2 items-center justify-center gap-2 glassy rounded-2xl has-checked:border-2 border-orange-400 ${currentCategory ? "flex-row" : "flex-col aspect-square w-32 mx-auto"}`}
                   >
-                    <p className="text-4xl">🪴</p>
+                    <p className={`${currentCategory ? "text-2xl" : "text-4xl"}`}>
+                      {categoryIcons[c.title as keyof typeof categoryIcons]}
+                    </p>
                     <div>
                       <p className="font-bold text-xs">{c.title}</p>
                     </div>
@@ -109,22 +126,23 @@ const Step1 = () => {
           {currentCategory?.subCategories && (
             <div className="flex flex-col gap-4">
               <h3 className="text-lg font-semibold">Choose a subcategory</h3>
-              <form className="h-full border rounded-lg overflow-hidden bg-pink-300">
-                <div className="border grid grid-cols-1 gap-4 has-checked:flex has-checked:min-w-full has-checked:overflow-x-auto snap-x snap-proximity bg-blue-200 has-checked:py-4">
+              <form className="h-full overflow-hidden ">
+                <div className=" grid grid-cols-1 gap-2 has-checked:flex has-checked:min-w-full has-checked:overflow-x-auto snap-x snap-proximity has-checked:pb-2 px-2">
                   {currentCategory.subCategories.map((s) => (
                     <label
                       key={s.title}
                       htmlFor={`suboption-${s.title}`}
-                      className="cursor-pointer transition-all flex p-4 min-h-16 flex-col items-center justify-center gap-1 border has-checked:bg-green-300 snap-center "
+                      className={`cursor-pointer transition-all flex   flex-col items-start justify-center gap-2 has-checked:bg-green-300 snap-center glassy rounded-2xl p-4 ${currentSubCategory ? "min-w-fit" : "p-4"}`}
                     >
-                      <div>
+                      <div className='flex items-center gap-2'>
+                        <i className={`fa-solid ${currentSubCategory?.title === s.title ? "fa-circle-check text-orange-400" : "fa-circle"}`}></i>
                         <p className="font-bold text-sm">{s.title}</p>
                       </div>
                       <input
                         id={`suboption-${s.title}`}
                         type="radio"
                         name="subcategory"
-                        className="absolute opacity-0"
+                        className="peer absolute opacity-0"
                         value={s.title}
                         checked={subCategory === s.title}
                         onChange={() => handleSubCategoryChange(s.title)}

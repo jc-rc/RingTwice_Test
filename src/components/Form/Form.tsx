@@ -11,12 +11,13 @@ const Form = () => {
     // Pull only step navigation from the form store
     const {
         currentStep,
+        prevStep,
         nextStep,
     } = useFormStore()
 
     return (
         <>
-            <div className='flex flex-col gap-4 fadeInRight flex-1 h-full overflow-hidden p-8 glassy md:rounded-4xl'>
+            <div className='flex flex-col gap-4 fadeInRight flex-1 h-full overflow-hidden p-4 glassy md:rounded-4xl'>
 
 
               
@@ -32,7 +33,7 @@ const Form = () => {
                 <div>
 
                     <div className='flex items-center gap-8'>
-                        <Button label={t("form.back")} className=' w-full bg-green-600 text-neutral-200 shadow-lg' onClick={nextStep} />
+                        <Button label={t("form.back")} className=' w-full bg-green-600 text-neutral-200 shadow-lg' onClick={prevStep} />
                         
                         <Button label={t("form.continue")} className=' w-full bg-green-600 text-neutral-200 shadow-lg' onClick={nextStep} />
                     </div>
