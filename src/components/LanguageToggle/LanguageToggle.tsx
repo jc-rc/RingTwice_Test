@@ -13,12 +13,12 @@ const LanguageToggle = () => {
     <button
       onClick={toggleLanguage}
       className={` cursor-pointer
-         h-8 px-4 rounded-full shadow-lg transition-all duration-1000 flex items-center gap-2 justify-center bg-pink-600 dark:bg-slate-500 text-neutral-200
+         h-10 px-4 rounded-full shadow-lg transition-all duration-1000 flex items-center gap-2 justify-center bg-pink-600 dark:bg-slate-500 text-neutral-200 text-xl
       `}
       aria-label={`Switch to ${i18n.language === 'en' ? 'Spanish' : 'English'} language`}
     >
       <i className='fa-solid fa-globe'></i>
-      <span>{i18n.language === 'en' ? 'EN' : 'ES'}</span>
+      <span className='text-base'>{i18n.language === 'en' ? 'EN' : 'ES'}</span>
       
     </button>
   )

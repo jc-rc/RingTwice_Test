@@ -293,7 +293,7 @@ const Form = () => {
 
 			<div>
 				<div className='flex items-center gap-8'>
-                <button className='rounded-2xl px-4 py-2 w-full bg-emerald-600 text-neutral-200 font-bold shadow-lg' onClick={resetOnboarding}>RESET ONBOARDING</button>
+                <button className='rounded-2xl px-4 py-2 w-full bg-red-600 text-neutral-200 font-bold shadow-lg' onClick={resetOnboarding}>Reset onboarding</button>
 				</div>
 			</div>
 		</div>
