@@ -1,3 +1,5 @@
+import RadioList from '../RadioList'
+import LabeledTextInput from '../LabeledTextInput'
 import { useFormStore } from '../../../stores/formStore'
 
 const Step2 = () => {
@@ -32,46 +34,24 @@ const Step2 = () => {
       {/* Address */}
       <div className="flex flex-col gap-2">
         <h3 className="text-lg font-semibold">Location</h3>
-        <input
-          type="text"
+        <LabeledTextInput
           id="form-address"
           placeholder="Address"
           value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          className="p-4 glassy rounded-2xl outline-0 focus:inset-ring-1 inset-ring-orange-400 placeholder:text-neutral-500 dark:placeholder:text-neutral-400"
-          aria-invalid={!!addressError}
+          onChange={setAddress}
+          error={addressError}
         />
-        {addressError && <p className="text-xs text-red-600">{addressError}</p>}
       </div>
 
       {/* Place type - radio group */}
       <div className="flex flex-col gap-2">
         <h3 className="text-lg font-semibold">Type of place</h3>
-        <form className="h-full overflow-hidden ">
-          <div className="grid grid-cols-1 gap-2 has-checked:flex has-checked:min-w-full has-checked:overflow-x-auto snap-x snap-proximity pb-2 px-2">
-            {placeTypes.map((p) => (
-              <label
-                key={p.value}
-                htmlFor={`place-${p.value}`}
-                className={`cursor-pointer transition-all flex flex-col items-start justify-center gap-2 has-checked:inset-ring-2 snap-center inset-ring-orange-400 glassy rounded-2xl p-4 ${placeType ? 'min-w-fit' : 'p-4'}`}
-              >
-                <div className='flex items-center gap-2'>
-                  <i className={`fa-solid ${placeType === p.value ? 'fa-circle-check text-orange-400' : 'fa-circle'}`}></i>
-                  <p className="font-bold text-sm">{p.label}</p>
-                </div>
-                <input
-                  id={`place-${p.value}`}
-                  type="radio"
-                  name="place-type"
-                  className="peer absolute opacity-0"
-                  value={p.value}
-                  checked={placeType === p.value}
-                  onChange={() => setPlaceType(p.value)}
-                />
-              </label>
-            ))}
-          </div>
-        </form>
+        <RadioList
+          name="place-type"
+          options={placeTypes}
+          value={placeType ?? null}
+          onChange={setPlaceType}
+        />
         {placeTypeError && <p className="text-xs text-red-600">{placeTypeError}</p>}
       </div>
 
@@ -103,20 +83,15 @@ const Step2 = () => {
       {/* People needed */}
       <div className="flex flex-col gap-2">
         <h3 className="text-lg font-semibold">Team size</h3>
-        <input
+        <LabeledTextInput
           id='form-people-needed'
           type='number'
           inputMode='numeric'
           placeholder='People required for the task?'
-          value={peopleNeeded ?? ''}
-          onChange={(e) => {
-            const v = e.target.value
-            setPeopleNeeded(v === '' ? null : Number(v))
-          }}
-          className="p-4 glassy rounded-2xl outline-0 focus:inset-ring-1 inset-ring-orange-400"
-          aria-invalid={!!peopleError}
+          value={peopleNeeded === null ? '' : String(peopleNeeded)}
+          onChange={(v) => setPeopleNeeded(v === '' ? null : Number(v))}
+          error={peopleError}
         />
-        {peopleError && <p className="text-xs text-red-600">{peopleError}</p>}
       </div>
 
       {/* Extra details */}

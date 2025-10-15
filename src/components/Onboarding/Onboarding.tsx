@@ -38,7 +38,7 @@ const Onboarding = () => {
             </div>
             <div className='flex flex-col  items-center justify-between z-1 gap-4 fadeIn' style={{animationDelay: "0.6s"}}>
             { currentStep === 1 &&
-                <Button label={t("onboarding.skip")} className='underline'/>
+                <Button label={t("onboarding.skip")} className='underline' onClick={completeOnboarding}/>
             }
                 <Button label={
             currentStep===3 ? t("onboarding.complete"): t("onboarding.next")} className='w-full bg-emerald-600 text-neutral-200 shadow-lg' onClick={currentStep === 3 ? completeOnboarding : nextStep} />

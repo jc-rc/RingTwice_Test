@@ -180,6 +180,13 @@ export const useFormStore = create<FormState>((set, get) => ({
 				{ title: 'Gardening', subCategories: [ { title: 'Watering', subActivities: ['Water potted plants', 'Water whole yard'] } ] },
 				{ title: 'Entertainment', subCategories: [ { title: 'Music', subActivities: ['Hire a DJ', 'Set up speakers'] } ] },
 				{ title: 'Pets', subCategories: [ { title: 'Walking', subActivities: ['Walk the dog', 'Pet sitting'] } ] },
+				{ title: 'House chores', subCategories: [ { title: 'Cleaning', subActivities: ['Vacuuming', 'Mopping', 'Laundry'] } ] },
+				{ title: 'Technology', subCategories: [ { title: 'IT Help', subActivities: ['Set up Wi‑Fi', 'Install software'] } ] },
+				{ title: 'Transport', subCategories: [ { title: 'Moving', subActivities: ['Load van', 'Drive items'] } ] },
+				{ title: 'Babysitting', subCategories: [ { title: 'Care', subActivities: ['Evening babysitting', 'School pickup'] } ] },
+				{ title: 'Lessons', subCategories: [ { title: 'Tutoring', subActivities: ['Math help', 'Language practice'] } ] },
+				{ title: 'Wellness', subCategories: [ { title: 'Fitness', subActivities: ['Personal training', 'Yoga session'] } ] },
+				{ title: 'Handywork', subCategories: [ { title: 'Repairs', subActivities: ['Fix shelf', 'Assemble furniture'] } ] },
 			]
 			set({ categories: payload })
 		} catch (e: unknown) {

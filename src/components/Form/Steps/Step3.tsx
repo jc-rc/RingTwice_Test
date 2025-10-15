@@ -1,3 +1,4 @@
+import LabeledTextInput from '../LabeledTextInput'
 import { useFormStore } from '../../../stores/formStore'
 
 function Step3() {
@@ -12,38 +13,31 @@ function Step3() {
       {/* Contact */}
       <div className="flex flex-col gap-2">
         <h3 className="text-lg font-semibold">Contact information</h3>
-        <input
+        <LabeledTextInput
           id='form-name'
-          type='text'
           placeholder='Full name'
           value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="p-4 glassy rounded-2xl outline-0 focus:inset-ring-1 inset-ring-orange-400 placeholder:text-neutral-500 dark:placeholder:text-neutral-400"
-          aria-invalid={!!nameError}
+          onChange={setName}
+          error={nameError}
         />
-        {nameError && <p className="text-xs text-red-600">{nameError}</p>}
-        <input
+        <LabeledTextInput
           id='form-phone'
           type='tel'
           inputMode='tel'
           placeholder='Phone number'
           value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          className="p-4 glassy rounded-2xl outline-0 focus:inset-ring-1 inset-ring-orange-400 placeholder:text-neutral-500 dark:placeholder:text-neutral-400"
-          aria-invalid={!!phoneError}
+          onChange={setPhone}
+          error={phoneError}
         />
-        {phoneError && <p className="text-xs text-red-600">{phoneError}</p>}
-        <input
+        <LabeledTextInput
           id='form-email'
           type='email'
           inputMode='email'
           placeholder='Email'
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="p-4 glassy rounded-2xl outline-0 focus:inset-ring-1 inset-ring-orange-400 placeholder:text-neutral-500 dark:placeholder:text-neutral-400"
-          aria-invalid={!!emailError}
+          onChange={setEmail}
+          error={emailError}
         />
-        {emailError && <p className="text-xs text-red-600">{emailError}</p>}
       </div>
 
       {/* Page validity (debug helper) */}

@@ -1,6 +1,9 @@
 
 import { useEffect, useMemo } from 'react'
 import { useFormStore, type CategoryNode } from '../../../stores/formStore'
+import RadioList from '../RadioList'
+import CheckboxList from '../CheckboxList'
+import TextareaWithCounter from '../TextareaWithCounter'
 
 const Step1 = () => {
 
@@ -63,9 +66,6 @@ const Step1 = () => {
   }
   const handleSubCategoryChange = (subCategoryTitle: string) => {
     setSubCategory(subCategoryTitle)
-  }
-  const handleToggleSubActivity = (name: string) => () => {
-    toggleSubActivity(name)
   }
   const handlePhotos = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -131,31 +131,12 @@ const Step1 = () => {
           {currentCategory?.subCategories && (
             <div className="flex flex-col gap-2">
               <h3 className="text-lg font-semibold">Choose a subcategory</h3>
-              <form className="h-full overflow-hidden ">
-                <div className=" grid grid-cols-1 gap-2 has-checked:flex has-checked:min-w-full has-checked:overflow-x-auto snap-x snap-proximity pb-4 px-2">
-                  {currentCategory.subCategories.map((s) => (
-                    <label
-                      key={s.title}
-                      htmlFor={`suboption-${s.title}`}
-                      className={`cursor-pointer transition-all flex   flex-col items-start justify-center gap-2 has-checked:inset-ring-2  snap-center inset-ring-orange-400 glassy rounded-2xl p-4 ${currentSubCategory ? "min-w-fit" : "p-4"}`}
-                    >
-                      <div className='flex items-center gap-2'>
-                        <i className={`fa-solid ${currentSubCategory?.title === s.title ? "fa-circle-check text-orange-400" : "fa-circle"}`}></i>
-                        <p className="font-bold text-sm">{s.title}</p>
-                      </div>
-                      <input
-                        id={`suboption-${s.title}`}
-                        type="radio"
-                        name="subcategory"
-                        className="peer absolute opacity-0"
-                        value={s.title}
-                        checked={subCategory === s.title}
-                        onChange={() => handleSubCategoryChange(s.title)}
-                      />
-                    </label>
-                  ))}
-                </div>
-              </form>
+              <RadioList
+                name="subcategory"
+                options={currentCategory.subCategories.map(s => ({ value: s.title, label: s.title }))}
+                value={subCategory}
+                onChange={handleSubCategoryChange}
+              />
               {subCategoryError && <p className="text-xs text-red-600 px-2">{subCategoryError}</p>}
             </div>
           )}
@@ -164,19 +145,11 @@ const Step1 = () => {
           {currentSubCategory?.subActivities && (
             <div className="flex flex-col gap-2">
               <h3 className="text-lg font-semibold">Select activities (multiple allowed)</h3>
-              <fieldset className="flex flex-col gap-2 px-2 pb-4">
-                {currentSubCategory.subActivities.map((a) => (
-                  <label key={a} className="flex items-center gap-3 cursor-pointer glassy p-4 rounded-2xl has-checked:inset-ring-2 inset-ring-orange-400">
-                    <input
-                      type="checkbox"
-                      checked={subActivities.has(a)}
-                      onChange={handleToggleSubActivity(a)}
-                      className="w-4 h-4"
-                    />
-                    <p className="text-sm font-bold">{a}</p>
-                  </label>
-                ))}
-              </fieldset>
+              <CheckboxList
+                options={currentSubCategory.subActivities.map(a => ({ value: a, label: a }))}
+                selected={subActivities}
+                onChange={toggleSubActivity}
+              />
             </div>
           )}
 
@@ -184,20 +157,16 @@ const Step1 = () => {
           {currentSubCategory && (
             <div className="flex flex-col gap-2">
               <h3 className="text-lg font-semibold">Describe the task</h3>
-              <textarea
-               minLength={20}
-               maxLength={750}
-                className="min-h-32 p-4 glassy rounded-2xl resize-none transition-all placeholder:text-neutral-500 dark:placeholder:text-neutral-400 outline-0 focus:inset-ring-1 invalid:inset-ring-red-500 valid:inset-ring-orange-500"
-                rows={8}
+              <TextareaWithCounter
+                id="form-task-description"
                 placeholder="Provide details about what needs to be done..."
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                aria-invalid={!!descriptionError}
+                onChange={setDescription}
+                error={descriptionError}
+                minLength={20}
+                maxLength={750}
+                rows={8}
               />
-              {descriptionError && <p className="text-xs text-red-600 px-2">{descriptionError}</p>}
-              <div className='flex items-center justify-end'>
-                <p className='text-xs'>{description.length} / 750</p>
-              </div>
             </div>
           )}
 
