@@ -74,7 +74,7 @@ const Step1 = () => {
   }
 
   return (
-    <div className="flex flex-col gap-6 h-full overflow-y-auto">
+    <div className="flex flex-col gap-4 h-full overflow-y-auto">
       {/* Loading/Error States */}
       {isCategoriesLoading && (
         <div className="flex flex-col items-center justify-center p-8">
@@ -91,21 +91,21 @@ const Step1 = () => {
       {!isCategoriesLoading && !categoriesError && (
         <>
           {/* Category Selection */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
             <h3 className="text-lg font-semibold">Choose a category</h3>
             <form className="h-full  rounded-lg overflow-hidden">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 has-checked:flex has-checked:min-w-full has-checked:overflow-x-auto has-checked:px-2 px-8 py-2 ">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 has-checked:flex has-checked:min-w-full has-checked:overflow-x-auto has-checked:px-2 px-8 pb-4 ">
                 {categories.map((c) => (
                   <label
                     key={c.title}
                     htmlFor={`option-${c.title}`}
-                    className={`cursor-pointer transition-all flex px-4 py-2 items-center justify-center gap-2 glassy rounded-2xl has-checked:border-2 border-orange-400 ${currentCategory ? "flex-row" : "flex-col aspect-square w-32 mx-auto"}`}
+                    className={`cursor-pointer transition-all flex px-4 py-2 items-center justify-center gap-2 glassy rounded-2xl has-checked:inset-ring-2 inset-ring-orange-400 ${currentCategory ? "flex-row" : "flex-col aspect-square w-32 mx-auto"}`}
                   >
                     <p className={`${currentCategory ? "text-2xl" : "text-4xl"}`}>
                       {categoryIcons[c.title as keyof typeof categoryIcons]}
                     </p>
                     <div>
-                      <p className="font-bold text-xs">{c.title}</p>
+                      <p className="font-bold text-sm">{c.title}</p>
                     </div>
                     <input
                       id={`option-${c.title}`}
@@ -124,15 +124,15 @@ const Step1 = () => {
 
           {/* Subcategory Selection - Only show if category is selected */}
           {currentCategory?.subCategories && (
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               <h3 className="text-lg font-semibold">Choose a subcategory</h3>
               <form className="h-full overflow-hidden ">
-                <div className=" grid grid-cols-1 gap-2 has-checked:flex has-checked:min-w-full has-checked:overflow-x-auto snap-x snap-proximity has-checked:pb-2 px-2">
+                <div className=" grid grid-cols-1 gap-2 has-checked:flex has-checked:min-w-full has-checked:overflow-x-auto snap-x snap-proximity pb-4 px-2">
                   {currentCategory.subCategories.map((s) => (
                     <label
                       key={s.title}
                       htmlFor={`suboption-${s.title}`}
-                      className={`cursor-pointer transition-all flex   flex-col items-start justify-center gap-2 has-checked:bg-green-300 snap-center glassy rounded-2xl p-4 ${currentSubCategory ? "min-w-fit" : "p-4"}`}
+                      className={`cursor-pointer transition-all flex   flex-col items-start justify-center gap-2 has-checked:inset-ring-2  snap-center inset-ring-orange-400 glassy rounded-2xl p-4 ${currentSubCategory ? "min-w-fit" : "p-4"}`}
                     >
                       <div className='flex items-center gap-2'>
                         <i className={`fa-solid ${currentSubCategory?.title === s.title ? "fa-circle-check text-orange-400" : "fa-circle"}`}></i>
@@ -156,18 +156,18 @@ const Step1 = () => {
 
           {/* Subactivity Selection - Only show if subcategory is selected */}
           {currentSubCategory?.subActivities && (
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               <h3 className="text-lg font-semibold">Select activities (multiple allowed)</h3>
-              <fieldset className="flex flex-col gap-3 p-4 border rounded-lg bg-gray-50">
+              <fieldset className="flex flex-col gap-2 px-2 pb-4">
                 {currentSubCategory.subActivities.map((a) => (
-                  <label key={a} className="flex items-center gap-3 cursor-pointer">
+                  <label key={a} className="flex items-center gap-3 cursor-pointer glassy p-4 rounded-2xl has-checked:inset-ring-2 inset-ring-orange-400">
                     <input
                       type="checkbox"
                       checked={subActivities.has(a)}
                       onChange={handleToggleSubActivity(a)}
                       className="w-4 h-4"
                     />
-                    <p className="text-sm">{a}</p>
+                    <p className="text-sm font-bold">{a}</p>
                   </label>
                 ))}
               </fieldset>
@@ -176,22 +176,27 @@ const Step1 = () => {
 
           {/* Description - Only show if subcategory is selected */}
           {currentSubCategory && (
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               <h3 className="text-lg font-semibold">Describe the task</h3>
               <textarea
-                className="min-h-32 p-4 border rounded-lg resize-none"
-                rows={5}
+              minLength={20}
+              maxLength={750}
+                className="min-h-32 p-4 glassy rounded-2xl resize-none transition-all placeholder:text-neutral-500 dark:placeholder:text-neutral-400 outline-0 focus:inset-ring-1 invalid:inset-ring-red-500 valid:inset-ring-orange-500"
+                rows={8}
                 placeholder="Provide details about what needs to be done..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
+              <div className='flex items-center justify-end'>
+                <p className='text-xs'>{description.length} / 750</p>
+              </div>
             </div>
           )}
 
           {/* Photo Upload - Only show if description has content */}
           {currentSubCategory && (
-            <div className="flex flex-col gap-4">
-              <h3 className="text-lg font-semibold">Add photos (optional)</h3>
+            <div className="flex flex-col gap-2">
+              <h3 className="text-lg font-semibold">Add photos (encouraged)</h3>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                 <input
                   type="file"

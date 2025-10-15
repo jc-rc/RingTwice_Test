@@ -19,6 +19,10 @@ const Form = () => {
         <>
             <div className='flex flex-col gap-4 fadeInRight flex-1 h-full overflow-hidden p-4 glassy md:rounded-4xl'>
 
+                <div>
+                    <p className='font-bold text-2xl'>{`Step ${currentStep}`}</p>
+                </div>
+
 
               
                 <div className='flex-1 overflow-hidden'>

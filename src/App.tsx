@@ -18,7 +18,7 @@ const App = () => {
       <nav id='navbar' className='flex gap-4 pe-3 items-center justify-center shadow-lg bg-neutral-200 dark:bg-neutral-900 transition-all duration-1000'>
         <div className='flex items-center gap-4 flex-1 max-w-xl'>
 
-          <div className='flex-1 '>
+          <div className='flex-1  md:py-2'>
 
             {
               theme === "dark" ? 
