@@ -127,8 +127,9 @@ export const useFormStore = create<FormState>((set, get) => ({
 
 	/** Per-step validations */
 	isStep1Valid: () => {
-		const { category, subCategory, description } = get()
-		return !!category && !!subCategory && description.trim().length >= 20
+		const { category, subCategory, subActivities, description } = get()
+		const hasSubActivities = subActivities.size > 0
+		return !!category && !!subCategory && hasSubActivities && description.trim().length >= 20
 	},
 	isStep2Valid: () => {
 		const { address, placeType, peopleNeeded } = get()
@@ -138,7 +139,7 @@ export const useFormStore = create<FormState>((set, get) => ({
 	isStep3Valid: () => {
 		const { name, phone, email } = get()
 		const basicEmail = /.+@.+\..+/
-		return name.trim().length > 0 && phone.trim().length > 0 && basicEmail.test(email)
+		return name.trim().length > 0 && (phone.trim().length > 0 || !/^[0-9]*$/.test(phone)) && basicEmail.test(email)
 	},
 	canGoNext: () => {
 		switch (get().currentStep) {

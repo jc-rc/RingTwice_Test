@@ -6,6 +6,11 @@
 
 :root{
   font-family: 'Inter';
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar{
+  display: none;
 }
 
 .glassy{

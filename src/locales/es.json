@@ -15,5 +15,14 @@
     "common": {
         "language": "Español",
         "working": "¡i18next funciona perfectamente!"
+    },
+    "form":{
+        "continue": "Continuar",
+        "complete": "Completar",
+        "back": "Atrás",
+        "summary": "Resumen",
+        "title_step1": "¿Con qué necesitas ayuda?",
+        "title_step2": "Cuéntanos sobre el lugar de trabajo",
+        "title_step3": "Detalles de contacto"
     }
 }

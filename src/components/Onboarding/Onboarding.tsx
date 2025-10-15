@@ -12,14 +12,7 @@ const Onboarding = () => {
     return (
         <div className=' relative flex-1 flex flex-col gap-8 p-8 overflow-hidden max-w-xl mx-auto glassy md:rounded-4xl fadeIn'>
 
-            <div className='flex gap-2 justify-end z-1 fadeIn' style={{animationDelay: "0.6s"}}>
-               { currentStep === 1 &&
-
-                <button className='text-neutral-200 px-2 font-bold glassy rounded-full size-10 flex items-center justify-center' onClick={completeOnboarding}>
-                    <i className='fa-solid fa-angles-right text-xl'></i>
-                </button>
-               }
-            </div>
+            
             <div className='flex absolute inset-0 z-0 mask-b-from-0% mask-b-to-80% opacity-80 '>
 
                 {currentStep === 1 && <img src="https://images.unsplash.com/photo-1611095785020-1ba3dd228ea7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1287" alt="" className='aspect-[16/9] object-cover object-top h-full fadeIn' />}
@@ -36,7 +29,7 @@ const Onboarding = () => {
                     <div className={`rounded-full h-2 bg-orange-600/60 transition-all duration-500`} style={{width: `${currentStep * 33.3}%`}}></div>
                 </div>
             </div>
-            <div className='flex flex-col  items-center justify-between z-1 gap-4 fadeIn' style={{animationDelay: "0.6s"}}>
+            <div className='flex  items-center justify-between z-1 gap-4 fadeIn' style={{animationDelay: "0.6s"}}>
             { currentStep === 1 &&
                 <Button label={t("onboarding.skip")} className='underline' onClick={completeOnboarding}/>
             }

@@ -18,6 +18,11 @@
     },
     "form":{
         "continue": "Continue",
-        "back": "Back"
+        "complete": "Complete",
+        "back": "Back",
+        "summary": "Summary",
+        "title_step1": "What do you need help with?",
+        "title_step2": "Tell us about the workplace",
+        "title_step3": "Contact details"
     }
 }

@@ -40,7 +40,7 @@ const Step1 = () => {
     setDescription,
     addPhotos,
     removePhotoAt,
-    isStep1Valid,
+    
   } = useFormStore()
 
   // Fetch categories on first mount
@@ -75,10 +75,11 @@ const Step1 = () => {
 
   const categoryError = !category ? 'Please select a category' : ''
   const subCategoryError = currentCategory && !subCategory ? 'Please select a subcategory' : ''
+  const subActivitiesError = currentSubCategory && subActivities.size === 0 ? 'Please select at least one activity' : ''
   const descriptionError = currentSubCategory && description.trim().length < 20 ? 'Please enter at least 20 characters' : ''
 
   return (
-    <div className="flex flex-col gap-4 h-full overflow-y-auto">
+    <div className="flex flex-1 flex-col gap-4 h-full overflow-y-auto">
       {/* Loading/Error States */}
       {isCategoriesLoading && (
         <div className="flex flex-col items-center justify-center p-8">
@@ -124,12 +125,12 @@ const Step1 = () => {
                 ))}
               </div>
             </form>
-            {categoryError && <p className="text-xs text-red-600 px-2">{categoryError}</p>}
+            
           </div>
 
           {/* Subcategory Selection - Only show if category is selected */}
           {currentCategory?.subCategories && (
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 fadeIn">
               <h3 className="text-lg font-semibold">Choose a subcategory</h3>
               <RadioList
                 name="subcategory"
@@ -137,25 +138,26 @@ const Step1 = () => {
                 value={subCategory}
                 onChange={handleSubCategoryChange}
               />
-              {subCategoryError && <p className="text-xs text-red-600 px-2">{subCategoryError}</p>}
+             
             </div>
           )}
 
           {/* Subactivity Selection - Only show if subcategory is selected */}
           {currentSubCategory?.subActivities && (
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 fadeIn">
               <h3 className="text-lg font-semibold">Select activities (multiple allowed)</h3>
               <CheckboxList
                 options={currentSubCategory.subActivities.map(a => ({ value: a, label: a }))}
                 selected={subActivities}
                 onChange={toggleSubActivity}
               />
+             
             </div>
           )}
 
           {/* Description - Only show if subcategory is selected */}
-          {currentSubCategory && (
-            <div className="flex flex-col gap-2">
+          {subActivities.size > 0 && (
+            <div className="flex flex-col gap-2 fadeIn">
               <h3 className="text-lg font-semibold">Describe the task</h3>
               <TextareaWithCounter
                 id="form-task-description"
@@ -165,14 +167,14 @@ const Step1 = () => {
                 error={descriptionError}
                 minLength={20}
                 maxLength={750}
-                rows={8}
+                rows={5}
               />
             </div>
           )}
 
           {/* Photo Upload - Only show if description has content */}
-          {currentSubCategory && (
-            <div className="flex flex-col gap-2">
+          {!descriptionError && subActivities.size > 0 && (
+            <div className="flex flex-col gap-2 fadeIn">
               <h3 className="text-lg font-semibold">Add photos (encouraged)</h3>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                 <input
@@ -214,10 +216,7 @@ const Step1 = () => {
             </div>
           )}
 
-          {/* Page validity (debug helper) */}
-          {!isStep1Valid() && (
-            <p className="text-xs text-amber-600 px-2">Please complete all required fields to continue.</p>
-          )}
+          
         </>
       )}
     </div>

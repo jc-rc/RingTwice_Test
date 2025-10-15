@@ -21,6 +21,7 @@ const TextareaWithCounter = ({
   rows = 8,
   className = ''
 }: TextareaWithCounterProps) => {
+  const hasError = !!error
   return (
     <div className="flex flex-col gap-2">
       <textarea
@@ -31,13 +32,18 @@ const TextareaWithCounter = ({
         minLength={minLength}
         maxLength={maxLength}
         rows={rows}
-        className={`min-h-32 p-4 glassy rounded-2xl resize-none transition-all placeholder:text-neutral-500 dark:placeholder:text-neutral-400 outline-0 focus:inset-ring-1 invalid:inset-ring-red-500 valid:inset-ring-orange-500 ${className}`}
-        aria-invalid={!!error}
+        className={`min-h-32 p-4 glassy rounded-2xl resize-none transition-all placeholder:text-neutral-500 dark:placeholder:text-neutral-400 outline-0 ${
+          hasError 
+            ? 'focus:inset-ring-2 inset-ring-red-500 headShake' 
+            : 'focus:inset-ring-2 inset-ring-orange-400'
+        } ${className}`}
+        aria-invalid={hasError}
       />
-      {error && <p className="text-xs text-red-600">{error}</p>}
+      
       {maxLength && (
-        <div className='flex items-center justify-end'>
-          <p className='text-xs'>{value.length} / {maxLength}</p>
+        <div className='flex items-center justify-between'>
+          {error && <p className="text-xs flex-2 dark:text-red-300 text-red-600">{error}</p>}
+          <p className='text-xs flex-1 text-right'>{value.length} / {maxLength}</p>
         </div>
       )}
     </div>

@@ -20,8 +20,8 @@ const Summary = () => {
     } = useFormStore()
     return (
         
-        < div className = 'hidden flex-1 md:flex p-4' >
-            <div className='w-full rounded-lg border p-4 bg-white/50 dark:bg-black/20'>
+        < div className = 'hidden flex-1 md:flex' >
+            <div className='w-full rounded-lg p-4 glassy'>
                 <p className='font-semibold mb-2'>SUMMARY</p>
                 <ul className='text-sm space-y-1'>
                     <li>Category: {category ?? '-'}</li>
