@@ -1,5 +1,5 @@
 
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useFormStore, type CategoryNode } from '../../../stores/formStore'
 import RadioList from '../RadioList'
 import CheckboxList from '../CheckboxList'
@@ -43,12 +43,28 @@ const Step1 = () => {
     
   } = useFormStore()
 
+  // Ref for scrolling to selected category
+  const selectedCategoryRef = useRef<HTMLLabelElement>(null)
+  const hasScrolledRef = useRef<string | null>(null)
+
   // Fetch categories on first mount
   useEffect(() => {
     if (!categories.length && !isCategoriesLoading && !categoriesError) {
       void fetchCategories()
     }
   }, [categories.length, isCategoriesLoading, categoriesError, fetchCategories])
+
+  // Scroll to selected category only when first selected
+  useEffect(() => {
+    if (category && selectedCategoryRef.current && hasScrolledRef.current !== category) {
+      selectedCategoryRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      })
+      hasScrolledRef.current = category
+    }
+  }, [category])
 
   // Narrow current category/subcategory for dependent rendering
   const currentCategory: CategoryNode | undefined = useMemo(
@@ -103,6 +119,7 @@ const Step1 = () => {
                 {categories.map((c) => (
                   <label
                     key={c.title}
+                    ref={category === c.title ? selectedCategoryRef : null}
                     htmlFor={`option-${c.title}`}
                     className={`cursor-pointer transition-all flex px-4 py-2 items-center justify-center gap-2 glassy rounded-2xl has-checked:inset-ring-2 inset-ring-orange-400 ${currentCategory ? "flex-row" : "flex-col aspect-square w-32 mx-auto"}`}
                   >
