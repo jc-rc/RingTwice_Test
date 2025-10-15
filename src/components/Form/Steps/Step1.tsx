@@ -4,6 +4,7 @@ import { useFormStore, type CategoryNode } from '../../../stores/formStore'
 import RadioList from '../RadioList'
 import CheckboxList from '../CheckboxList'
 import TextareaWithCounter from '../TextareaWithCounter'
+import FileDropZone from '../FileDropZone'
 
 const Step1 = () => {
 
@@ -39,7 +40,6 @@ const Step1 = () => {
     toggleSubActivity,
     setDescription,
     addPhotos,
-    removePhotoAt,
     
   } = useFormStore()
 
@@ -115,11 +115,6 @@ const Step1 = () => {
   }
   const handleSubCategoryChange = (subCategoryTitle: string) => {
     setSubCategory(subCategoryTitle)
-  }
-  const handlePhotos = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      addPhotos(Array.from(e.target.files))
-    }
   }
 
   const descriptionError = currentSubCategory && description.trim().length < 20 ? 'Please enter at least 20 characters' : ''
@@ -202,47 +197,17 @@ const Step1 = () => {
             </div>
           )}
 
-           {/* Photo Upload - Only show if description has content */}
+           {/* Photo Upload - Only show if subactivities are selected */}
            { subActivities.size > 0 && (
             <div className="flex flex-col gap-2 fadeIn">
               <h3 className="text-lg font-semibold">Add photos (encouraged)</h3>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                <input
-                  type="file"
-                  accept="image/jpg, image/jpeg, image/png, image/heic"
-                  multiple
-                  onChange={handlePhotos}
-                  className="hidden"
-                  id="photo-upload"
-                />
-                <label htmlFor="photo-upload" className="cursor-pointer">
-                  <div className="flex flex-col items-center gap-2">
-                    <i className="fa-solid fa-camera text-2xl text-gray-400"></i>
-                    <p className="text-sm text-gray-600">Click to upload photos</p>
-                    <p className="text-xs text-gray-400">JPG, PNG, HEIC supported</p>
-                  </div>
-                </label>
-              </div>
-              
-              {/* Photo List */}
-              {photos.length > 0 && (
-                <div className="flex flex-col gap-2">
-                  <h4 className="text-sm font-medium">Uploaded photos:</h4>
-                  <ul className="text-sm text-gray-600 flex flex-col gap-1">
-                    {photos.map((f, i) => (
-                      <li key={i} className="flex items-center gap-2 p-2 bg-gray-50 rounded">
-                        <span className="truncate flex-1">{f.name}</span>
-                        <button 
-                          className="text-red-600 hover:text-red-800" 
-                          onClick={() => removePhotoAt(i)}
-                        >
-                          <i className="fa-solid fa-trash"></i>
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              <FileDropZone
+                onFilesChange={addPhotos}
+                maxFiles={3}
+                acceptedFileTypes={['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp']}
+                maxSize={5 * 1024 * 1024} // 5MB
+                existingFiles={photos}
+              />
             </div>
           )}
 

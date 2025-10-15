@@ -160,7 +160,7 @@ export const useFormStore = create<FormState>((set, get) => ({
 		return { subActivities: next }
 	}),
 	setDescription: (text) => set(() => ({ description: text })),
-	addPhotos: (files) => set((state) => ({ photos: [...state.photos, ...files] })),
+	addPhotos: (files) => set(() => ({ photos: files })),
 	removePhotoAt: (index) => set((state) => ({ photos: state.photos.filter((_, i) => i !== index) })),
 	setAddress: (text) => set(() => ({ address: text })),
 	setPlaceType: (type) => set(() => ({ placeType: type })),
