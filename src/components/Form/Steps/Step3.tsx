@@ -2,7 +2,7 @@ import LabeledTextInput from '../LabeledTextInput'
 import { useFormStore } from '../../../stores/formStore'
 
 function Step3() {
-  const { name, phone, email, setName, setPhone, setEmail, isStep3Valid } = useFormStore()
+  const { name, phone, email, setName, setPhone, setEmail } = useFormStore()
 
   const nameError = name.trim().length === 0 ? 'Full name is required' : ''
   const phoneError = phone.trim().length === 0 || !/^[0-9]*$/.test(phone) ? 'Phone number is required' : ''

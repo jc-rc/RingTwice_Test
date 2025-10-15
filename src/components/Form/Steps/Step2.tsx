@@ -16,7 +16,6 @@ const Step2 = () => {
         setToolsProvided,
         setPeopleNeeded,
         setExtraDetails,
-        isStep2Valid,
     } = useFormStore()
 
     const placeTypes = [

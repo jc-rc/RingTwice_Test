@@ -89,9 +89,6 @@ const Step1 = () => {
     }
   }
 
-  const categoryError = !category ? 'Please select a category' : ''
-  const subCategoryError = currentCategory && !subCategory ? 'Please select a subcategory' : ''
-  const subActivitiesError = currentSubCategory && subActivities.size === 0 ? 'Please select at least one activity' : ''
   const descriptionError = currentSubCategory && description.trim().length < 20 ? 'Please enter at least 20 characters' : ''
 
   return (
