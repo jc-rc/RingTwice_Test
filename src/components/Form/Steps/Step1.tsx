@@ -43,9 +43,12 @@ const Step1 = () => {
     
   } = useFormStore()
 
-  // Ref for scrolling to selected category
+  // Refs for scrolling to selected category and progressive sections
   const selectedCategoryRef = useRef<HTMLLabelElement>(null)
-  const hasScrolledRef = useRef<string | null>(null)
+  const hasScrolledToCategoryRef = useRef<boolean>(false)
+  const subCategoryRef = useRef<HTMLDivElement>(null)
+  const subActivitiesRef = useRef<HTMLDivElement>(null)
+  const descriptionRef = useRef<HTMLDivElement>(null)
 
   // Fetch categories on first mount
   useEffect(() => {
@@ -54,15 +57,15 @@ const Step1 = () => {
     }
   }, [categories.length, isCategoriesLoading, categoriesError, fetchCategories])
 
-  // Scroll to selected category only when first selected
+  // Scroll to selected category only when first selecting any category
   useEffect(() => {
-    if (category && selectedCategoryRef.current && hasScrolledRef.current !== category) {
+    if (category && selectedCategoryRef.current && !hasScrolledToCategoryRef.current) {
       selectedCategoryRef.current.scrollIntoView({
         behavior: 'smooth',
         block: 'nearest',
         inline: 'center'
       })
-      hasScrolledRef.current = category
+      hasScrolledToCategoryRef.current = true
     }
   }, [category])
 
@@ -75,6 +78,36 @@ const Step1 = () => {
     () => currentCategory?.subCategories?.find((s) => s.title === subCategory),
     [currentCategory, subCategory]
   )
+
+  // Scroll to subcategory section when it appears
+  useEffect(() => {
+    if (currentCategory && subCategoryRef.current) {
+      subCategoryRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }, [currentCategory])
+
+  // Scroll to subactivities section when it appears
+  useEffect(() => {
+    if (currentSubCategory && subActivitiesRef.current) {
+      subActivitiesRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }, [currentSubCategory])
+
+  // Scroll to description section when it appears
+  useEffect(() => {
+    if (subActivities.size > 0 && descriptionRef.current) {
+      descriptionRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }, [subActivities.size])
 
   // Handlers
   const handleCategoryChange = (categoryTitle: string) => {
@@ -144,7 +177,7 @@ const Step1 = () => {
 
           {/* Subcategory Selection - Only show if category is selected */}
           {currentCategory?.subCategories && (
-            <div className="flex flex-col gap-2 fadeIn">
+            <div ref={subCategoryRef} className="flex flex-col gap-2 fadeIn">
               <h3 className="text-lg font-semibold">Choose a subcategory</h3>
               <RadioList
                 name="subcategory"
@@ -158,7 +191,7 @@ const Step1 = () => {
 
           {/* Subactivity Selection - Only show if subcategory is selected */}
           {currentSubCategory?.subActivities && (
-            <div className="flex flex-col gap-2 fadeIn">
+            <div ref={subActivitiesRef} className="flex flex-col gap-2 fadeIn">
               <h3 className="text-lg font-semibold">Select activities (multiple allowed)</h3>
               <CheckboxList
                 options={currentSubCategory.subActivities.map(a => ({ value: a, label: a }))}
@@ -169,25 +202,8 @@ const Step1 = () => {
             </div>
           )}
 
-          {/* Description - Only show if subcategory is selected */}
-          {subActivities.size > 0 && (
-            <div className="flex flex-col gap-2 fadeIn">
-              <h3 className="text-lg font-semibold">Describe the task</h3>
-              <TextareaWithCounter
-                id="form-task-description"
-                placeholder="Provide details about what needs to be done..."
-                value={description}
-                onChange={setDescription}
-                error={descriptionError}
-                minLength={20}
-                maxLength={750}
-                rows={5}
-              />
-            </div>
-          )}
-
-          {/* Photo Upload - Only show if description has content */}
-          {!descriptionError && subActivities.size > 0 && (
+           {/* Photo Upload - Only show if description has content */}
+           { subActivities.size > 0 && (
             <div className="flex flex-col gap-2 fadeIn">
               <h3 className="text-lg font-semibold">Add photos (encouraged)</h3>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
@@ -229,6 +245,25 @@ const Step1 = () => {
               )}
             </div>
           )}
+
+          {/* Description - Only show if subcategory is selected */}
+          {subActivities.size > 0 && (
+            <div ref={descriptionRef} className="flex flex-col gap-2 fadeIn">
+              <h3 className="text-lg font-semibold">Describe the task</h3>
+              <TextareaWithCounter
+                id="form-task-description"
+                placeholder="Provide details about what needs to be done..."
+                value={description}
+                onChange={setDescription}
+                error={descriptionError}
+                minLength={20}
+                maxLength={750}
+                rows={5}
+              />
+            </div>
+          )}
+
+         
 
           
         </>
