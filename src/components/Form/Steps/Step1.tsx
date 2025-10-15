@@ -17,7 +17,6 @@ const Step1 = () => {
     'Handywork' : "🛠️",
   }
 
-
   // Pull state and actions from the form store
   const {
     // catalog
@@ -38,6 +37,7 @@ const Step1 = () => {
     setDescription,
     addPhotos,
     removePhotoAt,
+    isStep1Valid,
   } = useFormStore()
 
   // Fetch categories on first mount
@@ -72,6 +72,10 @@ const Step1 = () => {
       addPhotos(Array.from(e.target.files))
     }
   }
+
+  const categoryError = !category ? 'Please select a category' : ''
+  const subCategoryError = currentCategory && !subCategory ? 'Please select a subcategory' : ''
+  const descriptionError = currentSubCategory && description.trim().length < 20 ? 'Please enter at least 20 characters' : ''
 
   return (
     <div className="flex flex-col gap-4 h-full overflow-y-auto">
@@ -120,6 +124,7 @@ const Step1 = () => {
                 ))}
               </div>
             </form>
+            {categoryError && <p className="text-xs text-red-600 px-2">{categoryError}</p>}
           </div>
 
           {/* Subcategory Selection - Only show if category is selected */}
@@ -151,6 +156,7 @@ const Step1 = () => {
                   ))}
                 </div>
               </form>
+              {subCategoryError && <p className="text-xs text-red-600 px-2">{subCategoryError}</p>}
             </div>
           )}
 
@@ -179,14 +185,16 @@ const Step1 = () => {
             <div className="flex flex-col gap-2">
               <h3 className="text-lg font-semibold">Describe the task</h3>
               <textarea
-              minLength={20}
-              maxLength={750}
+               minLength={20}
+               maxLength={750}
                 className="min-h-32 p-4 glassy rounded-2xl resize-none transition-all placeholder:text-neutral-500 dark:placeholder:text-neutral-400 outline-0 focus:inset-ring-1 invalid:inset-ring-red-500 valid:inset-ring-orange-500"
                 rows={8}
                 placeholder="Provide details about what needs to be done..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+                aria-invalid={!!descriptionError}
               />
+              {descriptionError && <p className="text-xs text-red-600 px-2">{descriptionError}</p>}
               <div className='flex items-center justify-end'>
                 <p className='text-xs'>{description.length} / 750</p>
               </div>
@@ -235,6 +243,11 @@ const Step1 = () => {
                 </div>
               )}
             </div>
+          )}
+
+          {/* Page validity (debug helper) */}
+          {!isStep1Valid() && (
+            <p className="text-xs text-amber-600 px-2">Please complete all required fields to continue.</p>
           )}
         </>
       )}

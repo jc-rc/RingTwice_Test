@@ -44,21 +44,21 @@ export interface FormState {
 	phone: string
 	email: string
 
-    //Form steps
-    isFormComplete: boolean
-    currentStep: number
-    nextStep: () => void
-    prevStep: () => void
-    setStep: (step: number) => void
-    resetForm: () => void
+	// Form steps
+	isFormComplete: boolean
+	currentStep: number
+	nextStep: () => void
+	prevStep: () => void
 
-	/**
-	 * Derived validations (simple "not empty" style).
-	 * These are recalculated on access; in Zustand, selectors at usage sites are fine.
-	 * If you need heavy validation, consider memoization with a derived selector in the component.
-	 */
+	/** Derived validations */
 	isBasicInfoValid: () => boolean
 	canSubmit: () => boolean
+
+	/** New per-step validations */
+	isStep1Valid: () => boolean
+	isStep2Valid: () => boolean
+	isStep3Valid: () => boolean
+	canGoNext: () => boolean
 
 	/** Actions */
 	setCategory: (category: CategoryName | null) => void
@@ -93,7 +93,7 @@ export const useFormStore = create<FormState>((set, get) => ({
 	isCategoriesLoading: false,
 	categoriesError: null,
 
-	// Inputs (initialize to sensible defaults for controlled inputs)
+	// Inputs
 	category: null,
 	subCategory: null,
 	subActivities: new Set<SubActivityName>(),
@@ -109,39 +109,48 @@ export const useFormStore = create<FormState>((set, get) => ({
 	phone: '',
 	email: '',
 
-    //Form steps init
-    isFormComplete: false,
-    currentStep: 1,
-
-    nextStep: () => set((state) => ({ currentStep: state.currentStep + 1 })),
-  prevStep: () => set((state) => ({ currentStep: state.currentStep > 1 ? state.currentStep - 1 : 1 })),
-  setStep: (step: number) => set({ currentStep: step }),
- 
-  resetForm: () => set({ isFormComplete: false, currentStep: 1 }),
+	// Steps
+	isFormComplete: false,
+	currentStep: 1,
+	nextStep: () => set((s) => ({ currentStep: Math.min(s.currentStep + 1, 4) })),
+	prevStep: () => set((s) => ({ currentStep: Math.max(s.currentStep - 1, 1) })),
 
 	/**
-	 * Very simple validations: adjust as your rules evolve.
-	 * - Basic info requires category, description, and address
+	 * Very simple validations
 	 */
 	isBasicInfoValid: () => {
 		const { category, description, address } = get()
 		const notEmpty = (v: string | null | undefined) => !!v && String(v).trim().length > 0
 		return notEmpty(category) && notEmpty(description) && notEmpty(address)
 	},
-	canSubmit: () => {
-		// Start minimal: canSubmit == isBasicInfoValid
-		return get().isBasicInfoValid()
+	canSubmit: () => get().isBasicInfoValid(),
+
+	/** Per-step validations */
+	isStep1Valid: () => {
+		const { category, subCategory, description } = get()
+		return !!category && !!subCategory && description.trim().length >= 20
+	},
+	isStep2Valid: () => {
+		const { address, placeType, peopleNeeded } = get()
+		const okPeople = typeof peopleNeeded === 'number' && !Number.isNaN(peopleNeeded)
+		return address.trim().length > 0 && !!placeType && okPeople
+	},
+	isStep3Valid: () => {
+		const { name, phone, email } = get()
+		const basicEmail = /.+@.+\..+/
+		return name.trim().length > 0 && phone.trim().length > 0 && basicEmail.test(email)
+	},
+	canGoNext: () => {
+		switch (get().currentStep) {
+			case 1: return get().isStep1Valid()
+			case 2: return get().isStep2Valid()
+			case 3: return get().isStep3Valid()
+			default: return true
+		}
 	},
 
 	// Actions
-	setCategory: (category) => set(() => {
-		// When changing category, clear dependent selections
-		return {
-			category,
-			subCategory: null,
-			subActivities: new Set<SubActivityName>(),
-		}
-	}),
+	setCategory: (category) => set(() => ({ category, subCategory: null, subActivities: new Set<SubActivityName>() })),
 	setSubCategory: (subCategory) => set(() => ({ subCategory })),
 	toggleSubActivity: (name) => set((state) => {
 		const next = new Set(state.subActivities)
@@ -162,191 +171,15 @@ export const useFormStore = create<FormState>((set, get) => ({
 	setPhone: (text) => set(() => ({ phone: text })),
 	setEmail: (text) => set(() => ({ email: text })),
 
-	/**
-	 * Fake async API to fetch categories. Replace with a real HTTP call later.
-	 * This simulates latency and allows the UI to render loading/error states.
-	 */
+	/** Fake async API */
 	fetchCategories: async () => {
 		set({ isCategoriesLoading: true, categoriesError: null })
 		try {
-			// Simulate latency
 			await new Promise((r) => setTimeout(r, 800))
-			// Fake payload — mirrors your current inline structure
 			const payload: CategoryNode[] = [
-				{
-					title: 'Gardening',
-					subCategories: [
-						{
-							title: 'Watering',
-							subActivities: ['Water potted plants', 'Water whole yard'],
-						},
-					],
-				},
-				{
-					title: 'Entertainment',
-					subCategories: [
-						{
-							title: 'Photographer',
-							
-						},
-                        {
-                            title: 'DJ'
-                        },
-                        {
-                            title: 'Musician'
-                        },
-					],
-				},
-				{
-					title: 'Pets',
-					subCategories: [
-						{
-							title: 'Pet-sitter (at home)',
-                            subActivities: ['Dogs', 'Cats', 'Others'],
-							
-						},
-                        {
-                            title: 'Dog-walker'
-                        },
-                        {
-							title: 'Pet-sitter (away)',
-                            subActivities: ['Dogs', 'Cats', 'Others'],
-							
-						},
-					],
-				},
-				{
-					title: 'House chores',
-					subCategories: [
-						{
-							title: 'Cleaning',
-                            subActivities: ['Whole house', 'Deep cleaning', 'Window cleaning'],
-							
-						},
-                        {
-                            title: 'Cooking'
-                        },
-                        {
-							title: 'Organizing',
-                            subActivities: ['Move furniture', 'Marie Kondo', 'Downsize'],
-							
-						},
-					],
-				},
-				{
-					title: 'Technology',
-					subCategories: [
-						{
-							title: 'Fix & Repair',
-                            subActivities: ['Windows PC', 'Mac', 'Smartphone / Tablet', 'iPhone / iPad'],
-							
-						},
-                        {
-                            title: 'Designer',
-                            subActivities: [ 'Website', 'Photo/Video editing', 'Graphic design']
-                        },
-                        {
-							title: 'Training',
-                            subActivities: ['Programs/Apps', 'Using smart devices'],
-							
-						},
-					],
-				},
-				{
-					title: 'Transport',
-					subCategories: [
-						{
-							title: 'Moving',
-                            subActivities: ['Carrying', 'Car', 'Van', 'Trailer'],
-							
-						},
-                        {
-                            title: 'Dumping',
-                            subActivities: ['Debris', 'Garden waste', 'Dirt', 'Animal feed'],
-                        },
-                        {
-							title: 'Delivery',
-                            subActivities: ['Food', 'Medicine', 'Packages'],
-							
-						},
-					],
-				},
-				{
-					title: 'Babysitting',
-					subCategories: [
-						{
-							title: 'Moving',
-                            subActivities: ['Carrying', 'Car', 'Van', 'Trailer'],
-							
-						},
-                        {
-                            title: 'Dumping',
-                            subActivities: ['Debris', 'Garden waste', 'Dirt', 'Animal feed'],
-                        },
-                        {
-							title: 'Delivery',
-                            subActivities: ['Food', 'Medicine', 'Packages'],
-							
-						},
-					],
-				},
-				{
-					title: 'Lessons',
-					subCategories: [
-						{
-							title: 'Moving',
-                            subActivities: ['Carrying', 'Car', 'Van', 'Trailer'],
-							
-						},
-                        {
-                            title: 'Dumping',
-                            subActivities: ['Debris', 'Garden waste', 'Dirt', 'Animal feed'],
-                        },
-                        {
-							title: 'Delivery',
-                            subActivities: ['Food', 'Medicine', 'Packages'],
-							
-						},
-					],
-				},
-				{
-					title: 'Wellness',
-					subCategories: [
-						{
-							title: 'Moving',
-                            subActivities: ['Carrying', 'Car', 'Van', 'Trailer'],
-							
-						},
-                        {
-                            title: 'Dumping',
-                            subActivities: ['Debris', 'Garden waste', 'Dirt', 'Animal feed'],
-                        },
-                        {
-							title: 'Delivery',
-                            subActivities: ['Food', 'Medicine', 'Packages'],
-							
-						},
-					],
-				},
-				{
-					title: 'Handywork',
-					subCategories: [
-						{
-							title: 'Moving',
-                            subActivities: ['Carrying', 'Car', 'Van', 'Trailer'],
-							
-						},
-                        {
-                            title: 'Dumping',
-                            subActivities: ['Debris', 'Garden waste', 'Dirt', 'Animal feed'],
-                        },
-                        {
-							title: 'Delivery',
-                            subActivities: ['Food', 'Medicine', 'Packages'],
-							
-						},
-					],
-				},
+				{ title: 'Gardening', subCategories: [ { title: 'Watering', subActivities: ['Water potted plants', 'Water whole yard'] } ] },
+				{ title: 'Entertainment', subCategories: [ { title: 'Music', subActivities: ['Hire a DJ', 'Set up speakers'] } ] },
+				{ title: 'Pets', subCategories: [ { title: 'Walking', subActivities: ['Walk the dog', 'Pet sitting'] } ] },
 			]
 			set({ categories: payload })
 		} catch (e: unknown) {

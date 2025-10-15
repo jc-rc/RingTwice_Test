@@ -36,10 +36,13 @@ const Onboarding = () => {
                     <div className={`rounded-full h-2 bg-orange-600/60 transition-all duration-500`} style={{width: `${currentStep * 33.3}%`}}></div>
                 </div>
             </div>
-            <div className='flex  items-center justify-between z-1 gap-4 fadeIn' style={{animationDelay: "0.6s"}}>
-              
+            <div className='flex flex-col  items-center justify-between z-1 gap-4 fadeIn' style={{animationDelay: "0.6s"}}>
+            { currentStep === 1 &&
+                <Button label={t("onboarding.skip")} className='underline'/>
+            }
                 <Button label={
             currentStep===3 ? t("onboarding.complete"): t("onboarding.next")} className='w-full bg-emerald-600 text-neutral-200 shadow-lg' onClick={currentStep === 3 ? completeOnboarding : nextStep} />
+
             </div>
 
 

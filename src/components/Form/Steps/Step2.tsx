@@ -14,6 +14,7 @@ const Step2 = () => {
     setToolsProvided,
     setPeopleNeeded,
     setExtraDetails,
+    isStep2Valid,
   } = useFormStore()
 
   const placeTypes = [
@@ -21,6 +22,10 @@ const Step2 = () => {
     { value: 'apartment', label: 'Apartment' },
     { value: 'other', label: 'Other' },
   ] as const
+
+  const addressError = address.trim().length === 0 ? 'Address is required' : ''
+  const placeTypeError = !placeType ? 'Type of place is required' : ''
+  const peopleError = typeof peopleNeeded !== 'number' || Number.isNaN(peopleNeeded) ? 'Please enter a valid number' : ''
 
   return (
     <div className="flex flex-col gap-4 h-full overflow-y-auto">
@@ -34,7 +39,9 @@ const Step2 = () => {
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           className="p-4 glassy rounded-2xl outline-0 focus:inset-ring-1 inset-ring-orange-400 placeholder:text-neutral-500 dark:placeholder:text-neutral-400"
+          aria-invalid={!!addressError}
         />
+        {addressError && <p className="text-xs text-red-600">{addressError}</p>}
       </div>
 
       {/* Place type - radio group */}
@@ -65,6 +72,7 @@ const Step2 = () => {
             ))}
           </div>
         </form>
+        {placeTypeError && <p className="text-xs text-red-600">{placeTypeError}</p>}
       </div>
 
       {/* Materials / Tools */}
@@ -106,7 +114,9 @@ const Step2 = () => {
             setPeopleNeeded(v === '' ? null : Number(v))
           }}
           className="p-4 glassy rounded-2xl outline-0 focus:inset-ring-1 inset-ring-orange-400"
+          aria-invalid={!!peopleError}
         />
+        {peopleError && <p className="text-xs text-red-600">{peopleError}</p>}
       </div>
 
       {/* Extra details */}
@@ -121,6 +131,11 @@ const Step2 = () => {
           onChange={(e) => setExtraDetails(e.target.value)}
         />
       </div>
+
+      {/* Page validity (debug helper) */}
+      {!isStep2Valid() && (
+        <p className="text-xs text-amber-600">Please complete all required fields to continue.</p>
+      )}
     </div>
   )
 }

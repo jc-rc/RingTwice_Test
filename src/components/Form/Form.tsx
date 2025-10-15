@@ -8,12 +8,15 @@ import { t } from 'i18next'
 
 const Form = () => {
 
-    // Pull only step navigation from the form store
+    // Pull step navigation and validation from the form store
     const {
         currentStep,
         prevStep,
         nextStep,
+        canGoNext,
     } = useFormStore()
+
+    const canContinue = canGoNext()
 
     return (
         <>
@@ -23,8 +26,7 @@ const Form = () => {
                     <p className='font-bold text-2xl'>{`Step ${currentStep}`}</p>
                 </div>
 
-
-              
+                
                 <div className='flex-1 overflow-hidden'>
                     {/* Step Content */}
                     {currentStep === 1 && <Step1 />}
@@ -39,7 +41,7 @@ const Form = () => {
                     <div className='flex items-center gap-8'>
                         <Button label={t("form.back")} className=' w-full bg-green-600 text-neutral-200 shadow-lg' onClick={prevStep} />
                         
-                        <Button label={t("form.continue")} className=' w-full bg-green-600 text-neutral-200 shadow-lg' onClick={nextStep} />
+                        <Button label={t("form.continue")} className=' w-full bg-green-600 text-neutral-200 shadow-lg' onClick={nextStep} disabled={!canContinue} />
                     </div>
                 </div>
             </div>
