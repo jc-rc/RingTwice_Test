@@ -1,5 +1,5 @@
 
-import { useCallback, useState, useRef, useEffect } from 'react'
+import React, { useCallback, useState, useRef, useEffect, useMemo } from 'react'
 import { useDropzone } from 'react-dropzone'
 
 interface FileDropZoneProps {
@@ -10,7 +10,7 @@ interface FileDropZoneProps {
   existingFiles?: File[]
 }
 
-const FileDropZone = ({
+const FileDropZone = React.memo(({
   onFilesChange,
   maxFiles = 3,
   acceptedFileTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'],
@@ -123,6 +123,50 @@ const FileDropZone = ({
     setError(null)
   }, [onFilesChange]) // Removed existingFiles from dependencies
 
+  // Memoize the preview section to prevent unnecessary re-renders
+  const previewSection = useMemo(() => {
+    if (existingFiles.length === 0) return null
+
+    return (
+      <div className="flex flex-col gap-3">
+        <h4 className="text-sm ">
+          Selected Images ({existingFiles.length}/{maxFiles})
+        </h4>
+
+        {/* STYLING AREA 5: Image Grid */}
+        <div className="grid grid-cols-3 md:grid-cols-3 gap-4">
+          {existingFiles.map((file, index) => (
+            <div key={`${file.name}-${file.size}-${index}`} className="relative group">
+              {/* STYLING AREA 6: Individual Image Cards */}
+              <div className="relative aspect-square size-16 bg-gray-100/10 dark:bg-gray-800/10 rounded-lg overflow-hidden">
+                {/* Image Preview */}
+                <img
+                  src={URL.createObjectURL(file)}
+                  alt={file.name}
+                  className="size-full object-cover"
+                />
+
+                {/* STYLING AREA 7: Remove Button Overlay */}
+                <div className="absolute inset-0 bg-black/30 bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 flex items-center justify-center">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      removeFile(index)
+                    }}
+                    className="bg-pink-500/30 hover:bg-pink-600/60 text-white p-2 size-full transition-all cursor-pointer"
+                    aria-label={`Remove ${file.name}`}
+                  >
+                    <i className="fa-solid fa-xmark text-2xl"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }, [existingFiles, maxFiles, removeFile])
+
   return (
     <div className="flex flex-col gap-4">
       {/* STYLING AREA 1: Drop Zone Container */}
@@ -185,46 +229,7 @@ const FileDropZone = ({
 
 
           {/* STYLING AREA 4: Preview Grid */}
-          {existingFiles.length > 0 && (
-            <div className="flex flex-col gap-3">
-              <h4 className="text-sm ">
-                Selected Images ({existingFiles.length}/{maxFiles})
-              </h4>
-
-              {/* STYLING AREA 5: Image Grid */}
-              <div className="grid grid-cols-3 md:grid-cols-3 gap-4">
-                {existingFiles.map((file, index) => (
-                  <div key={`${file.name}-${file.size}-${index}`} className="relative group">
-                    {/* STYLING AREA 6: Individual Image Cards */}
-                    <div className="relative aspect-square size-16 bg-gray-100/10 dark:bg-gray-800/10 rounded-lg overflow-hidden">
-                      {/* Image Preview */}
-                      <img
-                        src={URL.createObjectURL(file)}
-                        alt={file.name}
-                        className="size-full object-cover"
-                      />
-
-                      {/* STYLING AREA 7: Remove Button Overlay */}
-                      <div className="absolute inset-0 bg-black/30 bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 flex items-center justify-center">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            removeFile(index)
-                          }}
-                          className="bg-pink-500/30 hover:bg-pink-600/60 text-white p-2 size-full transition-all cursor-pointer"
-                          aria-label={`Remove ${file.name}`}
-                        >
-                          <i className="fa-solid fa-xmark text-2xl"></i>
-                        </button>
-                      </div>
-                    </div>
-
-
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+          {previewSection}
         </div>
 
       </div>
@@ -242,6 +247,8 @@ const FileDropZone = ({
 
     </div>
   )
-}
+})
+
+FileDropZone.displayName = 'FileDropZone'
 
 export default FileDropZone

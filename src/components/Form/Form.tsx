@@ -4,7 +4,6 @@ import Step1 from './Steps/Step1'
 import Step2 from './Steps/Step2'
 import Step3 from './Steps/Step3'
 import Step4 from './Steps/Step4'
-import Summary from './Summary'
 import { useTranslation } from 'react-i18next'
 
 const Form = () => {
@@ -24,10 +23,10 @@ const Form = () => {
 
     return (
         <>
-            <div className='flex flex-col gap-4 fadeIn flex-1 h-full overflow-hidden p-4 md:p-8 glassy md:rounded-4xl'>
+            <div className='flex flex-col gap-4 fadeIn flex-1 h-full overflow-hidden p-4 md:p-8 glassy md:rounded-4xl md:w-4xl md:mx-auto'>
 
                 <div>
-                    <p className='font-bold text-2xl'>{t(`form.title_step${currentStep}`)}</p>
+                    <p className='font-bold text-3xl'>{t(`form.title_step${currentStep}`)}</p>
                 </div>
 
 
@@ -37,7 +36,7 @@ const Form = () => {
                     {currentStep === 2 && <Step2 />}
                     {currentStep === 3 && <Step3 />}
                     {currentStep === 4 && <Step4 />}
-                    {category && <Summary />}
+                    {/* {category && <Summary />} */}
                 </div>
 
 
