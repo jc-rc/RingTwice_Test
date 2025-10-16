@@ -54,7 +54,7 @@ const Offboarding = () => {
         </div>
 
         }
-        {currentStep === 2 && <div className="flex flex-col gap-4 items-center justify-center h-full ">
+        {currentStep === 2 && <div className="flex flex-col gap-4 items-center justify-center h-full scale-80 md:scale-100 ">
           {people.map((person, index) => (
             <div key={person.id} className='flex flex-col gap-2 rounded-4xl p-6 py-4 glassy w-5/6 fadeInUp' style={{ animationDelay: `${index * 0.1}s` }}>
               <div className='flex items-center justify-between gap-4 '>

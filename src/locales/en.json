@@ -35,7 +35,73 @@
         "button_complete": "Back to home",
         "button_step1": "What's next?",
         "button_step2": "Got it!",
-        "button_step3": "Request another service"
-        
+        "button_step3": "Request another service",
+        "header": "Header",
+        "image1": "IMAGE1",
+        "pro_badge": "PRO"
+    },
+    "form_labels": {
+        "choose_category": "Choose a category",
+        "choose_subcategory": "Choose a subcategory",
+        "select_activities": "Select activities (multiple allowed)",
+        "add_photos": "Add photos (encouraged)",
+        "describe_task": "Describe the task",
+        "location": "Location",
+        "type_of_place": "Type of place",
+        "resources": "Resources",
+        "how_many_people": "How many people are needed?",
+        "extra_details": "Extra details",
+        "contact_information": "Contact information",
+        "summary": "SUMMARY"
+    },
+    "placeholders": {
+        "address": "Address",
+        "describe_task": "Provide details about what needs to be done...",
+        "full_name": "Full name",
+        "phone_number": "Phone number",
+        "email": "Email",
+        "extra_details": "How to enter, parking, pets, etc.",
+        "amount_input": "0"
+    },
+    "place_types": {
+        "house": "House",
+        "apartment": "Apartment",
+        "other": "Other"
+    },
+    "resources": {
+        "materials_provided": "Materials provided?",
+        "tools_provided": "Tools provided?"
+    },
+    "validation": {
+        "address_required": "Address is required",
+        "full_name_required": "Full name is required",
+        "phone_required": "Phone number is required",
+        "valid_email_required": "Valid email is required",
+        "place_type_required": "Type of place is required",
+        "valid_number_required": "Please enter a valid number",
+        "min_characters": "Please enter at least 20 characters"
+    },
+    "file_upload": {
+        "upload_images": "Upload your images here",
+        "drop_images": "Drop your images here...",
+        "selected_images": "Selected Images",
+        "all_done": "All done!",
+        "images_uploaded": "images uploaded successfully",
+        "file_too_large": "File is too large. Maximum size is",
+        "invalid_file_type": "Invalid file type. Please upload images only.",
+        "upload_failed": "File upload failed. Please try again.",
+        "max_files_allowed": "files allowed. Please remove some files first.",
+        "max_files": "Maximum",
+        "files_added": "files were added. Maximum",
+        "mb_each": "MB each"
+    },
+    "loading": {
+        "categories": "Loading categories…",
+        "failed_load_categories": "Failed to load categories:"
+    },
+    "accessibility": {
+        "decrease_amount": "Decrease amount",
+        "increase_amount": "Increase amount",
+        "remove_file": "Remove"
     }
 }

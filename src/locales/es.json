@@ -24,5 +24,84 @@
         "title_step1": "¿Con qué necesitas ayuda?",
         "title_step2": "Cuéntanos sobre el lugar de trabajo",
         "title_step3": "Detalles de contacto"
+    },
+    "offboarding": {
+        "title_step1": "¡Tu solicitud de servicio está activa en RingTwice!",
+        "title_step2": "Elige la mejor oferta",
+        "title_step3": "¡Revisa tus mensajes frecuentemente!",
+        "paragraph_step1": "Los mejores proveedores en tu región serán notificados automáticamente y recibirás varias ofertas en 4 horas",
+        "paragraph_step2": "Compara precios y calificaciones, y haz clic en 'Aceptar'",
+        "paragraph_step3": "Una vez que aceptes la propuesta de un proveedor, podrás chatear con ellos y acordar los detalles",
+        "button_complete": "Volver al inicio",
+        "button_step1": "¿Qué sigue?",
+        "button_step2": "¡Entendido!",
+        "button_step3": "Solicitar otro servicio",
+        "header": "Encabezado",
+        "image1": "IMAGEN1",
+        "pro_badge": "PRO"
+    },
+    "form_labels": {
+        "choose_category": "Elige una categoría",
+        "choose_subcategory": "Elige una subcategoría",
+        "select_activities": "Selecciona actividades (múltiples permitidas)",
+        "add_photos": "Agregar fotos (recomendado)",
+        "describe_task": "Describe la tarea",
+        "location": "Ubicación",
+        "type_of_place": "Tipo de lugar",
+        "resources": "Recursos",
+        "how_many_people": "¿Cuántas personas se necesitan?",
+        "extra_details": "Detalles adicionales",
+        "contact_information": "Información de contacto",
+        "summary": "RESUMEN"
+    },
+    "placeholders": {
+        "address": "Dirección",
+        "describe_task": "Proporciona detalles sobre lo que necesita hacerse...",
+        "full_name": "Nombre completo",
+        "phone_number": "Número de teléfono",
+        "email": "Correo electrónico",
+        "extra_details": "Cómo entrar, estacionamiento, mascotas, etc.",
+        "amount_input": "0"
+    },
+    "place_types": {
+        "house": "Casa",
+        "apartment": "Apartamento",
+        "other": "Otro"
+    },
+    "resources": {
+        "materials_provided": "¿Materiales proporcionados?",
+        "tools_provided": "¿Herramientas proporcionadas?"
+    },
+    "validation": {
+        "address_required": "La dirección es requerida",
+        "full_name_required": "El nombre completo es requerido",
+        "phone_required": "El número de teléfono es requerido",
+        "valid_email_required": "Se requiere un correo electrónico válido",
+        "place_type_required": "El tipo de lugar es requerido",
+        "valid_number_required": "Por favor ingresa un número válido",
+        "min_characters": "Por favor ingresa al menos 20 caracteres"
+    },
+    "file_upload": {
+        "upload_images": "Sube tus imágenes aquí",
+        "drop_images": "Arrastra tus imágenes aquí...",
+        "selected_images": "Imágenes Seleccionadas",
+        "all_done": "¡Todo listo!",
+        "images_uploaded": "imágenes subidas exitosamente",
+        "file_too_large": "El archivo es demasiado grande. Tamaño máximo es",
+        "invalid_file_type": "Tipo de archivo inválido. Por favor sube solo imágenes.",
+        "upload_failed": "Error al subir archivo. Por favor intenta de nuevo.",
+        "max_files_allowed": "archivos permitidos. Por favor elimina algunos archivos primero.",
+        "max_files": "Máximo",
+        "files_added": "archivos fueron agregados. Máximo",
+        "mb_each": "MB cada uno"
+    },
+    "loading": {
+        "categories": "Cargando categorías…",
+        "failed_load_categories": "Error al cargar categorías:"
+    },
+    "accessibility": {
+        "decrease_amount": "Disminuir cantidad",
+        "increase_amount": "Aumentar cantidad",
+        "remove_file": "Eliminar"
     }
 }
