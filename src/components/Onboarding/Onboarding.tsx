@@ -19,7 +19,7 @@ const Onboarding = () => {
                 <Button label={t("onboarding.skip")} className='underline' onClick={completeOnboarding}/>
             }
             { currentStep === 1 &&
-                <Button label={t("onboarding.skip")} className='underline' onClick={completeForm}/>
+                <Button label={t("onboarding.skip_form")} className='underline' onClick={completeForm}/>
             }
             </div>
 

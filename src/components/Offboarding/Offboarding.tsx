@@ -1,4 +1,6 @@
 import { useOffboardingStore } from '../../stores/offboardingStore'
+import { useFormStore } from '../../stores/formStore'
+import { useOnboardingStore } from '../../stores/onboardingStore'
 import Button from '../Form/Button'
 import { useTranslation } from 'react-i18next'
 
@@ -13,6 +15,8 @@ interface OffboardingPerson {
 
 const Offboarding = () => {
   const { currentStep, nextStep, completeOffboarding } = useOffboardingStore()
+  const { resetForm } = useFormStore()
+  const { resetOnboarding } = useOnboardingStore()
   const { t } = useTranslation()
 
   // Array of objects containing different people data
@@ -40,6 +44,13 @@ const Offboarding = () => {
       avatar: 'https://this-person-does-not-exist.com/img/avatar-gen840212179ed94ab7d009f6e6b9770fa7.jpg'
     }
   ]
+
+  // Function to handle completion and reset both stores
+  const handleComplete = () => {
+    resetForm()
+    resetOnboarding()
+    completeOffboarding()
+  }
 
   return (
 
@@ -103,7 +114,7 @@ const Offboarding = () => {
         <p className='text-xl'>{t(`offboarding.paragraph_step${currentStep}`)}</p>
       </div>
       <div>
-        <Button label={currentStep === 3 ? t(`offboarding.button_complete`) : t(`offboarding.button_step${currentStep}`)} className='bg-emerald-600 text-neutral-200 clickable fadeIn w-full' onClick={currentStep === 3 ? completeOffboarding : nextStep} />
+        <Button label={currentStep === 3 ? t(`offboarding.button_complete`) : t(`offboarding.button_step${currentStep}`)} className='bg-emerald-600 text-neutral-200 clickable fadeIn w-full' onClick={currentStep === 3 ? handleComplete : nextStep} />
       </div>
     </div>
   )

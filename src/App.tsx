@@ -39,7 +39,7 @@ const App = () => {
       <main id='content' className='flex-1 flex flex-col  overflow-hidden h-full md:p-8'>
         
 
-       {!isOnboardingComplete && <Onboarding/>}
+       {!isOnboardingComplete && !isFormComplete && <Onboarding/>}
        {isOnboardingComplete && !isFormComplete && <Form/>}
        {isFormComplete && <Offboarding/>}
           
