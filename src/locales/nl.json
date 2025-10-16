@@ -8,7 +8,8 @@
     "paragraph_step2": "Geef details aan zoals de behoefte aan gereedschap, het aantal benodigde personen, enz. om sneller hulp te krijgen",
     "paragraph_step3": "Bij het gebruik van onze app maak je al gebruik van een netwerk van vertrouwde en bekwame partners - help ons het zo te houden! Vermijd het uitwisselen van contactgegevens extern",
     "complete": "Begrepen!",
-    "skip": "OVERSLAAN",
+        "skip": "OVERSLAAN",
+        "skip_form": "FORMULIER OVERSLAAN",
     "next": "Volgende",
     "previous": "Vorige"
   },
@@ -69,8 +70,8 @@
     "other": "Anders"
   },
   "resources": {
-    "materials_provided": "Materialen verstrekt?",
-    "tools_provided": "Gereedschap verstrekt?"
+    "materials_provided": "Ik heb materialen voor de taak",
+    "tools_provided": "Ik heb gereedschap voor de taak"
   },
   "validation": {
     "address_required": "Adres is verplicht",
@@ -92,7 +93,7 @@
     "upload_failed": "Bestandsupload mislukt. Probeer opnieuw.",
     "max_files_allowed": "bestanden toegestaan. Verwijder eerst enkele bestanden.",
     "max_files": "Maximum",
-    "files_added": "bestanden werden toegevoegd. Maximum",
+        "files_added": "bestanden",
     "mb_each": "MB elk"
   },
   "loading": {

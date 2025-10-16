@@ -8,7 +8,8 @@
     "paragraph_step2": "Veuillez indiquer des détails tels que le besoin d'outils, le nombre de personnes requises, etc. pour obtenir de l'aide plus rapidement",
     "paragraph_step3": "En utilisant notre application, vous exploitez déjà un réseau de partenaires de confiance et qualifiés - aidez-nous à le maintenir ainsi ! Évitez d'échanger des informations de contact en externe",
     "complete": "Compris !",
-    "skip": "IGNORER",
+        "skip": "IGNORER",
+        "skip_form": "IGNORER LE FORMULAIRE",
     "next": "Suivant",
     "previous": "Précédent"
   },
@@ -69,8 +70,8 @@
     "other": "Autre"
   },
   "resources": {
-    "materials_provided": "Matériaux fournis ?",
-    "tools_provided": "Outils fournis ?"
+    "materials_provided": "J'ai les matériaux pour la tâche",
+    "tools_provided": "J'ai les outils pour la tâche"
   },
   "validation": {
     "address_required": "L'adresse est requise",
@@ -92,7 +93,7 @@
     "upload_failed": "Échec du téléchargement du fichier. Veuillez réessayer.",
     "max_files_allowed": "fichiers autorisés. Veuillez d'abord supprimer certains fichiers.",
     "max_files": "Maximum",
-    "files_added": "fichiers ont été ajoutés. Maximum",
+        "files_added": "fichiers",
     "mb_each": "MB chacun"
   },
   "loading": {
