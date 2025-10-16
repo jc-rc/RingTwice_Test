@@ -10,7 +10,13 @@ const Onboarding = () => {
 
 
     return (
-        <div className=' relative flex-1 flex flex-col gap-8 p-8 overflow-hidden max-w-xl mx-auto glassy md:rounded-4xl fadeIn'>
+        <div className=' relative flex-1 flex flex-col gap-8 p-8 overflow-hidden max-w-xl mx-auto glassy md:rounded-4xl fadeIn '>
+
+            <div className='flex justify-end z-1'>
+            { currentStep === 1 &&
+                <Button label={t("onboarding.skip")} className='underline' onClick={completeOnboarding}/>
+            }
+            </div>
 
             
             <div className='flex absolute inset-0 z-0 mask-b-from-0% mask-b-to-80% opacity-80 '>
@@ -30,9 +36,7 @@ const Onboarding = () => {
                 </div>
             </div>
             <div className='flex  items-center justify-between z-1 gap-4 fadeIn' style={{animationDelay: "0.6s"}}>
-            { currentStep === 1 &&
-                <Button label={t("onboarding.skip")} className='underline' onClick={completeOnboarding}/>
-            }
+          
                 <Button label={
             currentStep===3 ? t("onboarding.complete"): t("onboarding.next")} className='w-full bg-emerald-600 text-neutral-200 shadow-lg' onClick={currentStep === 3 ? completeOnboarding : nextStep} />
 

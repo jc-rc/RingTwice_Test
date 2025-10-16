@@ -12,7 +12,7 @@ const CheckboxList = ({ options, selected, onChange, className = '', itemClassNa
   return (
     <fieldset className={`flex flex-col gap-2 px-2 pb-4 ${className}`}>
       {options.map((opt) => (
-        <label key={opt.value} className={`flex items-center gap-3 cursor-pointer glassy p-4 rounded-2xl has-checked:inset-ring-2 inset-ring-orange-400 ${itemClassName}`}>
+        <label key={opt.value} className={`flex items-center gap-3 cursor-pointer glassy p-4 rounded-2xl has-checked:inset-ring-2 inset-ring-green-600 ${itemClassName}`}>
           <input
             type="checkbox"
             checked={selected.has(opt.value)}

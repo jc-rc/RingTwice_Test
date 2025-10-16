@@ -139,20 +139,20 @@ const Step1 = () => {
           {/* Category Selection */}
           <div className="flex flex-col gap-2">
             <h3 className="text-lg font-semibold">Choose a category</h3>
-            <form className="h-full  rounded-lg overflow-hidden">
+            <form className="h-full flex justify-center items-center rounded-lg overflow-hidden">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 has-checked:flex has-checked:min-w-full has-checked:overflow-x-auto has-checked:px-2 px-8 pb-4 ">
                 {categories.map((c) => (
                   <label
                     key={c.title}
                     ref={category === c.title ? selectedCategoryRef : null}
                     htmlFor={`option-${c.title}`}
-                    className={`cursor-pointer transition-all flex px-4 py-2 items-center justify-center gap-2 glassy rounded-2xl has-checked:inset-ring-2 inset-ring-orange-400 ${currentCategory ? "flex-row" : "flex-col aspect-square w-32 mx-auto"}`}
+                    className={`cursor-pointer transition-all flex px-4 py-2 items-center justify-center gap-2 glassy rounded-2xl has-checked:inset-ring-2 inset-ring-green-600 ${currentCategory ? "flex-row" : "flex-col aspect-square w-32 mx-auto"}`}
                   >
                     <p className={`${currentCategory ? "text-2xl" : "text-4xl"}`}>
                       {categoryIcons[c.title as keyof typeof categoryIcons]}
                     </p>
                     <div>
-                      <p className="font-bold text-sm">{c.title}</p>
+                      <p className="font-bold text-sm w-max">{c.title}</p>
                     </div>
                     <input
                       id={`option-${c.title}`}

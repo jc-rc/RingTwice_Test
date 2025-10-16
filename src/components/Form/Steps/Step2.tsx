@@ -108,23 +108,23 @@ const Step2 = () => {
             {placeType && (
                 <div ref={resourcesRef} className="flex flex-col gap-2 fadeIn">
                     <h3 className="text-lg font-semibold">Resources</h3>
-                    <label htmlFor='form-materials' className='flex items-center gap-3 glassy p-4 rounded-2xl has-checked:inset-ring-2 inset-ring-orange-400'>
+                    <label htmlFor='form-materials' className='flex items-center gap-3 glassy p-4 rounded-2xl has-checked:inset-ring-2 inset-ring-green-600'>
                         <input
                             id='form-materials'
                             type='checkbox'
                             checked={materialsProvided}
                             onChange={(e) => setMaterialsProvided(e.target.checked)}
-                            className="w-4 h-4"
+                            className="w-4 h-4 accent-green-600"
                         />
                         <p className="font-medium">Materials provided?</p>
                     </label>
-                    <label htmlFor='form-tools' className='flex items-center gap-3 glassy p-4 rounded-2xl has-checked:inset-ring-2 inset-ring-orange-400'>
+                    <label htmlFor='form-tools' className='flex items-center gap-3 glassy p-4 rounded-2xl has-checked:inset-ring-2 inset-ring-green-600'>
                         <input
                             id='form-tools'
                             type='checkbox'
                             checked={toolsProvided}
                             onChange={(e) => setToolsProvided(e.target.checked)}
-                            className="w-4 h-4"
+                            className="w-4 h-4 accent-green-600"
                         />
                         <p className="font-medium">Tools provided?</p>
                     </label>

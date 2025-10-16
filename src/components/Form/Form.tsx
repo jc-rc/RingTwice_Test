@@ -22,7 +22,7 @@ const Form = () => {
 
     return (
         <>
-            <div className='flex flex-col gap-4 fadeInRight flex-1 h-full overflow-hidden p-4 glassy md:rounded-4xl'>
+            <div className='flex flex-col gap-4 fadeInRight flex-1 h-full overflow-hidden p-4 md:p-8 glassy md:rounded-4xl'>
 
                 <div>
                     <p className='font-bold text-2xl'>{t(`form.title_step${currentStep}`)}</p>
@@ -44,16 +44,19 @@ const Form = () => {
                     <div className='flex items-center gap-8'>
                         {/* Only show back button if not on step 1 */}
                         {currentStep > 1 && (
-                            <Button label={t("form.back")} className=' w-full bg-green-600 text-neutral-200 shadow-lg' onClick={prevStep} />
+                            <Button label={t("form.back")} className='inset-ring-2 inset-ring-neutral-200 text-neutral-200 shadow-lg' onClick={prevStep} />
                         )}
 
                         {/* Show continue/complete button */}
+                        {
+                            canContinue && 
                         <Button
                             label={currentStep === 3 ? t("form.complete") : t("form.continue")}
-                            className=' w-full bg-green-600 text-neutral-200 shadow-lg'
+                            className=' w-full bg-green-600 text-neutral-200 shadow-lg fadeIn'
                             onClick={nextStep}
                             disabled={!canContinue}
                         />
+                        }
                     </div>
                 </div>}
             </div>

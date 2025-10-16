@@ -18,11 +18,11 @@ const RadioList = ({ name, options, value, onChange, className = '', itemClassNa
           <label
             key={opt.value}
             htmlFor={`${name}-${opt.value}`}
-            className={`cursor-pointer transition-all flex flex-col items-start justify-center gap-2 has-checked:inset-ring-2 snap-center inset-ring-orange-400 glassy rounded-2xl p-4 ${value ? 'min-w-fit' : 'p-4'} ${itemClassName}`}
+            className={`cursor-pointer transition-all flex flex-col items-start justify-center gap-2 has-checked:inset-ring-2 snap-center inset-ring-green-600 glassy rounded-2xl p-4 ${value ? 'min-w-fit' : 'p-4'} ${itemClassName}`}
           >
             <div className='flex items-center gap-2'>
               {showCheckIcon && (
-                <i className={`fa-solid ${value === opt.value ? 'fa-circle-check text-orange-400' : 'fa-circle'}`}></i>
+                <i className={`fa-solid ${value === opt.value ? 'fa-circle-check text-green-600' : 'fa-circle'}`}></i>
               )}
               <p className="font-bold text-sm">{opt.label}</p>
             </div>
