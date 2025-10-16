@@ -45,9 +45,7 @@ const Step1 = () => {
     
   } = useFormStore()
 
-  // Refs for scrolling to selected category and progressive sections
-  const selectedCategoryRef = useRef<HTMLLabelElement>(null)
-  const hasScrolledToCategoryRef = useRef<boolean>(false)
+  // Refs for progressive sections
   const subCategoryRef = useRef<HTMLDivElement>(null)
   const subActivitiesRef = useRef<HTMLDivElement>(null)
   const descriptionRef = useRef<HTMLDivElement>(null)
@@ -59,17 +57,6 @@ const Step1 = () => {
     }
   }, [categories.length, isCategoriesLoading, categoriesError, fetchCategories])
 
-  // Scroll to selected category only when first selecting any category
-  useEffect(() => {
-    if (category && selectedCategoryRef.current && !hasScrolledToCategoryRef.current) {
-      selectedCategoryRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center'
-      })
-      hasScrolledToCategoryRef.current = true
-    }
-  }, [category])
 
   // Narrow current category/subcategory for dependent rendering
   const currentCategory: CategoryNode | undefined = useMemo(
@@ -147,17 +134,15 @@ const Step1 = () => {
           {/* Category Selection */}
           <div className="flex flex-col gap-2">
             <h3 className="text-lg font-semibold">{t('form_labels.choose_category')}</h3>
-            <div className="w-full overflow-hidden">
-              <form className="h-full flex justify-center items-center rounded-lg">
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 has-checked:flex has-checked:min-w-full has-checked:overflow-x-auto has-checked:px-2 px-8 pb-4 has-checked:justify-start">
+            <form className="h-full flex justify-center items-center rounded-lg overflow-hidden">
+              <div className={`${category ? 'flex overflow-x-auto gap-4 px-2 pb-4' : 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8 pb-4'}`}>
                 {categories.map((c) => (
                   <label
                     key={c.title}
-                    ref={category === c.title ? selectedCategoryRef : null}
                     htmlFor={`option-${c.title}`}
-                    className={`clickable  flex px-4 py-2 items-center justify-center gap-2 glassy rounded-2xl has-checked:inset-ring-2 inset-ring-emerald-600 ${currentCategory ? "flex-row" : "flex-col aspect-square w-32 mx-auto"}`}
+                    className={`clickable flex px-4 py-2 items-center justify-center gap-2 glassy rounded-2xl has-checked:inset-ring-2 inset-ring-emerald-600 ${category ? 'flex-row min-w-max' : 'flex-col aspect-square w-32 mx-auto'}`}
                   >
-                    <p className={`${currentCategory ? "text-2xl" : "text-4xl"}`}>
+                    <p className={`${category ? 'text-2xl' : 'text-4xl'}`}>
                       {categoryIcons[c.title as keyof typeof categoryIcons]}
                     </p>
                     <div>
@@ -174,9 +159,8 @@ const Step1 = () => {
                     />
                   </label>
                 ))}
-                </div>
-              </form>
-            </div>
+              </div>
+            </form>
             
           </div>
 
