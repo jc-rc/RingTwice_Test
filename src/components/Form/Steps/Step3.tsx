@@ -1,12 +1,33 @@
+import { useState } from 'react'
 import LabeledTextInput from '../LabeledTextInput'
 import { useFormStore } from '../../../stores/formStore'
 
 function Step3() {
   const { name, phone, email, setName, setPhone, setEmail } = useFormStore()
+  
+  // Local state to track validation results for progressive rendering
+  const [nameError, setNameError] = useState<string | null>(null)
+  const [phoneError, setPhoneError] = useState<string | null>(null)
 
-  const nameError = name.trim().length === 0 ? 'Full name is required' : ''
-  const phoneError = phone.trim().length === 0 || !/^[0-9]*$/.test(phone) ? 'Phone number is required' : ''
-  const emailError = /.+@.+\..+/.test(email) ? '' : 'Valid email is required'
+    // Validator functions that also update local state for progressive rendering
+    const nameValidator = (value: string) => {
+        const error = value.trim().length === 0 ? 'Full name is required' : null
+        setNameError(error)
+        return error
+    }
+
+    const phoneValidator = (value: string) => {
+        const error = value.trim().length === 0 || !/^[0-9]*$/.test(value) ? 'Phone number is required' : null
+        setPhoneError(error)
+        return error
+    }
+
+    const emailValidator = (value: string) => {
+        if (!/.+@.+\..+/.test(value)) {
+            return 'Valid email is required'
+        }
+        return null
+    }
 
   return (
     <div className="flex flex-col flex-2 gap-4 h-full overflow-y-auto fadeIn">
@@ -18,12 +39,12 @@ function Step3() {
           placeholder='Full name'
           value={name}
           onChange={setName}
-          error={nameError}
+          validator={nameValidator}
           iconName="fa-solid fa-user"
         />
       </div>
 
-      {/* Phone - Only show if name is provided */}
+      {/* Phone - Only show if name is valid */}
       {!nameError && (
         <div className="flex flex-col gap-2 fadeIn">
           <LabeledTextInput
@@ -33,14 +54,14 @@ function Step3() {
             placeholder='Phone number'
             value={phone}
             onChange={setPhone}
-            error={phoneError}
+            validator={phoneValidator}
             iconName="fa-solid fa-phone"
             pattern="^[0-9]*$"
           />
         </div>
       )}
 
-      {/* Email - Only show if phone is provided */}
+      {/* Email - Only show if phone is valid */}
       {!phoneError && (
         <div className="flex flex-col gap-2 fadeIn">
           <LabeledTextInput
@@ -50,7 +71,7 @@ function Step3() {
             placeholder='Email'
             value={email}
             onChange={setEmail}
-            error={emailError}
+            validator={emailValidator}
             iconName="fa-solid fa-envelope"
           />
         </div>

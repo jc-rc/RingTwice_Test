@@ -1,3 +1,6 @@
+import React from 'react'
+import useDebouncedValidation from '../../hooks/useDebouncedValidation'
+
 type LabeledTextInputProps = {
   id: string
   type?: string
@@ -8,10 +11,19 @@ type LabeledTextInputProps = {
   error?: string
   inputMode?: React.HTMLAttributes<HTMLInputElement>["inputMode"]
   pattern?: string
+  validator?: (value: string) => string | null
 }
 
-const LabeledTextInput = ({ id, type = 'text', placeholder, value, onChange, error, inputMode, iconName, pattern }: LabeledTextInputProps) => {
-  const hasError = !!error
+const LabeledTextInput = ({ id, type = 'text', placeholder, value, onChange, error, inputMode, iconName, pattern, validator }: LabeledTextInputProps) => {
+  // Use debounced validation if validator is provided
+  const debouncedError = validator 
+    ? useDebouncedValidation({ value, validator })
+    : null
+  
+  // Use debounced error if available, otherwise fall back to prop error
+  const displayError = debouncedError || error
+  const hasError = !!displayError
+  
   return (
     <div className="flex flex-col gap-2">
       <div className={`flex items-center gap-2 p-4 glassy rounded-2xl ${hasError
@@ -31,7 +43,7 @@ const LabeledTextInput = ({ id, type = 'text', placeholder, value, onChange, err
           pattern={pattern}
         />
       </div>
-      {error && <p className="text-xs text-red-600">{error}</p>}
+      {displayError && <p className="text-xs text-red-600">{displayError}</p>}
     </div>
   )
 }

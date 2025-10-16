@@ -4,8 +4,8 @@ import Step1 from './Steps/Step1'
 import Step2 from './Steps/Step2'
 import Step3 from './Steps/Step3'
 import Step4 from './Steps/Step4'
-import { t } from 'i18next'
 import Summary from './Summary'
+import { useTranslation } from 'react-i18next'
 
 const Form = () => {
 
@@ -19,6 +19,8 @@ const Form = () => {
     } = useFormStore()
 
     const canContinue = canGoNext()
+
+    const { t } = useTranslation()
 
     return (
         <>

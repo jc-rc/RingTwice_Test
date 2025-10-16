@@ -117,7 +117,13 @@ const Step1 = () => {
     setSubCategory(subCategoryTitle)
   }
 
-  const descriptionError = currentSubCategory && description.trim().length < 20 ? 'Please enter at least 20 characters' : ''
+        // Description validator function
+        const descriptionValidator = (value: string) => {
+            if (currentSubCategory && value.trim().length < 20) {
+                return 'Please enter at least 20 characters'
+            }
+            return null
+        }
 
   return (
     <div className="flex flex-1 flex-col gap-4 h-full overflow-y-auto">
@@ -215,16 +221,16 @@ const Step1 = () => {
           {subActivities.size > 0 && (
             <div ref={descriptionRef} className="flex flex-col gap-2 fadeIn">
               <h3 className="text-lg font-semibold">Describe the task</h3>
-              <TextareaWithCounter
-                id="form-task-description"
-                placeholder="Provide details about what needs to be done..."
-                value={description}
-                onChange={setDescription}
-                error={descriptionError}
-                minLength={20}
-                maxLength={750}
-                rows={5}
-              />
+                    <TextareaWithCounter
+                        id="form-task-description"
+                        placeholder="Provide details about what needs to be done..."
+                        value={description}
+                        onChange={setDescription}
+                        validator={descriptionValidator}
+                        minLength={20}
+                        maxLength={750}
+                        rows={5}
+                    />
             </div>
           )}
 

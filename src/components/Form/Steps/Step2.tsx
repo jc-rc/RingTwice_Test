@@ -21,6 +21,9 @@ const Step2 = () => {
         setExtraDetails,
     } = useFormStore()
 
+    // Local state for address validation for progressive rendering
+    const [addressError, setAddressError] = useState<string | null>(null)
+
     // Local state for resources (materials and tools) as a Set
     const [resources, setResources] = useState<Set<string>>(new Set())
 
@@ -59,19 +62,25 @@ const Step2 = () => {
         { value: 'other', label: 'Other' },
     ] as const
 
-    const addressError = address.trim().length === 0 ? 'Address is required' : ''
+    // Address validator function that also updates local state for progressive rendering
+    const addressValidator = (value: string) => {
+        const error = value.trim().length === 0 ? 'Address is required' : null
+        setAddressError(error)
+        return error
+    }
+
     const placeTypeError = !placeType ? 'Type of place is required' : ''
     const peopleError = typeof peopleNeeded !== 'number' || Number.isNaN(peopleNeeded) ? 'Please enter a valid number' : ''
 
-    // Scroll to place type section when address is provided
+    // Scroll to place type section when address becomes valid
     useEffect(() => {
-        if (address.trim() && placeTypeRef.current) {
+        if (!addressError && placeTypeRef.current) {
             placeTypeRef.current.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             })
         }
-    }, [address])
+    }, [addressError])
 
     // Scroll to resources section when place type is selected
     useEffect(() => {
@@ -108,18 +117,18 @@ const Step2 = () => {
             {/* Address */}
             <div className="flex flex-col gap-2">
                 <h3 className="text-lg font-semibold">Location</h3>
-                <LabeledTextInput
-                    id="form-address"
-                    placeholder="Address"
-                    value={address}
-                    onChange={setAddress}
-                    error={addressError}
-                    iconName="fa-solid fa-location-dot"
-                />
+                    <LabeledTextInput
+                        id="form-address"
+                        placeholder="Address"
+                        value={address}
+                        onChange={setAddress}
+                        validator={addressValidator}
+                        iconName="fa-solid fa-location-dot"
+                    />
             </div>
 
-            {/* Place type - radio group - Only show if address is provided */}
-            {address.trim() && (
+            {/* Place type - radio group - Only show if address is valid */}
+            {!addressError && (
                 <div ref={placeTypeRef} className="flex flex-col gap-2 fadeIn">
                     <h3 className="text-lg font-semibold">Type of place</h3>
                     <RadioList
@@ -168,8 +177,9 @@ const Step2 = () => {
                 <div ref={extraDetailsRef} className="flex flex-col gap-2 fadeIn">
                     <h3 className="text-lg font-semibold">Extra details</h3>
                     <textarea
-                        className="min-h-32 p-4 glassy rounded-2xl resize-none placeholder:text-neutral-500 dark:placeholder:text-neutral-400 outline-0 focus:inset-ring-1 inset-ring-orange-400"
-                        rows={6}
+                        className="min-h-32 p-4 glassy rounded-2xl resize-none placeholder:text-neutral-500 dark:placeholder:text-neutral-400 outline-0 focus:inset-ring-1 inset-ring-green-600"
+                        rows={5}
+                        maxLength={300}
                         id='form-extra-details'
                         placeholder='How to enter, parking, pets, etc.'
                         value={extraDetails}

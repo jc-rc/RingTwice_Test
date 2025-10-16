@@ -18,5 +18,5 @@
 }
 
 .clickable{
-  @apply cursor-pointer transition-all duration-300 active:scale-95 shadow-lg active:shadow-none;
+  @apply cursor-pointer transition-all duration-300 active:scale-95 shadow-lg active:shadow-none select-none;
 }
