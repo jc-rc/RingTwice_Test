@@ -1,0 +1,154 @@
+{
+  "onboarding": {
+    "welcome": "Welkom bij RingTwice!",
+    "title_step1": "Laten we een dienst aanvragen!",
+    "title_step2": "Laat geen details weg!",
+    "title_step3": "Het RingTwice vertrouwensnetwerk",
+    "paragraph_step1": "Als klant kun je hulp krijgen bij talloze taken van bekwame mensen bij jou in de buurt",
+    "paragraph_step2": "Geef details aan zoals de behoefte aan gereedschap, het aantal benodigde personen, enz. om sneller hulp te krijgen",
+    "paragraph_step3": "Bij het gebruik van onze app maak je al gebruik van een netwerk van vertrouwde en bekwame partners - help ons het zo te houden! Vermijd het uitwisselen van contactgegevens extern",
+    "complete": "Begrepen!",
+    "skip": "OVERSLAAN",
+    "next": "Volgende",
+    "previous": "Vorige"
+  },
+  "common": {
+    "language": "Nederlands",
+    "working": "i18next werkt perfect!"
+  },
+  "form": {
+    "continue": "Doorgaan",
+    "complete": "Voltooien",
+    "back": "Terug",
+    "summary": "Samenvatting",
+    "title_step1": "Waar heb je hulp bij nodig?",
+    "title_step2": "Vertel ons over de werkplek",
+    "title_step3": "Contactgegevens"
+  },
+  "offboarding": {
+    "title_step1": "Je dienstverzoek is live!",
+    "title_step2": "Kies het beste aanbod",
+    "title_step3": "Controleer je berichten vaak!",
+    "paragraph_step1": "De beste aanbieders in jouw regio worden automatisch op de hoogte gesteld en je ontvangt verschillende aanbiedingen binnen 4 uur",
+    "paragraph_step2": "Vergelijk prijzen en beoordelingen",
+    "paragraph_step3": "Zodra je het voorstel van een aanbieder accepteert, kun je met hen chatten en de details afspreken",
+    "button_complete": "Terug naar start",
+    "button_step1": "Wat is de volgende stap?",
+    "button_step2": "Begrepen!",
+    "button_step3": "Vraag een andere dienst aan",
+    "header": "Koptekst",
+    "image1": "AFBEELDING1",
+    "pro_badge": "PRO"
+  },
+  "form_labels": {
+    "choose_category": "Kies een categorie",
+    "choose_subcategory": "Kies een subcategorie",
+    "select_activities": "Selecteer activiteiten (meerdere toegestaan)",
+    "add_photos": "Voeg foto's toe (aangemoedigd)",
+    "describe_task": "Beschrijf de taak",
+    "location": "Locatie",
+    "type_of_place": "Type plaats",
+    "resources": "Middelen",
+    "how_many_people": "Hoeveel mensen zijn er nodig?",
+    "extra_details": "Extra details",
+    "contact_information": "Contactgegevens",
+    "summary": "SAMENVATTING"
+  },
+  "placeholders": {
+    "address": "Adres",
+    "describe_task": "Geef details over wat er gedaan moet worden...",
+    "full_name": "Volledige naam",
+    "phone_number": "Telefoonnummer",
+    "email": "E-mail",
+    "extra_details": "Hoe binnenkomen, parkeren, huisdieren, enz.",
+    "amount_input": "0"
+  },
+  "place_types": {
+    "house": "Huis",
+    "apartment": "Appartement",
+    "other": "Anders"
+  },
+  "resources": {
+    "materials_provided": "Materialen verstrekt?",
+    "tools_provided": "Gereedschap verstrekt?"
+  },
+  "validation": {
+    "address_required": "Adres is verplicht",
+    "full_name_required": "Volledige naam is verplicht",
+    "phone_required": "Telefoonnummer is verplicht",
+    "valid_email_required": "Geldig e-mailadres is verplicht",
+    "place_type_required": "Type plaats is verplicht",
+    "valid_number_required": "Voer een geldig nummer in",
+    "min_characters": "Voer minimaal 20 tekens in"
+  },
+  "file_upload": {
+    "upload_images": "Upload je afbeeldingen hier",
+    "drop_images": "Sleep je afbeeldingen hier...",
+    "selected_images": "Geselecteerde Afbeeldingen",
+    "all_done": "Alles klaar!",
+    "images_uploaded": "afbeeldingen succesvol geüpload",
+    "file_too_large": "Bestand is te groot. Maximale grootte is",
+    "invalid_file_type": "Ongeldig bestandstype. Upload alleen afbeeldingen.",
+    "upload_failed": "Bestandsupload mislukt. Probeer opnieuw.",
+    "max_files_allowed": "bestanden toegestaan. Verwijder eerst enkele bestanden.",
+    "max_files": "Maximum",
+    "files_added": "bestanden werden toegevoegd. Maximum",
+    "mb_each": "MB elk"
+  },
+  "loading": {
+    "categories": "Categorieën laden…",
+    "failed_load_categories": "Fout bij het laden van categorieën:"
+  },
+  "accessibility": {
+    "decrease_amount": "Hoeveelheid verlagen",
+    "increase_amount": "Hoeveelheid verhogen",
+    "remove_file": "Verwijderen"
+  },
+  "categories": {
+    "Gardening": "Tuinieren",
+    "Entertainment": "Entertainment",
+    "Pets": "Huisdieren",
+    "House chores": "Huishoudelijke taken",
+    "Technology": "Technologie",
+    "Transport": "Transport",
+    "Babysitting": "Oppassen",
+    "Lessons": "Lessen",
+    "Wellness": "Welzijn",
+    "Handywork": "Handwerk"
+  },
+  "subcategories": {
+    "Watering": "Bewatering",
+    "Music": "Muziek",
+    "Walking": "Wandelen",
+    "Cleaning": "Schoonmaken",
+    "IT Help": "IT Hulp",
+    "Moving": "Verhuizen",
+    "Care": "Zorg",
+    "Tutoring": "Bijles",
+    "Fitness": "Fitness",
+    "Repairs": "Reparaties"
+  },
+  "subactivities": {
+    "Water potted plants": "Potplanten water geven",
+    "Water whole yard": "Hele tuin water geven",
+    "Hire a DJ": "DJ huren",
+    "Set up speakers": "Luidsprekers opzetten",
+    "Walk the dog": "Hond uitlaten",
+    "Pet sitting": "Huisdieren oppassen",
+    "Vacuuming": "Stofzuigen",
+    "Mopping": "Dweilen",
+    "Laundry": "Wassen",
+    "Set up Wi‑Fi": "Wi‑Fi opzetten",
+    "Install software": "Software installeren",
+    "Load van": "Bestelwagen laden",
+    "Drive items": "Items vervoeren",
+    "Evening babysitting": "Avondoppas",
+    "School pickup": "School ophalen",
+    "Math help": "Wiskunde hulp",
+    "Language practice": "Taal oefenen",
+    "Personal training": "Persoonlijke training",
+    "Yoga session": "Yoga sessie",
+    "Fix shelf": "Plank repareren",
+    "Assemble furniture": "Meubels monteren"
+  }
+}

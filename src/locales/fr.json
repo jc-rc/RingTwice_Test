@@ -1,0 +1,154 @@
+{
+  "onboarding": {
+    "welcome": "Bienvenue chez RingTwice !",
+    "title_step1": "Demandons un service !",
+    "title_step2": "Ne laissez aucun détail de côté !",
+    "title_step3": "Le réseau de confiance RingTwice",
+    "paragraph_step1": "En tant que client, vous pouvez obtenir de l'aide pour d'innombrables tâches auprès de personnes qualifiées près de chez vous",
+    "paragraph_step2": "Veuillez indiquer des détails tels que le besoin d'outils, le nombre de personnes requises, etc. pour obtenir de l'aide plus rapidement",
+    "paragraph_step3": "En utilisant notre application, vous exploitez déjà un réseau de partenaires de confiance et qualifiés - aidez-nous à le maintenir ainsi ! Évitez d'échanger des informations de contact en externe",
+    "complete": "Compris !",
+    "skip": "IGNORER",
+    "next": "Suivant",
+    "previous": "Précédent"
+  },
+  "common": {
+    "language": "Français",
+    "working": "i18next fonctionne parfaitement !"
+  },
+  "form": {
+    "continue": "Continuer",
+    "complete": "Terminer",
+    "back": "Retour",
+    "summary": "Résumé",
+    "title_step1": "De quoi avez-vous besoin d'aide ?",
+    "title_step2": "Parlez-nous du lieu de travail",
+    "title_step3": "Détails de contact"
+  },
+  "offboarding": {
+    "title_step1": "Votre demande de service est en ligne !",
+    "title_step2": "Choisissez la meilleure offre",
+    "title_step3": "Vérifiez vos messages souvent !",
+    "paragraph_step1": "Les meilleurs prestataires de votre région seront automatiquement notifiés et vous recevrez diverses offres dans les 4 heures",
+    "paragraph_step2": "Comparez les prix et les évaluations",
+    "paragraph_step3": "Une fois que vous acceptez la proposition d'un prestataire, vous pourrez discuter avec eux et convenir des détails",
+    "button_complete": "Retour à l'accueil",
+    "button_step1": "Quelle est la suite ?",
+    "button_step2": "Compris !",
+    "button_step3": "Demander un autre service",
+    "header": "En-tête",
+    "image1": "IMAGE1",
+    "pro_badge": "PRO"
+  },
+  "form_labels": {
+    "choose_category": "Choisissez une catégorie",
+    "choose_subcategory": "Choisissez une sous-catégorie",
+    "select_activities": "Sélectionnez les activités (plusieurs autorisées)",
+    "add_photos": "Ajouter des photos (recommandé)",
+    "describe_task": "Décrivez la tâche",
+    "location": "Emplacement",
+    "type_of_place": "Type de lieu",
+    "resources": "Ressources",
+    "how_many_people": "Combien de personnes sont nécessaires ?",
+    "extra_details": "Détails supplémentaires",
+    "contact_information": "Informations de contact",
+    "summary": "RÉSUMÉ"
+  },
+  "placeholders": {
+    "address": "Adresse",
+    "describe_task": "Fournissez des détails sur ce qui doit être fait...",
+    "full_name": "Nom complet",
+    "phone_number": "Numéro de téléphone",
+    "email": "E-mail",
+    "extra_details": "Comment entrer, parking, animaux domestiques, etc.",
+    "amount_input": "0"
+  },
+  "place_types": {
+    "house": "Maison",
+    "apartment": "Appartement",
+    "other": "Autre"
+  },
+  "resources": {
+    "materials_provided": "Matériaux fournis ?",
+    "tools_provided": "Outils fournis ?"
+  },
+  "validation": {
+    "address_required": "L'adresse est requise",
+    "full_name_required": "Le nom complet est requis",
+    "phone_required": "Le numéro de téléphone est requis",
+    "valid_email_required": "Un e-mail valide est requis",
+    "place_type_required": "Le type de lieu est requis",
+    "valid_number_required": "Veuillez entrer un numéro valide",
+    "min_characters": "Veuillez entrer au moins 20 caractères"
+  },
+  "file_upload": {
+    "upload_images": "Téléchargez vos images ici",
+    "drop_images": "Glissez vos images ici...",
+    "selected_images": "Images Sélectionnées",
+    "all_done": "Tout est fait !",
+    "images_uploaded": "images téléchargées avec succès",
+    "file_too_large": "Le fichier est trop volumineux. La taille maximale est",
+    "invalid_file_type": "Type de fichier invalide. Veuillez télécharger uniquement des images.",
+    "upload_failed": "Échec du téléchargement du fichier. Veuillez réessayer.",
+    "max_files_allowed": "fichiers autorisés. Veuillez d'abord supprimer certains fichiers.",
+    "max_files": "Maximum",
+    "files_added": "fichiers ont été ajoutés. Maximum",
+    "mb_each": "MB chacun"
+  },
+  "loading": {
+    "categories": "Chargement des catégories…",
+    "failed_load_categories": "Échec du chargement des catégories :"
+  },
+  "accessibility": {
+    "decrease_amount": "Diminuer la quantité",
+    "increase_amount": "Augmenter la quantité",
+    "remove_file": "Supprimer"
+  },
+  "categories": {
+    "Gardening": "Jardinage",
+    "Entertainment": "Divertissement",
+    "Pets": "Animaux domestiques",
+    "House chores": "Tâches ménagères",
+    "Technology": "Technologie",
+    "Transport": "Transport",
+    "Babysitting": "Garde d'enfants",
+    "Lessons": "Cours",
+    "Wellness": "Bien-être",
+    "Handywork": "Bricolage"
+  },
+  "subcategories": {
+    "Watering": "Arrosage",
+    "Music": "Musique",
+    "Walking": "Promenade",
+    "Cleaning": "Nettoyage",
+    "IT Help": "Aide informatique",
+    "Moving": "Déménagement",
+    "Care": "Soins",
+    "Tutoring": "Tutorat",
+    "Fitness": "Fitness",
+    "Repairs": "Réparations"
+  },
+  "subactivities": {
+    "Water potted plants": "Arroser les plantes en pot",
+    "Water whole yard": "Arroser toute la cour",
+    "Hire a DJ": "Engager un DJ",
+    "Set up speakers": "Installer des haut-parleurs",
+    "Walk the dog": "Promener le chien",
+    "Pet sitting": "Garde d'animaux",
+    "Vacuuming": "Aspirateur",
+    "Mopping": "Serpillière",
+    "Laundry": "Lessive",
+    "Set up Wi‑Fi": "Configurer le Wi‑Fi",
+    "Install software": "Installer un logiciel",
+    "Load van": "Charger la camionnette",
+    "Drive items": "Transporter des objets",
+    "Evening babysitting": "Garde d'enfants du soir",
+    "School pickup": "Récupération à l'école",
+    "Math help": "Aide en maths",
+    "Language practice": "Pratique de langue",
+    "Personal training": "Entraînement personnel",
+    "Yoga session": "Séance de yoga",
+    "Fix shelf": "Réparer l'étagère",
+    "Assemble furniture": "Monter des meubles"
+  }
+}
