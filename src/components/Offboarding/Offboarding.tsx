@@ -48,7 +48,7 @@ const Offboarding = () => {
 
 
       <div>Header</div>
-      <div className='flex-1'>
+      <div className='flex-2'>
         {currentStep === 1 && <div className="flex items-center justify-center h-full border">
           IMAGE1
         </div>
@@ -93,7 +93,7 @@ const Offboarding = () => {
         </div>
         }
       </div>
-      <div className='flex flex-col gap-2 justify-end'>
+      <div className='flex flex-col gap-2 justify-end flex-1'>
         <p className='text-4xl font-bold'>{t(`offboarding.title_step${currentStep}`)}</p>
         <p className='text-xl'>{t(`offboarding.paragraph_step${currentStep}`)}</p>
       </div>
