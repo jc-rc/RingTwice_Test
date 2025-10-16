@@ -14,9 +14,10 @@ interface OffboardingPerson {
 }
 
 const Offboarding = () => {
-  const { currentStep, nextStep, completeOffboarding } = useOffboardingStore()
+  const { currentStep, nextStep, completeOffboarding, resetOffboarding } = useOffboardingStore()
   const { resetForm } = useFormStore()
   const { resetOnboarding } = useOnboardingStore()
+  
   const { t } = useTranslation()
 
   // Array of objects containing different people data
@@ -49,6 +50,7 @@ const Offboarding = () => {
   const handleComplete = () => {
     resetForm()
     resetOnboarding()
+    resetOffboarding()
     completeOffboarding()
   }
 

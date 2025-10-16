@@ -147,8 +147,9 @@ const Step1 = () => {
           {/* Category Selection */}
           <div className="flex flex-col gap-2">
             <h3 className="text-lg font-semibold">{t('form_labels.choose_category')}</h3>
-            <form className="h-full flex justify-center items-center rounded-lg overflow-hidden">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 has-checked:flex has-checked:min-w-full has-checked:overflow-x-auto has-checked:px-2 px-8 pb-4 ">
+            <div className="w-full overflow-hidden">
+              <form className="h-full flex justify-center items-center rounded-lg">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 has-checked:flex has-checked:min-w-full has-checked:overflow-x-auto has-checked:px-2 px-8 pb-4 has-checked:justify-start">
                 {categories.map((c) => (
                   <label
                     key={c.title}
@@ -173,8 +174,9 @@ const Step1 = () => {
                     />
                   </label>
                 ))}
-              </div>
-            </form>
+                </div>
+              </form>
+            </div>
             
           </div>
 
