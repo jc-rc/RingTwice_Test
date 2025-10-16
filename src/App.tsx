@@ -6,16 +6,19 @@ import LanguageToggle from './components/LanguageToggle/LanguageToggle'
 import Onboarding from './components/Onboarding/Onboarding'
 import { useOnboardingStore } from './stores/onboardingStore'
 import Form from './components/Form/Form'
+import Offboarding from './components/Offboarding/Offboarding'
+import { useFormStore } from './stores/formStore'
 
 const App = () => {
   const { theme } = useThemeStore()
   const {isOnboardingComplete} = useOnboardingStore()
+  const {isFormComplete} = useFormStore()
 //  const { t } = useTranslation()
 
   return (
-    <div className={`${theme} h-dvh overflow-hidden bg-gradient-to-b from-orange-400 to-pink-300 d-200 dark:bg-neutral-950 transition-all duration-1000 flex flex-col dark:text-neutral-200 text-neutral-700`}>
+    <div className={`${theme} h-dvh overflow-hidden bg-gradient-to-b from-orange-300 to-pink-400 d-200 dark:bg-neutral-950 transition-all duration-1000 flex flex-col dark:text-neutral-100 text-neutral-800`}>
 
-      <nav id='navbar' className='flex gap-4 pe-3 items-center justify-center bg-neutral-200/30 dark:bg-neutral-900 transition-all duration-1000'>
+      <nav id='navbar' className='flex gap-4 pe-3 items-center justify-center bg-neutral-200 dark:bg-neutral-900 transition-all duration-1000'>
         <div className='flex items-center gap-4 flex-1 md:px-8'>
 
           <div className='flex-1  md:py-2'>
@@ -37,7 +40,8 @@ const App = () => {
         
 
        {!isOnboardingComplete && <Onboarding/>}
-       {isOnboardingComplete && <Form/>}
+       {isOnboardingComplete && !isFormComplete && <Form/>}
+       {isFormComplete && <Offboarding/>}
           
         
       </main>

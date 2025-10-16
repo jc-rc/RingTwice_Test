@@ -1,11 +1,13 @@
 import { useOnboardingStore } from '../../stores/onboardingStore'
 import { useTranslation } from 'react-i18next'
 import Button from '../Form/Button'
+import { useFormStore } from '../../stores/formStore'
 
 const Onboarding = () => {
 
     const { currentStep,  nextStep, completeOnboarding } = useOnboardingStore()
     const { t } = useTranslation()
+    const { completeForm } = useFormStore()
     
 
 
@@ -15,6 +17,9 @@ const Onboarding = () => {
             <div className='flex justify-end z-1'>
             { currentStep === 1 &&
                 <Button label={t("onboarding.skip")} className='underline' onClick={completeOnboarding}/>
+            }
+            { currentStep === 1 &&
+                <Button label={t("onboarding.skip")} className='underline' onClick={completeForm}/>
             }
             </div>
 
@@ -30,11 +35,7 @@ const Onboarding = () => {
                 <p className='text-4xl font-bold '>{t(`onboarding.title_step${currentStep}`)}</p>
                 <p className='text-xl '>{t(`onboarding.paragraph_step${currentStep}`)}</p>
             </div>
-            <div>
-                <div className='rounded-full h-2 w-1/4 mx-auto bg-neutral-200/30'>
-                    <div className={`rounded-full h-2 bg-orange-600/60 transition-all duration-500`} style={{width: `${currentStep * 33.3}%`}}></div>
-                </div>
-            </div>
+           
             <div className='flex  items-center justify-between z-1 gap-4 fadeIn' style={{animationDelay: "0.6s"}}>
           
                 <Button label={

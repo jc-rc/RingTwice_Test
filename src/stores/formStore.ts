@@ -79,6 +79,7 @@ export interface FormState {
 
 	/** Async fake API */
 	fetchCategories: () => Promise<void>
+	completeForm: () => void;
 }
 
 /**
@@ -149,7 +150,7 @@ export const useFormStore = create<FormState>((set, get) => ({
 			default: return true
 		}
 	},
-
+	completeForm: () => set(() => ({ isFormComplete: true })),
 	// Actions
 	setCategory: (category) => set(() => ({ category, subCategory: null, subActivities: new Set<SubActivityName>() })),
 	setSubCategory: (subCategory) => set(() => ({ subCategory })),

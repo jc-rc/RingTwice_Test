@@ -87,3 +87,25 @@
     animation-duration: 500ms;
 
   }
+
+  @keyframes heartbeat {
+    from {
+      transform: scale3d(1, 1, 1);
+    }
+  
+    50% {
+      transform: scale3d(1.05, 1.05, 1.05);
+    }
+  
+    to {
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  
+  .heartbeat {
+    animation-name: heartbeat;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1000ms;
+   animation-iteration-count: infinite;
+   
+  }

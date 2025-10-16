@@ -47,7 +47,7 @@ const TextareaWithCounter = ({
         className={`min-h-32 p-4 glassy rounded-2xl resize-none transition-all placeholder:text-neutral-500 dark:placeholder:text-neutral-400 outline-0 ${
           hasError 
             ? 'focus:inset-ring-2 inset-ring-red-500 headShake' 
-            : 'focus:inset-ring-2 inset-ring-green-600'
+            : 'focus:inset-ring-2 inset-ring-emerald-600'
         } ${className}`}
         aria-invalid={hasError}
       />

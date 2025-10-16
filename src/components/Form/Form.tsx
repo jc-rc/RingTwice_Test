@@ -3,7 +3,6 @@ import Button from './Button'
 import Step1 from './Steps/Step1'
 import Step2 from './Steps/Step2'
 import Step3 from './Steps/Step3'
-import Step4 from './Steps/Step4'
 import { useTranslation } from 'react-i18next'
 
 const Form = () => {
@@ -15,6 +14,7 @@ const Form = () => {
         nextStep,
         canGoNext,
         category,
+        completeForm,
     } = useFormStore()
 
     const canContinue = canGoNext()
@@ -35,7 +35,6 @@ const Form = () => {
                     {currentStep === 1 && <Step1 />}
                     {currentStep === 2 && <Step2 />}
                     {currentStep === 3 && <Step3 />}
-                    {currentStep === 4 && <Step4 />}
                     {/* {category && <Summary />} */}
                 </div>
 
@@ -53,8 +52,8 @@ const Form = () => {
                             canContinue && 
                         <Button
                             label={currentStep === 3 ? t("form.complete") : t("form.continue")}
-                            className=' w-full bg-green-600 text-neutral-200 shadow-lg fadeIn'
-                            onClick={nextStep}
+                            className=' w-full bg-emerald-600 text-neutral-200 shadow-lg fadeIn'
+                            onClick={currentStep === 3 ? completeForm : nextStep}
                             disabled={!canContinue}
                         />
                         }

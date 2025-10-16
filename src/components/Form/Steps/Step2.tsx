@@ -177,7 +177,7 @@ const Step2 = () => {
                 <div ref={extraDetailsRef} className="flex flex-col gap-2 fadeIn">
                     <h3 className="text-lg font-semibold">Extra details</h3>
                     <textarea
-                        className="min-h-32 p-4 glassy rounded-2xl resize-none placeholder:text-neutral-500 dark:placeholder:text-neutral-400 outline-0 focus:inset-ring-1 inset-ring-green-600"
+                        className="min-h-32 p-4 glassy rounded-2xl resize-none placeholder:text-neutral-500 dark:placeholder:text-neutral-400 outline-0 focus:inset-ring-1 inset-ring-emerald-600"
                         rows={5}
                         maxLength={300}
                         id='form-extra-details'

@@ -61,8 +61,8 @@ const AmountInput = ({
           className={`
             size-10 rounded-full flex items-center justify-center text-neutral-200
             ${isMinDisabled
-              ? 'bg-green-600/30  cursor-not-allowed'
-              : 'bg-green-600 hover:bg-green-600 clickable'
+              ? 'bg-emerald-600/30  cursor-not-allowed'
+              : 'bg-emerald-600 hover:bg-emerald-600 clickable'
             }
           `}
           aria-label="Decrease amount"
@@ -84,7 +84,7 @@ const AmountInput = ({
             placeholder:text-neutral-500 dark:placeholder:text-neutral-400 appearance-none
             ${error
               ? 'focus:inset-ring-2 inset-ring-red-500 focus:headShake'
-              : 'focus:inset-ring-2 inset-ring-green-600'
+              : 'focus:inset-ring-2 inset-ring-emerald-600'
             }
           `}
           aria-invalid={!!error}
@@ -98,8 +98,8 @@ const AmountInput = ({
           className={`
             size-10 rounded-full flex items-center justify-center text-neutral-200
             ${isMaxDisabled
-              ? 'bg-green-600/30  cursor-not-allowed'
-              : 'bg-green-600 hover:bg-green-600  clickable'
+              ? 'bg-emerald-600/30  cursor-not-allowed'
+              : 'bg-emerald-600 hover:bg-emerald-600  clickable'
             }
           `}
           aria-label="Increase amount"
@@ -108,12 +108,7 @@ const AmountInput = ({
         </button>
       </div>
 
-      {/* STYLING AREA 4: Error Message */}
-      {error && (
-        <p className="text-xs text-red-600 dark:text-red-400 px-2">
-          {error}
-        </p>
-      )}
+    
     
     </div>
   )

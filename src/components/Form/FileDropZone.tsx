@@ -177,7 +177,7 @@ const FileDropZone = React.memo(({
           ${isFull
             ? 'border-green-500 bg-green-50 dark:bg-green-900/20 cursor-default'
             : isDragActive && !isDragReject
-            ? 'border-green-600 bg-orange-50 dark:bg-orange-900/20 cursor-pointer'
+            ? 'border-emerald-600 bg-orange-50 dark:bg-orange-900/20 cursor-pointer'
             : 'border-gray-300 hover:border-gray-400 cursor-pointer'
           }
           ${isDragReject
@@ -194,9 +194,9 @@ const FileDropZone = React.memo(({
           <div className="flex flex-col items-center gap-3">
             {isFull ? (
               <>
-                <i className="fa-solid fa-circle-check text-4xl text-green-600"></i>
+                <i className="fa-solid fa-circle-check text-4xl text-emerald-600"></i>
                 <div>
-                  <p className="text-lg font-bold text-green-600 dark:text-green-400">
+                  <p className="text-lg font-bold text-emerald-600 dark:text-emerald-400">
                     All done!
                   </p>
                   <p className="text-sm text-green-500 dark:text-green-400">
@@ -206,8 +206,8 @@ const FileDropZone = React.memo(({
               </>
             ) : isDragActive ? (
               <>
-                <i className="fa-solid fa-cloud-arrow-up text-3xl text-green-600"></i>
-                <p className="text-lg font-medium text-green-600 dark:text-green-400">
+                <i className="fa-solid fa-cloud-arrow-up text-3xl text-emerald-600"></i>
+                <p className="text-lg font-medium text-emerald-600 dark:text-emerald-400">
                   Drop your images here...
                 </p>
               </>

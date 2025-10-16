@@ -152,7 +152,7 @@ const Step1 = () => {
                     key={c.title}
                     ref={category === c.title ? selectedCategoryRef : null}
                     htmlFor={`option-${c.title}`}
-                    className={`clickable  flex px-4 py-2 items-center justify-center gap-2 glassy rounded-2xl has-checked:inset-ring-2 inset-ring-green-600 ${currentCategory ? "flex-row" : "flex-col aspect-square w-32 mx-auto"}`}
+                    className={`clickable  flex px-4 py-2 items-center justify-center gap-2 glassy rounded-2xl has-checked:inset-ring-2 inset-ring-emerald-600 ${currentCategory ? "flex-row" : "flex-col aspect-square w-32 mx-auto"}`}
                   >
                     <p className={`${currentCategory ? "text-2xl" : "text-4xl"}`}>
                       {categoryIcons[c.title as keyof typeof categoryIcons]}
