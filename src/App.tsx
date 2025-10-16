@@ -16,7 +16,7 @@ const App = () => {
 //  const { t } = useTranslation()
 
   return (
-    <div className={`${theme} h-dvh overflow-hidden bg-gradient-to-b from-orange-300 to-pink-400 d-200 dark:bg-neutral-950 transition-all duration-1000 flex flex-col dark:text-neutral-100 text-neutral-800`}>
+    <div className={`${theme} h-dvh overflow-hidden bg-gradient-to-b from-orange-300 to-pink-400 bg-scroll dark:bg-neutral-950 transition-all duration-1000 flex flex-col dark:text-neutral-100 text-neutral-800`}>
 
       <nav id='navbar' className='flex gap-4 pe-3 items-center justify-center bg-neutral-200 dark:bg-neutral-900 transition-all duration-1000'>
         <div className='flex items-center gap-4 flex-1 md:px-8'>
