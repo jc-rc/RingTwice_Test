@@ -1,6 +1,8 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import RadioList from '../RadioList'
 import LabeledTextInput from '../LabeledTextInput'
+import AmountInput from '../AmountInput'
+import CheckboxList from '../CheckboxList'
 import { useFormStore } from '../../../stores/formStore'
 
 const Step2 = () => {
@@ -18,6 +20,32 @@ const Step2 = () => {
         setPeopleNeeded,
         setExtraDetails,
     } = useFormStore()
+
+    // Local state for resources (materials and tools) as a Set
+    const [resources, setResources] = useState<Set<string>>(new Set())
+
+    // Sync local resources state with form store
+    useEffect(() => {
+        const newResources = new Set<string>()
+        if (materialsProvided) newResources.add('materials')
+        if (toolsProvided) newResources.add('tools')
+        setResources(newResources)
+    }, [materialsProvided, toolsProvided])
+
+    // Handle resource changes
+    const handleResourceChange = (value: string) => {
+        const newResources = new Set(resources)
+        if (newResources.has(value)) {
+            newResources.delete(value)
+        } else {
+            newResources.add(value)
+        }
+        setResources(newResources)
+        
+        // Update form store
+        setMaterialsProvided(newResources.has('materials'))
+        setToolsProvided(newResources.has('tools'))
+    }
 
     // Refs for scrolling to progressive sections
     const placeTypeRef = useRef<HTMLDivElement>(null)
@@ -76,7 +104,7 @@ const Step2 = () => {
     }, [peopleNeeded])
 
     return (
-        <div className="flex flex-2 flex-col gap-4 h-full overflow-y-auto fadeInRight">
+        <div className="flex flex-2 flex-col gap-4 h-full overflow-y-auto fadeIn">
             {/* Address */}
             <div className="flex flex-col gap-2">
                 <h3 className="text-lg font-semibold">Location</h3>
@@ -108,40 +136,28 @@ const Step2 = () => {
             {placeType && (
                 <div ref={resourcesRef} className="flex flex-col gap-2 fadeIn">
                     <h3 className="text-lg font-semibold">Resources</h3>
-                    <label htmlFor='form-materials' className='flex items-center gap-3 glassy p-4 rounded-2xl has-checked:inset-ring-2 inset-ring-green-600'>
-                        <input
-                            id='form-materials'
-                            type='checkbox'
-                            checked={materialsProvided}
-                            onChange={(e) => setMaterialsProvided(e.target.checked)}
-                            className="w-4 h-4 accent-green-600"
-                        />
-                        <p className="font-medium">Materials provided?</p>
-                    </label>
-                    <label htmlFor='form-tools' className='flex items-center gap-3 glassy p-4 rounded-2xl has-checked:inset-ring-2 inset-ring-green-600'>
-                        <input
-                            id='form-tools'
-                            type='checkbox'
-                            checked={toolsProvided}
-                            onChange={(e) => setToolsProvided(e.target.checked)}
-                            className="w-4 h-4 accent-green-600"
-                        />
-                        <p className="font-medium">Tools provided?</p>
-                    </label>
+                    <CheckboxList
+                        options={[
+                            { value: 'materials', label: 'Materials provided?' },
+                            { value: 'tools', label: 'Tools provided?' }
+                        ]}
+                        selected={resources}
+                        onChange={handleResourceChange}
+                    />
                 </div>
             )}
 
             {/* People needed - Only show if place type is selected */}
             {placeType && (
                 <div ref={teamSizeRef} className="flex flex-col gap-2 fadeIn">
-                    <h3 className="text-lg font-semibold">Team size</h3>
-                    <LabeledTextInput
-                        id='form-people-needed'
-                        type='number'
-                        inputMode='numeric'
-                        placeholder='People required for the task?'
-                        value={peopleNeeded === null ? '' : String(peopleNeeded)}
-                        onChange={(v) => setPeopleNeeded(v === '' ? null : Number(v))}
+                    <h3 className="text-lg font-semibold">How many people are needed?</h3>
+                    <AmountInput
+                        value={peopleNeeded}
+                        onChange={setPeopleNeeded}
+                        min={1}
+                        max={10}
+                        step={1}
+                        placeholder="0"
                         error={peopleError}
                     />
                 </div>

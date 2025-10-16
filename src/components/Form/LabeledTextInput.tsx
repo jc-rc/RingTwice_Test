@@ -16,7 +16,7 @@ const LabeledTextInput = ({ id, type = 'text', placeholder, value, onChange, err
     <div className="flex flex-col gap-2">
       <div className={`flex items-center gap-2 p-4 glassy rounded-2xl ${hasError
               ? 'has-focus:inset-ring-2 inset-ring-red-500 headShake'
-              : 'has-focus:inset-ring-2 inset-ring-orange-400'
+              : 'inset-ring-2 inset-ring-green-600'
             }`}>
         <i className={`fa-solid ${iconName}`}></i>
         <input

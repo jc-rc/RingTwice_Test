@@ -9,7 +9,7 @@ function Step3() {
   const emailError = /.+@.+\..+/.test(email) ? '' : 'Valid email is required'
 
   return (
-    <div className="flex flex-col flex-2 gap-4 h-full overflow-y-auto fadeinRight">
+    <div className="flex flex-col flex-2 gap-4 h-full overflow-y-auto fadeIn">
       {/* Contact */}
       <div className="flex flex-col gap-2">
         <h3 className="text-lg font-semibold">Contact information</h3>

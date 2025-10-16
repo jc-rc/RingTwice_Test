@@ -16,3 +16,7 @@
 .glassy{
   @apply transition-all duration-1000 bg-neutral-200/30 shadow-lg dark:bg-neutral-900/30; 
 }
+
+.clickable{
+  @apply cursor-pointer transition-all duration-300 active:scale-95 shadow-lg active:shadow-none;
+}

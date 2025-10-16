@@ -38,7 +38,7 @@ const Onboarding = () => {
             <div className='flex  items-center justify-between z-1 gap-4 fadeIn' style={{animationDelay: "0.6s"}}>
           
                 <Button label={
-            currentStep===3 ? t("onboarding.complete"): t("onboarding.next")} className='w-full bg-emerald-600 text-neutral-200 shadow-lg' onClick={currentStep === 3 ? completeOnboarding : nextStep} />
+            currentStep===3 ? t("onboarding.complete"): t("onboarding.next")} className=' w-full bg-emerald-600 text-neutral-200 shadow-lg' onClick={currentStep === 3 ? completeOnboarding : nextStep} />
 
             </div>
 

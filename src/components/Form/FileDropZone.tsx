@@ -81,6 +81,9 @@ const FileDropZone = ({
     }
   }, [onFilesChange, maxFiles, maxSize]) // Removed existingFiles from dependencies
 
+  // Check if all slots are filled
+  const isFull = existingFiles.length >= maxFiles
+
   const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
     onDrop,
     accept: acceptedFileTypes.reduce((acc, type) => {
@@ -89,8 +92,9 @@ const FileDropZone = ({
     }, {} as Record<string, string[]>),
     maxSize,
     multiple: true,
-    noClick: false,
-    noKeyboard: false
+    noClick: isFull, // Disable click when full
+    noKeyboard: isFull, // Disable keyboard when full
+    disabled: isFull // Disable dropzone when full
   })
 
   const removeFile = useCallback((index: number) => {
@@ -125,10 +129,12 @@ const FileDropZone = ({
       <div
         {...getRootProps()}
         className={`
-          border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-all duration-200 glassy
-          ${isDragActive && !isDragReject
-            ? 'border-green-600 bg-orange-50 dark:bg-orange-900/20'
-            : 'border-gray-300 hover:border-gray-400'
+          border-2 border-dashed rounded-lg p-6 text-center glassy clickable
+          ${isFull
+            ? 'border-green-500 bg-green-50 dark:bg-green-900/20 cursor-default'
+            : isDragActive && !isDragReject
+            ? 'border-green-600 bg-orange-50 dark:bg-orange-900/20 cursor-pointer'
+            : 'border-gray-300 hover:border-gray-400 cursor-pointer'
           }
           ${isDragReject
             ? 'border-red-400 bg-red-50 dark:bg-red-900/20'
@@ -142,7 +148,19 @@ const FileDropZone = ({
 
           {/* STYLING AREA 2: Drop Zone Content */}
           <div className="flex flex-col items-center gap-3">
-            {isDragActive ? (
+            {isFull ? (
+              <>
+                <i className="fa-solid fa-circle-check text-4xl text-green-600"></i>
+                <div>
+                  <p className="text-lg font-bold text-green-600 dark:text-green-400">
+                    All done!
+                  </p>
+                  <p className="text-sm text-green-500 dark:text-green-400">
+                    {maxFiles} images uploaded successfully
+                  </p>
+                </div>
+              </>
+            ) : isDragActive ? (
               <>
                 <i className="fa-solid fa-cloud-arrow-up text-3xl text-green-600"></i>
                 <p className="text-lg font-medium text-green-600 dark:text-green-400">

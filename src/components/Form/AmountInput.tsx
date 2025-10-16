@@ -1,6 +1,121 @@
-const AmountInput = () => {
+import React from 'react'
+
+interface AmountInputProps {
+  value: number | null
+  onChange: (value: number | null) => void
+  min?: number
+  max?: number
+  step?: number
+  placeholder?: string
+  error?: string | null
+  className?: string
+}
+
+const AmountInput = ({
+  value,
+  onChange,
+  min = 1,
+  max = 20,
+  step = 1,
+  placeholder = "0",
+  error,
+  className = ""
+}: AmountInputProps) => {
+  const handleIncrement = () => {
+    const currentValue = value || 0
+    const newValue = Math.min(currentValue + step, max)
+    onChange(newValue)
+  }
+
+  const handleDecrement = () => {
+    const currentValue = value || 0
+    const newValue = Math.max(currentValue - step, min)
+    onChange(newValue)
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value
+    if (inputValue === '') {
+      onChange(null)
+    } else {
+      const numValue = parseInt(inputValue, 10)
+      if (!isNaN(numValue)) {
+        const clampedValue = Math.min(Math.max(numValue, min), max)
+        onChange(clampedValue)
+      }
+    }
+  }
+
+  const displayValue = value === null ? '' : value.toString()
+  const isMinDisabled = value === null || value <= min
+  const isMaxDisabled = value !== null && value >= max
+
   return (
-    <div>AmountInput</div>
+    <div className={`flex flex-col gap-2 glassy rounded-2xl p-4 items-center ${className}`}>
+      <div className="flex items-center gap-2">
+        {/* STYLING AREA 1: Decrement Button */}
+        <button
+          type="button"
+          onClick={handleDecrement}
+          disabled={isMinDisabled}
+          className={`
+            size-10 rounded-full flex items-center justify-center text-neutral-200
+            ${isMinDisabled
+              ? 'bg-green-600/30  cursor-not-allowed'
+              : 'bg-green-600 hover:bg-green-600 clickable'
+            }
+          `}
+          aria-label="Decrease amount"
+        >
+          <i className="fa-solid fa-minus"></i>
+        </button>
+
+        {/* STYLING AREA 2: Number Input */}
+        <input
+          type="number"
+          value={displayValue}
+          onChange={handleInputChange}
+          placeholder={placeholder}
+          min={min}
+          max={max}
+          step={step}
+          className={`
+            flex items-center justify-center p-3 text-center font-bold text-2xl rounded-lg outline-0
+            placeholder:text-neutral-500 dark:placeholder:text-neutral-400 appearance-none
+            ${error
+              ? 'focus:inset-ring-2 inset-ring-red-500 focus:headShake'
+              : 'focus:inset-ring-2 inset-ring-green-600'
+            }
+          `}
+          aria-invalid={!!error}
+        />
+
+        {/* STYLING AREA 3: Increment Button */}
+        <button
+          type="button"
+          onClick={handleIncrement}
+          disabled={isMaxDisabled}
+          className={`
+            size-10 rounded-full flex items-center justify-center text-neutral-200
+            ${isMaxDisabled
+              ? 'bg-green-600/30  cursor-not-allowed'
+              : 'bg-green-600 hover:bg-green-600  clickable'
+            }
+          `}
+          aria-label="Increase amount"
+        >
+          <i className="fa-solid fa-plus"></i>
+        </button>
+      </div>
+
+      {/* STYLING AREA 4: Error Message */}
+      {error && (
+        <p className="text-xs text-red-600 dark:text-red-400 px-2">
+          {error}
+        </p>
+      )}
+    
+    </div>
   )
 }
 
