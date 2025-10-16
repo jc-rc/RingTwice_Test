@@ -26,12 +26,12 @@
         "title_step3": "Contact details"
     },
     "offboarding": {
-        "title_step1": "Your service request is live on RingTwice!",
+        "title_step1": "Your service request is live!",
         "title_step2": "Choose the best offer",
         "title_step3": "Check your messages often!",
         "paragraph_step1": "The best providers in your region will be automatically notified and you will receive various offers within 4 hours",
-        "paragraph_step2": "Compare prices and ratings, and click 'Accept'",
-        "paragraph_step3": "Once a you accept a provider's proposal, you'll be able to chat with them and agree on the details",
+        "paragraph_step2": "Compare prices and ratings",
+        "paragraph_step3": "Once you accept a provider's proposal, you'll be able to chat with them and agree on the details",
         "button_complete": "Back to home",
         "button_step1": "What's next?",
         "button_step2": "Got it!",

@@ -26,11 +26,11 @@
         "title_step3": "Detalles de contacto"
     },
     "offboarding": {
-        "title_step1": "¡Tu solicitud de servicio está activa en RingTwice!",
+        "title_step1": "¡Tu solicitud de servicio está activa!",
         "title_step2": "Elige la mejor oferta",
         "title_step3": "¡Revisa tus mensajes frecuentemente!",
         "paragraph_step1": "Los mejores proveedores en tu región serán notificados automáticamente y recibirás varias ofertas en 4 horas",
-        "paragraph_step2": "Compara precios y calificaciones, y haz clic en 'Aceptar'",
+        "paragraph_step2": "Compara precios y calificaciones",
         "paragraph_step3": "Una vez que aceptes la propuesta de un proveedor, podrás chatear con ellos y acordar los detalles",
         "button_complete": "Volver al inicio",
         "button_step1": "¿Qué sigue?",
