@@ -153,13 +153,13 @@ const Step1 = () => {
                   <label
                     key={c.title}
                     htmlFor={`option-${c.title}`}
-                    className={`clickable flex px-4 py-2 items-center justify-center gap-2 glassy rounded-2xl has-checked:inset-ring-2 inset-ring-emerald-600 has-checked:order-first ${category ? 'flex-row min-w-max' : 'flex-col aspect-square w-32 mx-auto'}`}
+                    className={`clickable flex px-4 py-2 items-center justify-center gap-2 glassy rounded-2xl has-checked:inset-ring-2 inset-ring-emerald-600 has-checked:order-first ${category ? 'flex-row min-w-max' : 'flex-col aspect-square w-32 lg:w-24 mx-auto'}`}
                   >
                     <p className={`${category ? 'text-2xl' : 'text-4xl'}`}>
                       {categoryIcons[c.title as keyof typeof categoryIcons]}
                     </p>
-                    <div>
-                      <p className="font-bold text-sm w-max">{t(`categories.${c.title}`)}</p>
+                    <div className=''>
+                      <p className={`font-bold text-center ${category ? 'text-sm w-max' : 'text-xs'}`}>{t(`categories.${c.title}`)}</p>
                     </div>
                     <input
                       id={`option-${c.title}`}

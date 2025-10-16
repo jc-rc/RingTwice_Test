@@ -23,7 +23,7 @@ const Form = () => {
 
     return (
         <>
-            <div className='flex flex-col gap-4 fadeIn flex-1 h-full overflow-hidden p-4 md:p-8 glassy md:rounded-4xl md:max-w-4xl md:mx-auto'>
+            <div className='flex flex-col gap-4 fadeIn flex-1 h-full overflow-hidden p-4 md:p-8 glassy md:rounded-4xl md:max-w-xl md:mx-auto'>
 
                 <div>
                     <p className='font-bold text-2xl'>{t(`form.title_step${currentStep}`)}</p>
