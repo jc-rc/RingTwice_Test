@@ -100,9 +100,56 @@
         "categories": "Loading categories…",
         "failed_load_categories": "Failed to load categories:"
     },
-    "accessibility": {
-        "decrease_amount": "Decrease amount",
-        "increase_amount": "Increase amount",
-        "remove_file": "Remove"
-    }
+  "accessibility": {
+    "decrease_amount": "Decrease amount",
+    "increase_amount": "Increase amount",
+    "remove_file": "Remove"
+  },
+  "categories": {
+    "Gardening": "Gardening",
+    "Entertainment": "Entertainment",
+    "Pets": "Pets",
+    "House chores": "House chores",
+    "Technology": "Technology",
+    "Transport": "Transport",
+    "Babysitting": "Babysitting",
+    "Lessons": "Lessons",
+    "Wellness": "Wellness",
+    "Handywork": "Handywork"
+  },
+  "subcategories": {
+    "Watering": "Watering",
+    "Music": "Music",
+    "Walking": "Walking",
+    "Cleaning": "Cleaning",
+    "IT Help": "IT Help",
+    "Moving": "Moving",
+    "Care": "Care",
+    "Tutoring": "Tutoring",
+    "Fitness": "Fitness",
+    "Repairs": "Repairs"
+  },
+  "subactivities": {
+    "Water potted plants": "Water potted plants",
+    "Water whole yard": "Water whole yard",
+    "Hire a DJ": "Hire a DJ",
+    "Set up speakers": "Set up speakers",
+    "Walk the dog": "Walk the dog",
+    "Pet sitting": "Pet sitting",
+    "Vacuuming": "Vacuuming",
+    "Mopping": "Mopping",
+    "Laundry": "Laundry",
+    "Set up Wi‑Fi": "Set up Wi‑Fi",
+    "Install software": "Install software",
+    "Load van": "Load van",
+    "Drive items": "Drive items",
+    "Evening babysitting": "Evening babysitting",
+    "School pickup": "School pickup",
+    "Math help": "Math help",
+    "Language practice": "Language practice",
+    "Personal training": "Personal training",
+    "Yoga session": "Yoga session",
+    "Fix shelf": "Fix shelf",
+    "Assemble furniture": "Assemble furniture"
+  }
 }

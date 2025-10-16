@@ -18,7 +18,6 @@ const AmountInput = ({
   min = 1,
   max = 20,
   step = 1,
-  placeholder = "0",
   error,
   className = ""
 }: AmountInputProps) => {

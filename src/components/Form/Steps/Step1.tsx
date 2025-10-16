@@ -160,7 +160,7 @@ const Step1 = () => {
                       {categoryIcons[c.title as keyof typeof categoryIcons]}
                     </p>
                     <div>
-                      <p className="font-bold text-sm w-max">{c.title}</p>
+                      <p className="font-bold text-sm w-max">{t(`categories.${c.title}`)}</p>
                     </div>
                     <input
                       id={`option-${c.title}`}
@@ -184,7 +184,7 @@ const Step1 = () => {
               <h3 className="text-lg font-semibold">{t('form_labels.choose_subcategory')}</h3>
               <RadioList
                 name="subcategory"
-                options={currentCategory.subCategories.map(s => ({ value: s.title, label: s.title }))}
+                options={currentCategory.subCategories.map(s => ({ value: s.title, label: t(`subcategories.${s.title}`) }))}
                 value={subCategory}
                 onChange={handleSubCategoryChange}
               />
@@ -197,7 +197,7 @@ const Step1 = () => {
             <div ref={subActivitiesRef} className="flex flex-col gap-2 fadeIn">
               <h3 className="text-lg font-semibold">{t('form_labels.select_activities')}</h3>
               <CheckboxList
-                options={currentSubCategory.subActivities.map(a => ({ value: a, label: a }))}
+                options={currentSubCategory.subActivities.map(a => ({ value: a, label: t(`subactivities.${a}`) }))}
                 selected={subActivities}
                 onChange={toggleSubActivity}
               />

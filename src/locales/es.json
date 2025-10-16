@@ -100,9 +100,56 @@
         "categories": "Cargando categorías…",
         "failed_load_categories": "Error al cargar categorías:"
     },
-    "accessibility": {
-        "decrease_amount": "Disminuir cantidad",
-        "increase_amount": "Aumentar cantidad",
-        "remove_file": "Eliminar"
-    }
+  "accessibility": {
+    "decrease_amount": "Disminuir cantidad",
+    "increase_amount": "Aumentar cantidad",
+    "remove_file": "Eliminar"
+  },
+  "categories": {
+    "Gardening": "Jardinería",
+    "Entertainment": "Entretenimiento",
+    "Pets": "Mascotas",
+    "House chores": "Tareas domésticas",
+    "Technology": "Tecnología",
+    "Transport": "Transporte",
+    "Babysitting": "Cuidado de niños",
+    "Lessons": "Clases",
+    "Wellness": "Bienestar",
+    "Handywork": "Trabajos manuales"
+  },
+  "subcategories": {
+    "Watering": "Riego",
+    "Music": "Música",
+    "Walking": "Paseos",
+    "Cleaning": "Limpieza",
+    "IT Help": "Ayuda informática",
+    "Moving": "Mudanzas",
+    "Care": "Cuidado",
+    "Tutoring": "Tutorías",
+    "Fitness": "Fitness",
+    "Repairs": "Reparaciones"
+  },
+  "subactivities": {
+    "Water potted plants": "Regar plantas en maceta",
+    "Water whole yard": "Regar todo el jardín",
+    "Hire a DJ": "Contratar DJ",
+    "Set up speakers": "Configurar altavoces",
+    "Walk the dog": "Pasear al perro",
+    "Pet sitting": "Cuidar mascotas",
+    "Vacuuming": "Aspirar",
+    "Mopping": "Fregar",
+    "Laundry": "Lavandería",
+    "Set up Wi‑Fi": "Configurar Wi‑Fi",
+    "Install software": "Instalar software",
+    "Load van": "Cargar furgoneta",
+    "Drive items": "Transportar objetos",
+    "Evening babysitting": "Cuidado nocturno",
+    "School pickup": "Recoger del colegio",
+    "Math help": "Ayuda con matemáticas",
+    "Language practice": "Práctica de idiomas",
+    "Personal training": "Entrenamiento personal",
+    "Yoga session": "Sesión de yoga",
+    "Fix shelf": "Arreglar estante",
+    "Assemble furniture": "Montar muebles"
+  }
 }
