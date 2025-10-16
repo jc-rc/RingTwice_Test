@@ -1,12 +1,14 @@
 
 import { useEffect, useMemo, useRef } from 'react'
 import { useFormStore, type CategoryNode } from '../../../stores/formStore'
+import { useTranslation } from 'react-i18next'
 import RadioList from '../RadioList'
 import CheckboxList from '../CheckboxList'
 import TextareaWithCounter from '../TextareaWithCounter'
 import FileDropZone from '../FileDropZone'
 
 const Step1 = () => {
+  const { t } = useTranslation()
 
   const categoryIcons = {
     'Gardening' : "🪴",
@@ -120,7 +122,7 @@ const Step1 = () => {
         // Description validator function
         const descriptionValidator = (value: string) => {
             if (currentSubCategory && value.trim().length < 20) {
-                return 'Please enter at least 20 characters'
+                return t('validation.min_characters')
             }
             return null
         }
@@ -131,12 +133,12 @@ const Step1 = () => {
       {isCategoriesLoading && (
         <div className="flex flex-col items-center justify-center p-8">
           <i className='fa-solid fa-spinner animate-spin text-2xl'></i>
-          <p className="text-lg text-gray-500">Loading categories…</p>
+          <p className="text-lg text-gray-500">{t('loading.categories')}</p>
         </div>
       )}
       {categoriesError && (
         <div className="flex items-center justify-center p-8">
-          <p className="text-lg text-red-600">Failed to load categories: {categoriesError}</p>
+          <p className="text-lg text-red-600">{t('loading.failed_load_categories')} {categoriesError}</p>
         </div>
       )}
 
@@ -144,7 +146,7 @@ const Step1 = () => {
         <>
           {/* Category Selection */}
           <div className="flex flex-col gap-2">
-            <h3 className="text-lg font-semibold">Choose a category</h3>
+            <h3 className="text-lg font-semibold">{t('form_labels.choose_category')}</h3>
             <form className="h-full flex justify-center items-center rounded-lg overflow-hidden">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 has-checked:flex has-checked:min-w-full has-checked:overflow-x-auto has-checked:px-2 px-8 pb-4 ">
                 {categories.map((c) => (
@@ -179,7 +181,7 @@ const Step1 = () => {
           {/* Subcategory Selection - Only show if category is selected */}
           {currentCategory?.subCategories && (
             <div ref={subCategoryRef} className="flex flex-col gap-2 fadeIn">
-              <h3 className="text-lg font-semibold">Choose a subcategory</h3>
+              <h3 className="text-lg font-semibold">{t('form_labels.choose_subcategory')}</h3>
               <RadioList
                 name="subcategory"
                 options={currentCategory.subCategories.map(s => ({ value: s.title, label: s.title }))}
@@ -193,7 +195,7 @@ const Step1 = () => {
           {/* Subactivity Selection - Only show if subcategory is selected */}
           {currentSubCategory?.subActivities && (
             <div ref={subActivitiesRef} className="flex flex-col gap-2 fadeIn">
-              <h3 className="text-lg font-semibold">Select activities (multiple allowed)</h3>
+              <h3 className="text-lg font-semibold">{t('form_labels.select_activities')}</h3>
               <CheckboxList
                 options={currentSubCategory.subActivities.map(a => ({ value: a, label: a }))}
                 selected={subActivities}
@@ -206,7 +208,7 @@ const Step1 = () => {
            {/* Photo Upload - Only show if subactivities are selected */}
            { subActivities.size > 0 && (
             <div className="flex flex-col gap-2 fadeIn">
-              <h3 className="text-lg font-semibold">Add photos (encouraged)</h3>
+              <h3 className="text-lg font-semibold">{t('form_labels.add_photos')}</h3>
               <FileDropZone
                 onFilesChange={addPhotos}
                 maxFiles={3}
@@ -220,10 +222,10 @@ const Step1 = () => {
           {/* Description - Only show if subcategory is selected */}
           {subActivities.size > 0 && (
             <div ref={descriptionRef} className="flex flex-col gap-2 fadeIn">
-              <h3 className="text-lg font-semibold">Describe the task</h3>
+              <h3 className="text-lg font-semibold">{t('form_labels.describe_task')}</h3>
                     <TextareaWithCounter
                         id="form-task-description"
-                        placeholder="Provide details about what needs to be done..."
+                        placeholder={t('placeholders.describe_task')}
                         value={description}
                         onChange={setDescription}
                         validator={descriptionValidator}

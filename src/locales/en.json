@@ -70,8 +70,8 @@
         "other": "Other"
     },
     "resources": {
-        "materials_provided": "Materials provided?",
-        "tools_provided": "Tools provided?"
+        "materials_provided": "I have materials for the task",
+        "tools_provided": "I have tools for the task"
     },
     "validation": {
         "address_required": "Address is required",
@@ -93,7 +93,7 @@
         "upload_failed": "File upload failed. Please try again.",
         "max_files_allowed": "files allowed. Please remove some files first.",
         "max_files": "Maximum",
-        "files_added": "files were added. Maximum",
+        "files_added": "files",
         "mb_each": "MB each"
     },
     "loading": {

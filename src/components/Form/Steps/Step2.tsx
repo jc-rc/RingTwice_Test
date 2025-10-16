@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import RadioList from '../RadioList'
 import LabeledTextInput from '../LabeledTextInput'
 import AmountInput from '../AmountInput'
@@ -6,6 +7,7 @@ import CheckboxList from '../CheckboxList'
 import { useFormStore } from '../../../stores/formStore'
 
 const Step2 = () => {
+    const { t } = useTranslation()
     const {
         address,
         placeType,
@@ -57,20 +59,20 @@ const Step2 = () => {
     const extraDetailsRef = useRef<HTMLDivElement>(null)
 
     const placeTypes = [
-        { value: 'house', label: 'House' },
-        { value: 'apartment', label: 'Apartment' },
-        { value: 'other', label: 'Other' },
+        { value: 'house', label: t('place_types.house') },
+        { value: 'apartment', label: t('place_types.apartment') },
+        { value: 'other', label: t('place_types.other') },
     ] as const
 
     // Address validator function that also updates local state for progressive rendering
     const addressValidator = (value: string) => {
-        const error = value.trim().length === 0 ? 'Address is required' : null
+        const error = value.trim().length === 0 ? t('validation.address_required') : null
         setAddressError(error)
         return error
     }
 
-    const placeTypeError = !placeType ? 'Type of place is required' : ''
-    const peopleError = typeof peopleNeeded !== 'number' || Number.isNaN(peopleNeeded) ? 'Please enter a valid number' : ''
+    const placeTypeError = !placeType ? t('validation.place_type_required') : ''
+    const peopleError = typeof peopleNeeded !== 'number' || Number.isNaN(peopleNeeded) ? t('validation.valid_number_required') : ''
 
     // Scroll to place type section when address becomes valid
     useEffect(() => {
@@ -116,10 +118,10 @@ const Step2 = () => {
         <div className="flex flex-2 flex-col gap-4 h-full overflow-y-auto fadeIn">
             {/* Address */}
             <div className="flex flex-col gap-2">
-                <h3 className="text-lg font-semibold">Location</h3>
+                <h3 className="text-lg font-semibold">{t('form_labels.location')}</h3>
                     <LabeledTextInput
                         id="form-address"
-                        placeholder="Address"
+                        placeholder={t('placeholders.address')}
                         value={address}
                         onChange={setAddress}
                         validator={addressValidator}
@@ -130,7 +132,7 @@ const Step2 = () => {
             {/* Place type - radio group - Only show if address is valid */}
             {!addressError && (
                 <div ref={placeTypeRef} className="flex flex-col gap-2 fadeIn">
-                    <h3 className="text-lg font-semibold">Type of place</h3>
+                    <h3 className="text-lg font-semibold">{t('form_labels.type_of_place')}</h3>
                     <RadioList
                         name="place-type"
                         options={[...placeTypes]}
@@ -144,11 +146,11 @@ const Step2 = () => {
             {/* Materials / Tools - Only show if place type is selected */}
             {placeType && (
                 <div ref={resourcesRef} className="flex flex-col gap-2 fadeIn">
-                    <h3 className="text-lg font-semibold">Resources</h3>
+                    <h3 className="text-lg font-semibold">{t('form_labels.resources')}</h3>
                     <CheckboxList
                         options={[
-                            { value: 'materials', label: 'Materials provided?' },
-                            { value: 'tools', label: 'Tools provided?' }
+                            { value: 'materials', label: t('resources.materials_provided') },
+                            { value: 'tools', label: t('resources.tools_provided') }
                         ]}
                         selected={resources}
                         onChange={handleResourceChange}
@@ -159,7 +161,7 @@ const Step2 = () => {
             {/* People needed - Only show if place type is selected */}
             {placeType && (
                 <div ref={teamSizeRef} className="flex flex-col gap-2 fadeIn">
-                    <h3 className="text-lg font-semibold">How many people are needed?</h3>
+                    <h3 className="text-lg font-semibold">{t('form_labels.how_many_people')}</h3>
                     <AmountInput
                         value={peopleNeeded}
                         onChange={setPeopleNeeded}
@@ -175,13 +177,13 @@ const Step2 = () => {
             {/* Extra details - Only show if people needed is provided */}
             {typeof peopleNeeded === 'number' && !Number.isNaN(peopleNeeded) && (
                 <div ref={extraDetailsRef} className="flex flex-col gap-2 fadeIn">
-                    <h3 className="text-lg font-semibold">Extra details</h3>
+                    <h3 className="text-lg font-semibold">{t('form_labels.extra_details')}</h3>
                     <textarea
                         className="min-h-32 p-4 glassy rounded-2xl resize-none placeholder:text-neutral-500 dark:placeholder:text-neutral-400 outline-0 focus:inset-ring-1 inset-ring-emerald-600"
                         rows={5}
                         maxLength={300}
                         id='form-extra-details'
-                        placeholder='How to enter, parking, pets, etc.'
+                        placeholder={t('placeholders.extra_details')}
                         value={extraDetails}
                         onChange={(e) => setExtraDetails(e.target.value)}
                     />

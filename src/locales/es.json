@@ -27,10 +27,10 @@
         "title_step3": "Detalles de contacto"
     },
     "offboarding": {
-        "title_step1": "¡Tu solicitud de servicio está activa!",
+        "title_step1": "¡Tu solicitud está activa!",
         "title_step2": "Elige la mejor oferta",
         "title_step3": "¡Revisa tus mensajes frecuentemente!",
-        "paragraph_step1": "Los mejores proveedores en tu región serán notificados automáticamente y recibirás varias ofertas en 4 horas",
+        "paragraph_step1": "Los mejores proveedores en tu región serán notificados y recibirás ofertas dentro de las próximas 4 horas",
         "paragraph_step2": "Compara precios y calificaciones",
         "paragraph_step3": "Una vez que aceptes la propuesta de un proveedor, podrás chatear con ellos y acordar los detalles",
         "button_complete": "Volver al inicio",
@@ -70,8 +70,8 @@
         "other": "Otro"
     },
     "resources": {
-        "materials_provided": "¿Materiales proporcionados?",
-        "tools_provided": "¿Herramientas proporcionadas?"
+        "materials_provided": "Tengo materiales para la tarea",
+        "tools_provided": "Tengo herramientas para la tarea"
     },
     "validation": {
         "address_required": "La dirección es requerida",
@@ -93,8 +93,8 @@
         "upload_failed": "Error al subir archivo. Por favor intenta de nuevo.",
         "max_files_allowed": "archivos permitidos. Por favor elimina algunos archivos primero.",
         "max_files": "Máximo",
-        "files_added": "archivos fueron agregados. Máximo",
-        "mb_each": "MB cada uno"
+        "files_added": "archivos ",
+        "mb_each": "MB cada una"
     },
     "loading": {
         "categories": "Cargando categorías…",

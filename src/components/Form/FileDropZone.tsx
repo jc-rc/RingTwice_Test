@@ -1,5 +1,6 @@
 
 import React, { useCallback, useState, useRef, useEffect, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDropzone } from 'react-dropzone'
 
 interface FileDropZoneProps {
@@ -17,6 +18,7 @@ const FileDropZone = React.memo(({
   maxSize = 5 * 1024 * 1024, // 5MB
   existingFiles = []
 }: FileDropZoneProps) => {
+  const { t } = useTranslation()
   const [error, setError] = useState<string | null>(null)
   const currentFilesRef = useRef<File[]>(existingFiles)
 
@@ -33,11 +35,11 @@ const FileDropZone = React.memo(({
     if (rejectedFiles.length > 0) {
       const rejection = rejectedFiles[0]
       if (rejection.errors[0]?.code === 'file-too-large') {
-        setError(`File is too large. Maximum size is ${maxSize / (1024 * 1024)}MB`)
+        setError(`${t('file_upload.file_too_large')} ${maxSize / (1024 * 1024)}${t('file_upload.mb_each')}`)
       } else if (rejection.errors[0]?.code === 'file-invalid-type') {
-        setError('Invalid file type. Please upload images only.')
+        setError(t('file_upload.invalid_file_type'))
       } else {
-        setError('File upload failed. Please try again.')
+        setError(t('file_upload.upload_failed'))
       }
       return
     }
@@ -48,7 +50,7 @@ const FileDropZone = React.memo(({
 
     // Guard: Prevent adding files if we're already at max capacity
     if (currentFileCount >= maxFiles) {
-      setError(`Maximum ${maxFiles} files allowed. Please remove some files first.`)
+      setError(`${t('file_upload.max_files')} ${maxFiles} ${t('file_upload.max_files_allowed')}`)
       return
     }
 
@@ -57,7 +59,7 @@ const FileDropZone = React.memo(({
     const filesToAdd = acceptedFiles.slice(0, availableSlots)
 
     if (filesToAdd.length < acceptedFiles.length) {
-      setError(`Only ${filesToAdd.length} of ${acceptedFiles.length} files were added. Maximum ${maxFiles} files allowed.`)
+      setError(`${filesToAdd.length} ${t('file_upload.files_added')} ${t('file_upload.max_files')} ${maxFiles} ${t('file_upload.max_files_allowed')}`)
     }
 
     // Guard: Only add files if we have slots available
@@ -130,7 +132,7 @@ const FileDropZone = React.memo(({
     return (
       <div className="flex flex-col gap-3">
         <h4 className="text-sm ">
-          Selected Images ({existingFiles.length}/{maxFiles})
+          {t('file_upload.selected_images')} ({existingFiles.length}/{maxFiles})
         </h4>
 
         {/* STYLING AREA 5: Image Grid */}
@@ -154,7 +156,7 @@ const FileDropZone = React.memo(({
                       removeFile(index)
                     }}
                     className="bg-pink-500/30 hover:bg-pink-600/60 text-white p-2 size-full transition-all cursor-pointer"
-                    aria-label={`Remove ${file.name}`}
+                    aria-label={`${t('accessibility.remove_file')} ${file.name}`}
                   >
                     <i className="fa-solid fa-xmark text-2xl"></i>
                   </button>
@@ -197,10 +199,10 @@ const FileDropZone = React.memo(({
                 <i className="fa-solid fa-circle-check text-4xl text-emerald-600"></i>
                 <div>
                   <p className="text-lg font-bold text-emerald-600 dark:text-emerald-400">
-                    All done!
+                    {t('file_upload.all_done')}
                   </p>
                   <p className="text-sm text-green-500 dark:text-green-400">
-                    {maxFiles} images uploaded successfully
+                    {maxFiles} {t('file_upload.images_uploaded')}
                   </p>
                 </div>
               </>
@@ -208,7 +210,7 @@ const FileDropZone = React.memo(({
               <>
                 <i className="fa-solid fa-cloud-arrow-up text-3xl text-emerald-600"></i>
                 <p className="text-lg font-medium text-emerald-600 dark:text-emerald-400">
-                  Drop your images here...
+                  {t('file_upload.drop_images')}
                 </p>
               </>
             ) : (
@@ -216,10 +218,10 @@ const FileDropZone = React.memo(({
                 <i className="fa-solid fa-camera text-4xl"></i>
                 <div>
                   <p className="text-lg font-bold">
-                    Upload your images here
+                    {t('file_upload.upload_images')}
                   </p>
                   <p className="text-sm">
-                    Max {maxFiles} files • {maxSize / (1024 * 1024)}MB each
+                    {t('file_upload.max_files')} {maxFiles} {t('file_upload.files_added')} • {maxSize / (1024 * 1024)}{t('file_upload.mb_each')}
                   </p>
                 </div>
               </>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface AmountInputProps {
   value: number | null
@@ -21,6 +22,7 @@ const AmountInput = ({
   error,
   className = ""
 }: AmountInputProps) => {
+  const { t } = useTranslation()
   const handleIncrement = () => {
     const currentValue = value || 0
     const newValue = Math.min(currentValue + step, max)
@@ -65,7 +67,7 @@ const AmountInput = ({
               : 'bg-emerald-600 hover:bg-emerald-600 clickable'
             }
           `}
-          aria-label="Decrease amount"
+            aria-label={t('accessibility.decrease_amount')}
         >
           <i className="fa-solid fa-minus"></i>
         </button>
@@ -75,7 +77,7 @@ const AmountInput = ({
           type="number"
           value={displayValue}
           onChange={handleInputChange}
-          placeholder={placeholder}
+          placeholder={t('placeholders.amount_input')}
           min={min}
           max={max}
           step={step}
@@ -102,7 +104,7 @@ const AmountInput = ({
               : 'bg-emerald-600 hover:bg-emerald-600  clickable'
             }
           `}
-          aria-label="Increase amount"
+            aria-label={t('accessibility.increase_amount')}
         >
           <i className="fa-solid fa-plus"></i>
         </button>
