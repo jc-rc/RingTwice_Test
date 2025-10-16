@@ -48,8 +48,14 @@ const Offboarding = () => {
 
 
       <div className='flex-1' >
-        {currentStep === 1 && <div className="flex items-center justify-center h-full border">
-          IMAGE1
+        {currentStep === 1 && <div className="flex items-center justify-center h-full  relative overflow-hidden glassy rounded-2xl bg-top bg-cover fadeIn" style={{ backgroundImage: 'url(https://static.vecteezy.com/system/resources/previews/002/920/438/large_2x/abstract-city-map-seamless-pattern-roads-navigation-gps-use-for-pattern-fills-surface-textures-web-page-background-wallpaper-illustration-free-vector.jpg)' }}>
+          <div className="h-full aspect-square rounded-full bg-orange-600/15 animate-ping" style={{ animationDuration: '2s' }} >
+
+          </div>
+
+          <div className="absolute inset-0 size-24 md:size-48 border-8 border-orange-400 self-center mx-auto rounded-full overflow-clip heartbeat shadow-lg">
+            <img src="https://this-person-does-not-exist.com/img/avatar-gen020f764bb198cbdb35a8e164c293e7d4.jpg" alt="User N." />
+          </div>
         </div>
 
         }
@@ -71,7 +77,7 @@ const Offboarding = () => {
                     <i className='fa-solid fa-star text-yellow-500 text-shadow-xs me-2'></i>
                     {person.rating}
                   </p>
-                  
+
                 </div>
               </div>
             </div>
@@ -79,15 +85,15 @@ const Offboarding = () => {
         </div>
 
         }
-        {currentStep === 3 && <div className="flex items-center justify-center h-full ">
+        {currentStep === 3 && <div className="flex items-center justify-center h-full fadeIn">
           <div className='relative bg-neutral-200 rounded-4xl shadow-lg p-4 aspect-square flex items-center justify-center w-32 scale-110 md:scale-150 transition-all duration-300'>
-              <img src="/RingTwice-symbol_logo-rgb.svg" alt="RingTwice Logo" className='w-10' />
-              <div className='absolute top-0 translate-y-[-25%] right-[0] translate-x-[25%] bg-red-400 size-10 rounded-full flex items-center justify-center animate-ping'>
-                
-              </div>
-              <div className='absolute top-0 translate-y-[-25%] right-[0] translate-x-[25%] bg-red-500 size-10 rounded-full flex items-center justify-center '>
-                <i className='fa-solid fa-exclamation text-neutral-200 text-2xl'></i>
-              </div>
+            <img src="/RingTwice-symbol_logo-rgb.svg" alt="RingTwice Logo" className='w-10' />
+            <div className='absolute top-0 translate-y-[-25%] right-[0] translate-x-[25%] bg-red-400 size-10 rounded-full flex items-center justify-center animate-ping'>
+
+            </div>
+            <div className='absolute top-0 translate-y-[-25%] right-[0] translate-x-[25%] bg-red-500 size-10 rounded-full flex items-center justify-center '>
+              <i className='fa-solid fa-exclamation text-neutral-200 text-2xl'></i>
+            </div>
           </div>
         </div>
         }
