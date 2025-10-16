@@ -46,6 +46,7 @@ const Step1 = () => {
   } = useFormStore()
 
   // Refs for progressive sections
+  const categoryScrollerRef = useRef<HTMLDivElement>(null)
   const subCategoryRef = useRef<HTMLDivElement>(null)
   const subActivitiesRef = useRef<HTMLDivElement>(null)
   const descriptionRef = useRef<HTMLDivElement>(null)
@@ -57,6 +58,15 @@ const Step1 = () => {
     }
   }, [categories.length, isCategoriesLoading, categoriesError, fetchCategories])
 
+  // Scroll to beginning when category is selected
+  useEffect(() => {
+    if (category && categoryScrollerRef.current) {
+      categoryScrollerRef.current.scrollTo({
+        left: 0,
+        behavior: 'smooth'
+      })
+    }
+  }, [category])
 
   // Narrow current category/subcategory for dependent rendering
   const currentCategory: CategoryNode | undefined = useMemo(
@@ -135,12 +145,15 @@ const Step1 = () => {
           <div className="flex flex-col gap-2">
             <h3 className="text-lg font-semibold">{t('form_labels.choose_category')}</h3>
             <form className="h-full flex justify-center items-center rounded-lg overflow-hidden">
-              <div className={`${category ? 'flex overflow-x-auto gap-4 px-2 pb-4' : 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8 pb-4'}`}>
+              <div 
+                ref={categoryScrollerRef}
+                className={`${category ? 'flex overflow-x-auto gap-4 px-2 pb-4' : 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8 pb-4'}`}
+              >
                 {categories.map((c) => (
                   <label
                     key={c.title}
                     htmlFor={`option-${c.title}`}
-                    className={`clickable flex px-4 py-2 items-center justify-center gap-2 glassy rounded-2xl has-checked:inset-ring-2 inset-ring-emerald-600 ${category ? 'flex-row min-w-max' : 'flex-col aspect-square w-32 mx-auto'}`}
+                    className={`clickable flex px-4 py-2 items-center justify-center gap-2 glassy rounded-2xl has-checked:inset-ring-2 inset-ring-emerald-600 has-checked:order-first ${category ? 'flex-row min-w-max' : 'flex-col aspect-square w-32 mx-auto'}`}
                   >
                     <p className={`${category ? 'text-2xl' : 'text-4xl'}`}>
                       {categoryIcons[c.title as keyof typeof categoryIcons]}

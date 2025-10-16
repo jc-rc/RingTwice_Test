@@ -17,7 +17,7 @@ const Offboarding = () => {
   const { currentStep, nextStep, completeOffboarding, resetOffboarding } = useOffboardingStore()
   const { resetForm } = useFormStore()
   const { resetOnboarding } = useOnboardingStore()
-  
+
   const { t } = useTranslation()
 
   // Array of objects containing different people data
@@ -48,10 +48,26 @@ const Offboarding = () => {
 
   // Function to handle completion and reset both stores
   const handleComplete = () => {
+    // Gather values from form store for API summary
+    const { category, subCategory, subActivities, description, photos } = useFormStore.getState();
+
+    // Create a summary object similar to what the Summary would show
+    const summaryObj = {
+      category,
+      subCategory,
+      subActivities: Array.from(subActivities),
+      description,
+      photos,
+    };
+
+    console.log("Object ready to be sent to API:", summaryObj);
+
+
     resetForm()
     resetOnboarding()
     resetOffboarding()
     completeOffboarding()
+
   }
 
   return (
